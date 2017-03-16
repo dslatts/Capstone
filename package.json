@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack -w & nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,8 @@
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.0",
     "redux-logger": "^2.8.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "volleyball": "^1.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",

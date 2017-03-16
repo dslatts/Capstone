@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    entry: './index.js',
+    entry: './browser/index.js',
     output: {
         path: __dirname,
         filename: './public/bundle.js'
@@ -14,7 +14,7 @@ module.exports = {
                 test: /jsx?$/,
                 exclude: /(node-modules|bower-components)/,
                 loader: 'babel-loader',
-                options: {
+                query: {
                     presets: ['react', 'es2015' ]
                 }
             }
