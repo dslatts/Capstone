@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/dslatts/Capstone#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "nodemon": "^1.11.0",
     "react": "^15.4.2",
