@@ -1,11 +1,12 @@
+import { combineReducers } from 'redux';
+import artistReducer from './artist';
+import albumReducer from './album';
+import songsReducer from './songs';
 
-const rootReducer = (state = {}, action) => {
-  const newState = Object.assign({}, state);
-  switch (action.type) {
-
-    default:
-      return state;
-  }
-};
+const rootReducer = combineReducers({
+  currentArtist: artistReducer,
+  currentAlbumList: albumReducer,
+  currentSongList: songsReducer
+});
 
 export default rootReducer;

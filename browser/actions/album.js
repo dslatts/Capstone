@@ -4,7 +4,7 @@ export const GET_ALBUMS = 'GET_ALBUMS';
 export const REMOVE_ALBUMS = 'REMOVE_ALBUMS';
 
 export const getAlbums = (albums) => ({ type: GET_ALBUMS, receivedAlbums: albums});
-export const removeAlbums = (albums) => ({ type: REMOVE_ALBUMS, albumsToDelete: albums});
+export const removeAlbums = () => ({ type: REMOVE_ALBUMS});
 
 //thunk action creators
 export const fetchAlbums = () => {

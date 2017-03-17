@@ -4,7 +4,7 @@ export const GET_ARTISTS = 'GET_ARTISTS';
 export const REMOVE_ARTIST = 'REMOVE_ARTIST';
 
 export const getArtists = (artists) => ({ type: GET_ARTISTS, receivedArtists: artists});
-export const removeArtist = (artist) => ({ type: REMOVE_ARTIST, artistToDelete: artist});
+export const removeArtist = () => ({ type: REMOVE_ARTIST});
 
 //thunk action creators
 export const fetchArtists = () => {
