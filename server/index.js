@@ -6,16 +6,9 @@ const {resolve} = require('path');
 // const passport = require('passport');
 const finalHandler = require('finalhandler');
 
-// This next line requires our root index.js:
-const pkg = require('APP');
-
 const app = express();
 
-if (!pkg.isProduction && !pkg.isTesting) {
-  // Logging middleware (dev only)
   app.use(require('volleyball'));
-}
-
 
 module.exports = app
   // Body parsing middleware
@@ -30,7 +23,7 @@ module.exports = app
   .use(express.static(resolve(__dirname, '..', 'public')))
 
   // Serve our api - ./api also requires in ../db, which syncs with our database
-  .use('/api', require('./api'))
+  .use('/api', require('./api.js'))
 
   // Send index.html for anything else.
   .get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html')))
@@ -50,7 +43,7 @@ if (module === require.main) {
   const server = app.listen(
     process.env.PORT || 1337,
     () => {
-      console.log(`--- Started HTTP Server for ${pkg.name} ---`);
+      console.log(`--- Started HTTP Server ---`);
       const { address, port } = server.address();
       const host = address === '::' ? 'localhost' : address;
       const urlSafeHost = host.includes(':') ? `[${host}]` : host;
