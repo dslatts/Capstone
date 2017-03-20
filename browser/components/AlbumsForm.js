@@ -12,6 +12,7 @@ constructor(props){
 
 onAlbumsSubmit(event){
   event.preventDefault();
+  //dispatch goes here
 }
 
 onAlbumToggle(event){
@@ -31,7 +32,6 @@ onAlbumToggle(event){
 }
 render () {
   let albumList;
-  console.log(this.state)
   if (this.props.currentAlbumList.albums){
     albumList = this.props.currentAlbumList.albums.items.filter((album) => {
     return album.album_type === 'album';
