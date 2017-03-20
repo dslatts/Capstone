@@ -3,22 +3,23 @@ import React, {Component} from 'react';
 export default class AlbumsForm extends Component {
 constructor(props){
   super(props);
-  this.selectedAlbums = {};
+  this.state = {
+    indexSelected: ''
+  }
   this.onAlbumsSubmit = this.onAlbumsSubmit.bind(this);
   this.onAlbumToggle = this.onAlbumToggle.bind(this);
 }
 
 onAlbumsSubmit(event){
   event.preventDefault();
-  console.log(this.state.inputValue);
 }
 
 onAlbumToggle(event){
-  event.preventDefault();
+
+  const value = event.target.value
   this.setState({
-    [event.target.name]: event.target.checked
-  });
-  console.log(this.state);
+    indexSelected: value
+  })
 }
 render () {
   let albumList;
@@ -31,13 +32,14 @@ render () {
     return (
     <div>
       <form onSubmit={this.onAlbumsSubmit}>
-        {albumList && albumList.map((album) => {
+        {albumList && albumList.map((album, index) => {
+          console.log('ALBUM ID::::::::', album.id)
         return (<div key={album.id}>
             <input
               type="checkbox"
               name={album.id}
               onChange={this.onAlbumToggle}
-              checked={this.state[album.id]}
+              checked={this.state.indexSelected === album.id }
               value={album.id} />
               <img src={album.images[0].url} />
               {album.name}
