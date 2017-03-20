@@ -11,11 +11,14 @@ onAlbumsSubmit(event){
   console.log(this.state.inputValue);
 }
   render () {
+    let albumList;
+    if (this.props.currentAlbumList.albums) albumList = this.props.currentAlbumList.albums.items;
+
     return (
     <div>
       <form onSubmit={this.onAlbumsSubmit}>
-        {this.props.currentAlbumList && this.props.currentAlbumList.map((album) => {
-          return <input key={album.id} type="checkbox" name={album.name} value={album.id} >{album.name}</input>;
+        {albumList && albumList.map((album) => {
+          return <p key={album.id} >{album.name}</p>;
         })}
         <button>Visualize</button>
       </form>

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
 export default class ArtistsForm extends Component {
-constructor(){
-  super();
+constructor(props){
+  super(props);
   this.state = {
     inputValue: ''
   };
@@ -17,7 +17,10 @@ onArtistChange(event){
 }
 onArtistsSubmit(event){
   event.preventDefault();
-  console.log(this.state.inputValue);
+  var temp = this.state.inputValue;
+  //replaces spaces with '+' which works for spotify API
+  temp = temp.split(' ').join('+');
+  this.props.fetchAlbums(temp);
 }
   render () {
     return (
