@@ -5,6 +5,6 @@ constructor(){
   super();
 }
   render () {
-    return (<div></div>);
+    return (<div><p>HI</p></div>);
   }
 }
