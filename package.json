@@ -23,6 +23,7 @@
     "bcryptjs": "^2.4.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.15.2",
+    "chai": "^3.5.0",
     "chai-enzyme": "^0.5.2",
     "chai-properties": "^1.2.1",
     "chai-things": "^0.2.0",
@@ -33,6 +34,7 @@
     "enzyme": "^2.5.1",
     "express": "^4.14.0",
     "finalhandler": "^1.0.0",
+    "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
@@ -55,6 +57,7 @@
     "sequelize": "^3.24.6",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
+    "spotify-web-api-js": "^0.21.2",
     "volleyball": "^1.4.1"
   },
   "devDependencies": {
