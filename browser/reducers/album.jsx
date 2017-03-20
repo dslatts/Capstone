@@ -2,21 +2,16 @@ import {GET_ALBUMS, REMOVE_ALBUMS} from '../actions/album';
 
 const albumReducer = (state = {}, action) => {
 
-  const newState = Object.assign({}, state);
-
   switch (action.type) {
     case GET_ALBUMS:
-      newState.currentAlbumList = action.receivedAlbums;
-      break;
+      return action.receivedAlbums;
 
     case REMOVE_ALBUMS:
-      newState.currentAlbumList = {};
-      break;
+      return {};
 
     default:
       return state;
   }
-  return newState;
 };
 
 export default albumReducer;
