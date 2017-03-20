@@ -50,7 +50,7 @@ module.exports = app
 },
   (accessToken, refreshToken, profile, done) => {
     console.log('--- inside ze spotifystrategy ---')
-    User.findOrCreate({name: profile.name, spotifyId: profile.id}, (err, user) => {
+    User.findOrCreate({spotifyId: profile.id}, (err, user) => {
       return done(err, user);
     });
   }
