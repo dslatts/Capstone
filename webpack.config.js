@@ -1,7 +1,8 @@
 'use strict';
 
 const config = {
-  entry: './app/main.jsx',
+  entry: './browser/index.js',
+
   output: {
     path: __dirname,
     filename: './public/bundle.js'

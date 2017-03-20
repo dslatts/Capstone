@@ -7,9 +7,9 @@ export const getAlbums = (albums) => ({ type: GET_ALBUMS, receivedAlbums: albums
 export const removeAlbums = () => ({ type: REMOVE_ALBUMS});
 
 //thunk action creators
-export const fetchAlbums = () => {
+export const fetchAlbums = (artist) => {
     return (dispatch) => {
-        axios.get()
+        axios.get(`/api/artists/${artist}/albums`)
         .then((res) => res.data)
         .then((albums) => {
             dispatch(getAlbums(albums));
