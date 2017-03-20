@@ -5,13 +5,14 @@ import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
 import {render} from 'react-dom';
 import {connect, Provider} from 'react-redux';
 
-import store from './store.jsx';
-import HomePage from './components/HomePage';
+import store from './store';
+import HomeContainer from './containers/HomeContainer';
+
 
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={HomePage} />
+      <Route path="/" component={HomeContainer}  />
     </Router>
   </Provider>,
   document.getElementById('app')

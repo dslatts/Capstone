@@ -2,6 +2,7 @@
 
 const config = {
   entry: './browser/index.js',
+
   output: {
     path: __dirname,
     filename: './public/bundle.js'

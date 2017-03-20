@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 
 const mapStateToProps = (state) => {
+  return {
+    currentAlbumList: state.currentAlbumList
+  }
 };
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(null)(HomePage);
