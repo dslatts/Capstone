@@ -7,7 +7,7 @@ export default class HomePage extends Component {
     return (
     <div>
       <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-      <AlbumsForm currentAlbumList={this.props.currentAlbumList} />
+      {this.props.currentAlbumList.albums ? <AlbumsForm currentAlbumList={this.props.currentAlbumList} /> : null}
     </div>);
   }
 }
