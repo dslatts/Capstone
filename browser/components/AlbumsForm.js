@@ -16,14 +16,6 @@ constructor(props){
   this.onImageClick = this.onImageClick.bind(this);
 }
 
-componentWillMount(){
-  if (this.props.currentAlbumList.albums){
-    this.albumList = this.props.currentAlbumList.albums.items.filter((album) => {
-    return album.album_type === 'album';
-    });
-  }
-}
-
 onAlbumsSubmit(event){
   event.preventDefault();
   //dispatch goes here
@@ -70,22 +62,25 @@ onImageClick(albumId){
 }
 
 render () {
-  console.log(this.state);
+  if (this.props.currentAlbumList.albums){
+    this.albumList = this.props.currentAlbumList.albums.items.filter((album) => {
+    return album.album_type === 'album';
+    });
+  }
     return (
     <div>
       {this.renderSelectToggle()}
       <form onSubmit={this.onAlbumsSubmit}>
         {this.albumList && this.albumList.map((album) => {
         return (<div key={album.id}>
+            <div>{album.name}</div>
             <input
               type="checkbox"
               name={album.id}
               onChange={this.onAlbumToggle}
-              {...console.log(this.state.indexSelected.indexOf(album.id))}
               checked={this.state.indexSelected.indexOf(album.id) > -1}
               value={album.id} />
-              <img src={album.images[0].url} onClick={() => this.onImageClick(album.id)} />
-              {album.name}
+              <img id="albumCover" src={album.images[0].url} onClick={() => this.onImageClick(album.id)} />
               {album.id === this.state.selectedAlbum ? <SongsForm album={album.id} /> : null}
             </div>
         );
