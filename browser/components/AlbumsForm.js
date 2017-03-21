@@ -8,14 +8,49 @@ constructor(props){
     indexSelected: [],
     selectedAlbum: ''
   };
+  this.albumList = [];
+  this.renderSelectToggle = this.renderSelectToggle.bind(this);
+  this.selectToggle = this.selectToggle.bind(this);
   this.onAlbumsSubmit = this.onAlbumsSubmit.bind(this);
   this.onAlbumToggle = this.onAlbumToggle.bind(this);
   this.onImageClick = this.onImageClick.bind(this);
 }
 
+componentWillMount(){
+  if (this.props.currentAlbumList.albums){
+    this.albumList = this.props.currentAlbumList.albums.items.filter((album) => {
+    return album.album_type === 'album';
+    });
+  }
+}
+
 onAlbumsSubmit(event){
   event.preventDefault();
   //dispatch goes here
+}
+
+//changes button to say select all/deselect all
+renderSelectToggle(){
+  console.log(this.state.indexSelected.length, this.albumList.length);
+  if (this.state.indexSelected.length < this.albumList.length){
+    return (<button onClick={() => this.selectToggle(0)}>Select All</button>);
+  }
+  else {
+    return (<button onClick={() => this.selectToggle(1)}>Deselect All</button>);
+  }
+}
+
+selectToggle(decider){
+  if (decider === 0){
+    this.setState({
+      indexSelected: [...this.albumList]
+    });
+  }
+  else {
+    this.setState({
+      indexSelected: []
+    });
+  }
 }
 
 onAlbumToggle(event){
@@ -34,19 +69,14 @@ onAlbumToggle(event){
 onImageClick(albumId){
   this.setState({selectedAlbum: albumId});
 }
-render () {
-  let albumList;
-  if (this.props.currentAlbumList.albums){
-    albumList = this.props.currentAlbumList.albums.items.filter((album) => {
-    return album.album_type === 'album';
-    });
-  }
 
+render () {
+  console.log(this.state);
     return (
     <div>
-      <button>Select All</button>
+      {this.renderSelectToggle()}
       <form onSubmit={this.onAlbumsSubmit}>
-        {albumList && albumList.map((album) => {
+        {this.albumList && this.albumList.map((album) => {
         return (<div key={album.id}>
             <input
               type="checkbox"
