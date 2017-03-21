@@ -31,7 +31,6 @@ onAlbumsSubmit(event){
 
 //changes button to say select all/deselect all
 renderSelectToggle(){
-  console.log(this.state.indexSelected.length, this.albumList.length);
   if (this.state.indexSelected.length < this.albumList.length){
     return (<button onClick={() => this.selectToggle(0)}>Select All</button>);
   }
@@ -43,7 +42,7 @@ renderSelectToggle(){
 selectToggle(decider){
   if (decider === 0){
     this.setState({
-      indexSelected: [...this.albumList]
+      indexSelected: [...this.albumList.map((album) => album.id)]
     });
   }
   else {
@@ -82,6 +81,7 @@ render () {
               type="checkbox"
               name={album.id}
               onChange={this.onAlbumToggle}
+              {...console.log(this.state.indexSelected.indexOf(album.id))}
               checked={this.state.indexSelected.indexOf(album.id) > -1}
               value={album.id} />
               <img src={album.images[0].url} onClick={() => this.onImageClick(album.id)} />
