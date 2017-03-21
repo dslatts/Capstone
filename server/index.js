@@ -7,9 +7,12 @@ const bodyParser = require('body-parser');
 const {resolve} = require('path');
 const finalHandler = require('finalhandler');
 const SpotifyStrategy = require('passport-spotify').Strategy;
+const db = require('../db');
+console.log(db);
+const User = db.user;
 
 const app = express();
-  
+
   app.use(require('volleyball'));
 
 module.exports = app
@@ -34,10 +37,11 @@ module.exports = app
   app.use(passport.session());
 
   passport.serializeUser((user, done) => {
-    done(null, user.id);  
+    done(null, user.id);
     });
 
   passport.deserializeUser((id, done) => {
+    console.log('hello, im inside deserializeUser');
     User.findById(id)
     .then(user => done(null, user))
     .catch(done);
@@ -46,7 +50,7 @@ module.exports = app
   passport.use(new SpotifyStrategy({
   clientID: 'a9238ea915474eca9984060f2358a6c8',
   clientSecret: '0c24a20a960d4614a4dede424aebe4d6',
-  callbackURL: 'http://192.168.1.101:1337/api/auth/callback'
+  callbackURL: 'http://localhost:1337/api/auth/callback'
 },
   (accessToken, refreshToken, profile, done) => {
     console.log('--- inside ze spotifystrategy ---')
