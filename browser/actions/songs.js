@@ -7,12 +7,12 @@ export const getSongs = (songs) => ({ type: GET_SONGS, receivedSongs: songs});
 export const removeSongs = () => ({ type: REMOVE_SONGS});
 
 //thunk action creators
-export const fetchSongs = () => {
+export const fetchSongsOfAlbum = (albumId) => {
     return (dispatch) => {
-        axios.get()
+        axios.get(`api/albums/${albumId}`)
         .then((res) => res.data)
-        .then((songs) => {
-            dispatch(getSongs(songs));
+        .then((album) => {
+            dispatch(getSongs(album.tracks.items));
         })
         .catch(function (err) {
             console.error(err);

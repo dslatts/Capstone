@@ -22,17 +22,21 @@ export default class SongsForm extends Component {
     return (
     <div>
       <table>
-        <tr>
-          <th>Name</th>
-          <th>Sample</th>
-        </tr>
-        {this.state.songList.length > 0 && this.state.songList.map((song) => {
-        return (
-        <tr key={song.id}>
-          <td>{song.name}</td>
-          <td><audio controls><source src={song.preview_url} type="audio/mpeg" /></audio></td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Sample</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.state.songList.length > 0 && this.state.songList.map((song) => {
+          return (
+          <tr key={song.id}>
+            <td>{song.name}</td>
+            <td><audio controls><source src={song.preview_url} type="audio/mpeg" /></audio></td>
+          </tr>
         );})}
+        </tbody>
       </table>
     </div>
     );
