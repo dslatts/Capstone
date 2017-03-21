@@ -8,7 +8,6 @@ const {resolve} = require('path');
 const finalHandler = require('finalhandler');
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const db = require('../db');
-console.log(db);
 const User = db.user;
 
 const app = express();

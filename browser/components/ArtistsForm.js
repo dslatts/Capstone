@@ -26,7 +26,7 @@ onArtistsSubmit(event){
     return (
     <div>
       <form onSubmit={this.onArtistsSubmit}>
-        <input onChange={this.onArtistChange} placeholder="Search Artists" />
+        <input onChange={this.onArtistChange} placeholder="Search Artists" /><button>Search</button>
       </form>
     </div>);
   }
