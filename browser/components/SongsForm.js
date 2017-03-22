@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Song from './Song';
 
 export default class SongsForm extends Component {
   constructor(props){
@@ -21,23 +22,16 @@ export default class SongsForm extends Component {
   render() {
     return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Sample</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.songList.length > 0 && this.state.songList.map((song) => {
+      <div>
+        <span className="songHeader">Track</span>
+        <span className="songHeader">Sample</span>
+      </div>
+        {this.state.songList.length > 0 && this.state.songList.map((song) => {
           return (
-          <tr key={song.id}>
-            <td>{song.name}</td>
-            <td><audio controls><source src={song.preview_url} type="audio/mpeg" /></audio></td>
-          </tr>
-        );})}
-        </tbody>
-      </table>
+            <Song key={song.id} song={song} onSongClick={this.props.onSongClick} />
+          );
+        })
+      }
     </div>
     );
   }

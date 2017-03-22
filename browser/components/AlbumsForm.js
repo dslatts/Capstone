@@ -6,14 +6,14 @@ constructor(props){
   super(props);
   this.state = {
     indexSelected: [],
-    selectedAlbum: ''
+    selectedSongs: {}
   };
   this.albumList = [];
   this.renderSelectToggle = this.renderSelectToggle.bind(this);
   this.selectToggle = this.selectToggle.bind(this);
   this.onAlbumsSubmit = this.onAlbumsSubmit.bind(this);
   this.onAlbumToggle = this.onAlbumToggle.bind(this);
-  this.onImageClick = this.onImageClick.bind(this);
+  this.onSongClick = this.onSongClick.bind(this);
 }
 
 onAlbumsSubmit(event){
@@ -57,11 +57,26 @@ onAlbumToggle(event){
     indexSelected: albums
   });
 }
-onImageClick(albumId){
-  this.setState({selectedAlbum: albumId});
+
+onSongClick(songId){
+  var newState = this.state.selectedSongs;
+  if (this.state.selectedSongs[songId]){
+    newState[songId] = false;
+  }
+  else {
+    newState[songId] = true;
+  }
+  this.setState({
+    selectedSongs: newState
+  });
 }
 
+//call from onAlbumToggle
+addSongsFromAlbum(){
+
+}
 render () {
+  console.log(this.state);
   if (this.props.currentAlbumList.albums){
     this.albumList = this.props.currentAlbumList.albums.items.filter((album) => {
     return album.album_type === 'album';
@@ -75,13 +90,14 @@ render () {
         return (<div key={album.id}>
             <div>{album.name}</div>
             <input
+              className="squaredOne"
               type="checkbox"
               name={album.id}
               onChange={this.onAlbumToggle}
               checked={this.state.indexSelected.indexOf(album.id) > -1}
               value={album.id} />
-              <img id="albumCover" src={album.images[0].url} onClick={() => this.onImageClick(album.id)} />
-              {album.id === this.state.selectedAlbum ? <SongsForm album={album.id} /> : null}
+              <img className="albumCover" src={album.images[0].url} />
+              <SongsForm album={album.id} onSongClick={this.onSongClick} />
             </div>
         );
       })}
