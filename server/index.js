@@ -9,6 +9,7 @@ const finalHandler = require('finalhandler');
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const Promise = require('bluebird');
 const db = require('../db');
+var info = require('../secret.config');
 // console.log(db);
 const User = db.models.user;
 
@@ -40,7 +41,7 @@ app.use('/numVisits', function(req, res, next){
   res.status(200).send(sess);
 });
 
-app.use('/',(req, res, next) => {
+app.use('/', (req, res, next) => {
   console.log('this is to show us what session it is', req.session);
   next();
 });
@@ -73,17 +74,16 @@ passport.deserializeUser((id, done) => {
 
 passport.use(new SpotifyStrategy(
   {
-    clientID: 'a9238ea915474eca9984060f2358a6c8',
-    // TODO MUST REMOVE THE CLIENT SECRET
-    clientSecret: '4a5196f57e1e459fa49b19ef620149c1',
+    clientID: info.clientID,
+    clientSecret: info.clientSecret,
     callbackURL: 'http://localhost:1337/api/auth/callback'
   },
   (accessToken, refreshToken, profile, done) => {
     // console.log('accessToken: ');
-    console.log(accessToken);
+    // console.log(accessToken);
     // console.log('refreshToken: ')
     // console.log(refreshToken);
-    console.log(profile);
+    // console.log(profile);
     // console.log("ID: ", profile.id)
     // console.log('--- inside ze spotifystrategy ---')
     User.findOne({
