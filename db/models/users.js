@@ -9,7 +9,11 @@ var User = db.define('user', {
   spotifyId: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  authToken: {
+    type: Sequelize.TEXT,
+    allowNull: false
   }
-})
+});
 
 module.exports = User;
