@@ -7,7 +7,10 @@ var User = db.define('user', {
   },
   spotifyId: {
     type: Sequelize.STRING
+  },
+  authToken: {
+    type: Sequelize.TEXT
   }
-})
+});
 
 module.exports = User;
