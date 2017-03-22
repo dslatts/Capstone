@@ -11,7 +11,7 @@ export default class SongsForm extends Component {
     };
   }
   componentDidMount(){
-    axios.get(`https://api.spotify.com/v1/albums/${this.props.album}/tracks`)
+    axios.get(`https://api.spotify.com/v1/albums/${this.props.album.id}/tracks`)
         .then((res) => res.data)
         .then((songs) => {
             this.setState({songList: songs.items});
@@ -23,6 +23,19 @@ export default class SongsForm extends Component {
   render() {
     return (
     <div>
+
+      <div>
+        <div>{this.props.album.name}</div>
+        <input
+          className="squaredOne"
+          type="checkbox"
+          name={this.props.album.id}
+          onChange={()=>{this.props.onAlbumToggle(this.props.album.id, this.state.songList.map(songObj => songObj.id))}}
+          checked={this.props.albumCheck(this.props.album.id)}
+          value={this.props.album.id} />
+        <img className="albumCover" src={this.props.album.images[0].url} />
+      </div>
+
       <div>
         <span className="songHeader">Track</span>
         <span className="songHeader">Sample</span>
@@ -37,4 +50,3 @@ export default class SongsForm extends Component {
     );
   }
 }
-
