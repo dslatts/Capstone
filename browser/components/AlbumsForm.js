@@ -62,9 +62,11 @@ onSongClick(songId){
   var newState = this.state.selectedSongs;
   if (this.state.selectedSongs[songId]){
     newState[songId] = false;
+    document.getElementById(songId).className = 'songInactive';
   }
   else {
     newState[songId] = true;
+    document.getElementById(songId).className = 'songActive';
   }
   this.setState({
     selectedSongs: newState
@@ -72,11 +74,13 @@ onSongClick(songId){
 }
 
 //call from onAlbumToggle
-addSongsFromAlbum(){
-
+addSongsFromAlbum(songArray){
+  songArray.forEach((song) => {
+    this.onSongClick(song);
+  });
 }
+
 render () {
-  console.log(this.state);
   if (this.props.currentAlbumList.albums){
     this.albumList = this.props.currentAlbumList.albums.items.filter((album) => {
     return album.album_type === 'album';
@@ -97,7 +101,7 @@ render () {
               checked={this.state.indexSelected.indexOf(album.id) > -1}
               value={album.id} />
               <img className="albumCover" src={album.images[0].url} />
-              <SongsForm album={album.id} onSongClick={this.onSongClick} />
+              <SongsForm album={album.id} onSongClick={this.onSongClick} addSongsFromAlbum={this.addSongsFromAlbum} />
             </div>
         );
       })}
