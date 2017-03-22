@@ -2,7 +2,7 @@ var chai = require('chai');
 var mocha = require('mocha');
 var request = require('supertest-as-promised');
 var expect = chai.expect();
-var app = require('/index.js');
+var app = require('./index.js');
 var agent = request.agent(app)
 
 describe('Search', function() {
@@ -17,6 +17,7 @@ describe('Search', function() {
       }
     ]
   }
+
   var user = {
     name:'justinzhou93'
   };
@@ -68,7 +69,7 @@ describe('Search', function() {
       })
     })
   })
-})
+
 
 //TODO: Fill in these routes!!
 describe('Create Playlists', function() {
@@ -111,6 +112,7 @@ describe('User', function(){
       .expect(200)
       .expect(function(res){
         expect(res.body.items[0].name).to.equal('Discover Weekly')
+        })
       })
     })
   })
