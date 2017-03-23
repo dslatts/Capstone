@@ -50,12 +50,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser((user, done) => {
-  console.log('hello, im inside serializeUser');
   done(null, user.id);
   });
 
 passport.deserializeUser((id, done) => {
-  console.log('hello, im inside deserializeUser');
   done(null, id);
 });
 
@@ -130,7 +128,7 @@ if (module === require.main) {
       console.log(`Listening on http://${urlSafeHost}:${port}`);
       db.sync({force: true})
       .then(function () {
-        console.log('Oh and btw the postgres server is totally connected, too');
+        console.log('The postgres server is connected');
       });
     }
   );

@@ -5,31 +5,6 @@ var Playlist = db.playlist;
 var Song = db.song;
 const pRequest = require('request-promise');
 
-// made to automatically get the albums for a given artist
-// router.param('artist', (req, res, next, artist) => {
-//   console.log(artist);
-//   pRequest({
-//     url: 'https://api.spotify.com/v1/search',
-//     method: 'GET',
-//     json: true,
-//     qs: {
-//       'q': artist.split(' ').join('%20'),
-//       'type': 'artist'
-//     }
-//   })
-//   .then(foundArtist => {
-//     if (!foundArtist) {
-//       const err = new Error('does not exist');
-//       err.status = 404;
-//       next(err);
-//     } else {
-//       req.artistSearch = foundArtist.artists.items[0].id;
-//       next();
-//     }
-//   })
-//   .catch(next);
-// });
-
 // finds all albums for a given artist
 router.get('/:artist/albums', (req, res, next) => {
   console.log('in albums');

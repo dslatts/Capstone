@@ -21,7 +21,6 @@ router.get('/callback',
   });
 
 router.get('/logout', (req, res, next) => {
-  console.log('hello, i reached the logout route');
   req.session.destroy();
   res.send('you have successfully logged out')
 });
