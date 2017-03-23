@@ -63,7 +63,6 @@ router.get('/profile', (req, res, next) => {
       });
       Promise.all([topArtists, topSongs, userPlaylists, userProfile])
       .spread((foundTopArtists, foundTopSongs, foundUserPlaylists, foundUserProfile) => {
-        console.log('myplaylists: ', foundTopSongs);
         var artistlist = foundTopArtists.items.map(artistObj => {
           return Artist.findOrCreate({
             where: {
@@ -92,10 +91,8 @@ router.get('/profile', (req, res, next) => {
         const p1 = Promise.all(artistlist);
         const p2 = Promise.all(songlist);
         const p3 = Promise.all(playlistlist);
-        console.log('p1: ', p1);
         Promise.all([p1, p2, p3])
         .then(arrayofitems => {
-          console.log('arrayofitems:', arrayofitems[0]);
           const updatedArrOfSongs = arrayofitems[1].map(item => {
             console.log('item inside of updated songs: ', item[0]);
             item[0].setUsers(foundUser);

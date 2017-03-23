@@ -12,7 +12,6 @@ router.get('/audio-features', (req, res, next) => {
     	}
 	})
 	.then(foundAudioFeatures => {
-		console.log(foundAudioFeatures.audio_features);
 		if(!foundAudioFeatures) {
 			const err = new Error('no found tracks');
 			err.status = 404;
@@ -25,4 +24,3 @@ router.get('/audio-features', (req, res, next) => {
 })
 
 module.exports = router;
-
