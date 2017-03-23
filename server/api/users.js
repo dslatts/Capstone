@@ -94,7 +94,6 @@ router.get('/profile', (req, res, next) => {
         Promise.all([p1, p2, p3])
         .then(arrayofitems => {
           const updatedArrOfSongs = arrayofitems[1].map(item => {
-            console.log('item inside of updated songs: ', item[0]);
             item[0].setUsers(foundUser);
           });
           const updatedArrofPlaylists = arrayofitems[2].map(item => {
