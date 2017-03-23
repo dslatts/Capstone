@@ -9,7 +9,7 @@ export const removeUser = () => ({ type: REMOVE_USER});
 //thunk action creators
 export const fetchUser = () => {
   return (dispatch) => {
-    axios.get('/numVisits')
+    axios.get('/api/users/profile')
       .then((res) => res.data)
       .then((user) => {
         dispatch(setUser(user));
