@@ -13,7 +13,7 @@ const fakeData = [
   },
   {
     name: 'song3',
-    valence: 0.4,
+    valence: 0.1,
     albumName: 'Album 2',
     artist: 'Artist 3'
   },
@@ -37,7 +37,7 @@ const fakeData = [
   },
   {
     name: 'song2',
-    valence: 0.45,
+    valence: 0.3,
     albumName: 'Album 1',
     artist: 'Artist 3'
   },
@@ -46,6 +46,12 @@ const fakeData = [
     valence: 0.6,
     albumName: 'Album 1',
     artist: 'Artist 3'
+  },
+  {
+    name: 'song3',
+    valence: 0,
+    albumName: 'Album 3',
+    artist: 'Artist 2'
   },
   {
     name: 'song4',
@@ -69,7 +75,12 @@ let groupedBy = 'albums'
 // const d3 = require('d3');
 
 function drawCanvas(data) {
-  let svgChart, songNodes, forces, simulation;
+  let svgChart, songNodes, simulation;
+
+  let height = 500;
+  let width = 700;
+  let radius = 10;
+  let di = radius * 2
 
   // let groups = () => {
   //   if (groupedBy === 'albums'){
@@ -85,7 +96,18 @@ function drawCanvas(data) {
 
   let groups = d3.set(data.map(song => song.albumName))
 
-  forces = {stacked: createStackedForce()};
+  let forces = {stacked: createStackedForce()};
+
+  //scales
+    //ordinal scale
+  let xScale = d3.scaleBand()
+  .domain(groups.values())
+  .range([di, width - di])
+  .padding(0.25)
+
+  //continuous scale
+  let yScale = d3.scaleLinear()
+  .range([height - di, di])
 
   let xColorScale = d3.scaleLinear()
     .domain([0, 1])
@@ -96,14 +118,11 @@ function drawCanvas(data) {
     .range(['#FA9F28', '#D4F400'])
 
 
-function createChart(h, w){
+function createChart(){
   svgChart = d3.select('#chart')
     .append('svg')
-    .attr('height', h)
-    .attr('width', w)
-    //append svg grouping element
-    .append('g')
-    .attr('transform', 'translate(0,0)')
+    .attr('height', height)
+    .attr('width', width)
 }
 
   function createCircles(){
@@ -111,31 +130,19 @@ function createChart(h, w){
     .data(data)
     .enter()
     .append('circle')
-    .attr('r', 10)
+    .attr('r', radius)
     .attr('fill', 'pink')
     .attr('class', 'song')
   }
 
   function createStackedForce(){
-    let groupDomain = groups.values()
-
-    //ordinal scale
-    let xScale = d3.scaleBand()
-    .domain(groupDomain)
-    .range([0, 500])
-    .padding(0.5)
-
-    //continuous scale
-    let yScale = d3.scaleLinear()
-    .range([0, 500])
-
     return {
       x: d3.forceX(function(d) {
-        return xScale(d.albumName)
-      }).strength(0.05),
+        return xScale(d.albumName) + (xScale.bandwidth() / 2)
+      }).strength(0.99),
       y: d3.forceY(function(d){
         return yScale(d.valence)
-      }).strength(0.05)
+      }).strength(0.99)
     }
   }
 
@@ -149,13 +156,39 @@ function createChart(h, w){
       songNodes
         .attr('cx', (d) => d.x)
         .attr('cy', (d) => d.y)
+        .attr('transform', 'translate(0,-30)')
     })
-}
+  }
 
-  createChart(500, 500)
-  createCircles(data)
+  function createAxes(){
+    let ticks = 10
+    let format = '0.1f'
+
+    let xAxis = d3.axisBottom(xScale)
+      .ticks(ticks, format)
+
+    let yAxis = d3.axisLeft(yScale)
+      .ticks(ticks, format);
+
+    svgChart.append('g')
+      .attr('class', 'x-axis')
+      .attr('transform', `translate(0,${height - 30})`)
+      .call(xAxis)
+      .selectAll('.tick text')
+        .attr('font-size', '16px')
+
+    svgChart.append("g")
+          .attr("class", "y-axis")
+          .attr("transform", "translate(30, -30)")
+          .call(yAxis);
+  }
+
+
+  createChart()
   createStackedForce()
   createForceSimulation()
+  createCircles(data)
+  createAxes()
 }
 
 drawCanvas(fakeData);
