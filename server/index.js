@@ -42,7 +42,7 @@ app.use('/numVisits', function(req, res, next){
 });
 
 app.use('/', (req, res, next) => {
-  console.log('this is to show us what session it is', req.session);
+  // console.log('this is to show us what session it is', req.session);
   next();
 });
 
@@ -50,26 +50,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser((user, done) => {
+  console.log('hello, im inside serializeUser');
   done(null, user.id);
   });
 
 passport.deserializeUser((id, done) => {
   console.log('hello, im inside deserializeUser');
-  done(null, 'hi');
-  // User.findOne({
-  //   where: {
-  //     spotifyId: id
-  //   }
-  // })
-  // .then(user => {
-  //   console.log(user);
-  //   console.log(user.authToken);
-  //   user.token = user.authToken;
-  //   var newUser = {token: user.authToken};
-  //   console.log(newUser);
-  //   done(null, newUser);
-  // })
-  // .catch(done);
+  done(null, id);
 });
 
 passport.use(new SpotifyStrategy(
@@ -100,29 +87,17 @@ passport.use(new SpotifyStrategy(
             authToken: accessToken
         });
       } else {
-        console.log(accessToken);
-        console.log('im in the update');
+        // console.log(accessToken);
+        // console.log('im in the update');
         return user.update({
             authToken: accessToken
         })
       }
     })
     .then(selectedUser => console.log('selectedUser'))
-
-    // User.findOrCreate({
-    //   where: {
-    //     name: profile.username,
-    //     spotifyId: profile.id,
-    //     authToken: accessToken
-    //   }
-    // })
-    // .spread((user, wasCreatedBool) => {
-    //   console.log('successfully created user');
-    // })
-    // return done(null, {username: profile.id, password: accessToken});
-    profile.password = accessToken;
-    console.log('checking for password addition: ', profile);
-    return done(null, profile);
+    // console.log('checking for password addition: ', profile);
+    // console.log('profile completed')
+    return done(null, profile._json);
   }
 ));
 
