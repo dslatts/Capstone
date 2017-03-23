@@ -20,4 +20,9 @@ router.get('/callback',
     next();
   });
 
+router.get('/logout', (req, res, next) => {
+  req.session.passport = null;
+  next();
+});
+
 module.exports = router;
