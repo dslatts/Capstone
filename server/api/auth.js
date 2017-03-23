@@ -3,7 +3,7 @@ const passport = require('passport');
 
 router.get('/spotify',
   passport.authenticate('spotify', {
-    scope: ['user-read-email', 'user-read-private', 'user-read-birthdate', 'user-read-email', 'playlist-modify-private', 'playlist-modify-public', 'user-top-read'],
+    scope: ['user-read-email', 'user-read-private', 'user-read-birthdate', 'user-read-email', 'playlist-modify-private', 'playlist-modify-public', 'user-top-read', 'playlist-read-private'],
     showDialog: true
   }),
   function(req, res){
@@ -19,5 +19,10 @@ router.get('/callback',
     res.redirect('/');
     next();
   });
+
+router.get('/logout', (req, res, next) => {
+  req.session.passport = null;
+  next();
+});
 
 module.exports = router;
