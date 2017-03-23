@@ -21,8 +21,11 @@ export const fetchUser = () => {
 };
 
 export const logout = () => {
-  return () => {
+  return (dispatch) => {
     axios.get('/api/auth/logout')
+      .then(() => {
+        dispatch(removeUser())
+      })
       .catch(function(err) {
         console.error(err);
       });
