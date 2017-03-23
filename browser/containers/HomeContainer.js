@@ -5,7 +5,8 @@ import {fetchSongsOfAlbum} from '../actions/songs';
 
 const mapStateToProps = (state) => {
   return {
-    currentAlbumList: state.currentAlbumList
+    currentAlbumList: state.currentAlbumList,
+    currentUser: state.currentUser
   };
 };
 
@@ -13,9 +14,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchAlbums: function(artist){
       dispatch(fetchAlbums(artist));
-    },
-    fetchSongsOfAlbum: function(albumId){
-      dispatch(fetchSongsOfAlbum(albumId));
     }
   };
 };
