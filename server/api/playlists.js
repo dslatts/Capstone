@@ -5,8 +5,6 @@ var Playlist = db.models.playlist;
 var Song = db.models.song;
 var Promise = require('bluebird');
 const pRequest = require('request-promise');
-var Spotify = require('spotify-web-api-js');
-var api = new Spotify();
 
 router.get('/:playlistName', (req, res, next) => {
   if (!req.session.passport){
@@ -22,7 +20,6 @@ router.get('/:playlistName', (req, res, next) => {
       }
     })
     .then(foundUser => {
-      console.log('issue placeholder 1');
       // api.setAccessToken('fill in token');
       // api.createPlaylist('username', {name: `${req.params.playlistName}`, public: false});
       return pRequest({
@@ -39,8 +36,6 @@ router.get('/:playlistName', (req, res, next) => {
         }
       })
       .then(createdPlaylist => {
-        console.log('issue placeholder 2');
-        console.log(createdPlaylist);
         return Playlist.findOrCreate({
           where: {
             title: req.params.playlistName,
@@ -48,21 +43,17 @@ router.get('/:playlistName', (req, res, next) => {
           }
         })
         .spread((playlist, wasCreatedBool) => {
-          console.log('issue placeholder 3');
-          console.log(playlist);
           if (!wasCreatedBool){
             const err = new Error('playlist already exists. please use a different name');
             err.status = 400;
             next(err);
           }
           else {
-            // req.body.songs.forEach(song => song.setPlaylists(playlist));
-            return playlist.setUser(foundUser);
+            return playlist.setUser(foundUser)
+            .then(() => {
+              res.send(playlist);
+            });
           }
-        })
-        .then(() => {
-          console.log('issue placeholder 3');
-          res.send('playlist created');
         })
         .catch(next);
       });
