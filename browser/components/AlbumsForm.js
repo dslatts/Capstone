@@ -52,13 +52,7 @@ albumCheck(albumid){
 }
 
 onAlbumToggle(songId, songlist){
-  let albums
-  // console.log(event.target);
-  // console.log(event.target.data);
-
-  // const value = event.target.value;
-
-  // newState = this.state.indexSelected
+  let albums;
   if (this.state.indexSelected.indexOf(songId) > -1) {  // is selected
     albums = this.state.indexSelected.filter(id => id !== songId);  //unselects them
   } else {
@@ -114,7 +108,6 @@ render () {
     return album.album_type === 'album';
     });
   }
-  console.log(this.state);
   return (
     <div>
       {this.renderSelectToggle()}
