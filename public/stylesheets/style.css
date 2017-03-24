@@ -53,22 +53,34 @@
 .songInactive{
   background-color: #fc8a00;
 }
+
 #header{
   background-color: #898b8e;
 }
-#appLogo{
-  display: inline-flex;
+
+#header > ul > li {
+  display: inline-block;
+  list-style-type: none;
+
 }
-#logout{
-  display: inline-flex;
-  float: right;
+#header > ul > li:hover {
+  display: inline-block;
+  list-style-type: none;
 }
-#profilePic{
-  display: inline-flex;
-  float: right;
+#headerImg{
   border-radius: 50%;
   width: 60px;
   height: 60px;
 }
-
+ul.subMenu {
+  background-color: darkgray;
+  list-style-type: none;
+  opacity: 0;
+}
+ul.subMenu li {
+  text-decoration: none;
+}
+#header li:hover .subMenu{
+  opacity:1;
+}
 
