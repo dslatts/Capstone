@@ -3,23 +3,28 @@ import React, {Component} from 'react';
 export default class Sidebar extends Component {
   constructor(props){
     super(props);
+    this.removeSong = this.removeSong.bind(this);
   }
 
-  removeSong(songId){
-    document.getElementById(songId).remove();
+  removeSong(song){
+    document.getElementById('sidebar' + song.id).remove();
+    this.props.removeSongs(song);
   }
 
   render () {
     return (
       <div>
         <ul>
-          {this.props.songs && this.props.songs.map(song => {
+          {this.props.currentSongList && this.props.currentSongList.map(song => {
             return (
-              <div id={song.spotifyId}>
-                <p>{song.title}</p>
-                <div onClick={removeSong()}>X</div>
-              </div>
-            )
+              <li key={song.id}>
+                <div id={'sidebar' + song.id}>
+                  <p>{song.name}</p>
+                  <p>{song.artists[0].name}</p>
+                  <div onClick={() => this.removeSong(song)}>X</div>
+                </div>
+              </li>
+            );
           })}
         </ul>
       </div>

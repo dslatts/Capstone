@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Create from './Create';
 import Compare from './Compare';
 import HeaderContainer from '../containers/HeaderContainer';
+import Sidebar from './Sidebar';
 
 export default class HomePage extends Component {
   constructor(props){
@@ -39,13 +40,17 @@ export default class HomePage extends Component {
     }
     else if (this.state.createOrCompare === 'compare'){
       return (
-        <Compare
-        fetchAlbums={this.props.fetchAlbums}
-        getSongs={this.props.getSongs}
-        removeSongs={this.props.removeSongs}
-        removeAll={this.props.removeAll}
-        currentSongList={this.props.currentSongList}
-        currentAlbumList={this.props.currentAlbumList} />);
+        <div>
+          <Compare
+            fetchAlbums={this.props.fetchAlbums}
+            getSongs={this.props.getSongs}
+            removeSongs={this.props.removeSongs}
+            removeAll={this.props.removeAll}
+            currentSongList={this.props.currentSongList}
+            currentAlbumList={this.props.currentAlbumList}
+            />
+        </div>
+      );
     }
   }
 

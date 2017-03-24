@@ -64,25 +64,6 @@ onAlbumToggle(albumId, songlist){
   this.addSongsFromAlbum(songlist, this.state.indexSelected.indexOf(albumId) > -1);
 }
 
-onSongClick(songId){
-  if (this.props.currentSongList.includes(songId)){
-    this.setSongToFalse(songId);
-  }
-  else {
-    this.setSongToTrue(songId);
-  }
-}
-
-setSongToTrue(songId){
-  document.getElementById(songId).className = 'songActive';
-  this.props.getSongs(songId);
-}
-
-setSongToFalse(songId){
-  document.getElementById(songId).className = 'songInactive';
-  this.props.removeSongs(songId);
-}
-
 //call from onAlbumToggle
 addSongsFromAlbum(songArray, selectedBool){
   songArray.forEach((song) => {
@@ -93,6 +74,27 @@ addSongsFromAlbum(songArray, selectedBool){
       this.setSongToTrue(song);
     }
   });
+}
+
+onSongClick(song){
+  if (this.props.currentSongList.includes(song)){
+    this.setSongToFalse(song);
+  }
+  else {
+    this.setSongToTrue(song);
+  }
+}
+
+setSongToTrue(song){
+  document.getElementById(song.id).className = 'songActive';
+  this.props.getSongs(song);
+}
+
+setSongToFalse(song){
+  console.log('inside deactivate song');
+  console.log(document.getElementById(song.id));
+  document.getElementById(song.id).className = 'songInactive';
+  this.props.removeSongs(song);
 }
 
 render () {
