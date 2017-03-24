@@ -19,12 +19,33 @@ router.get('/profile', (req, res, next) => {
     err.status = 403;
     next(err);
   } else {
-    User.findOne({
+    const allUsers = User.findAll()
+    const oneUser = User.findOne({
       where: {
         name: req.session.passport.user
       }
     })
-    .then(foundUser => {
+
+    Promise.all([allUsers, oneUser])
+    .then(([foundAllUsers, foundUser]) => {
+      const useravg = foundAllUsers.map(user => user.audioFeatures)
+                                   .reduce((acc, userfeatures) => userfeatures
+                                            .map((feature, index) => acc[index] + feature), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                                          )
+                                   .map(feature => feature / foundAllUsers.length)
+      const useravgObj = {
+        danceability: useravg[0],
+        energy: useravg[1],
+        key: useravg[2],
+        loudness: useravg[3],
+        mode: useravg[4],
+        speechiness: useravg[5],
+        acousticness: useravg[6],
+        instrumentalness: useravg[7],
+        liveness: useravg[8],
+        valence: useravg[9],
+        tempo: useravg[10]
+      }
       let topArtists = pRequest({
         url: `https://api.spotify.com/v1/me/top/artists/`,
         method: 'GET',
@@ -101,7 +122,7 @@ router.get('/profile', (req, res, next) => {
           });
           return Promise.all([updatedArrOfSongs, updatedArrofPlaylists])
           // NOTE array of items = [artists, songs, playlists]
-          .then(() => res.status(201).send([arrayofitems[0], arrayofitems[1], arrayofitems[2], foundUserProfile]));
+          .then(() => res.status(201).send([arrayofitems[0], arrayofitems[1], arrayofitems[2], foundUserProfile, useravgObj]));
         })
         .catch(next);
       })
