@@ -76,14 +76,16 @@ let groupedBy = 'artist'
 let paramY = metrics[0]
 let paramX = metrics[1]
 
-// const d3 = require('d3');
+import * as d3 from "d3";
 
-function drawCanvas(data) {
+function drawCanvas() {
+  let data = fakeData
   let svgChart, songNodes, xScale, yScale, simulation;
   let height = 500;
   let width = 700;
   let radius = 10;
   let di = radius * 2
+  let strength = 0.99
 
   function createGroupSet(group){
     return group ? d3.set(data.map(song => song[group])) : null
@@ -126,7 +128,7 @@ function createChart(){
     .attr('height', height + di + di)
     .attr('width', width + di + di)
     .append('g')
-    .attr('transform', 'translate(20,20)')
+    .attr('transform', `translate(${di},${di})`)
 }
 
   function createCircles(){
@@ -141,15 +143,15 @@ function createChart(){
 
   function createStackedForce(){
     return {
-      x: d3.forceX((d) => xScale(d[groupedBy]) + (xScale.bandwidth() / 2)).strength(0.99),
-      y: d3.forceY((d) => yScale(d[paramY])).strength(0.99)
+      x: d3.forceX((d) => xScale(d[groupedBy]) + (xScale.bandwidth() / 2)).strength(strength),
+      y: d3.forceY((d) => yScale(d[paramY])).strength(strength)
     }
   }
 
   function createScatterForce(){
     return {
-      x: d3.forceX((d) => xScale(d[paramX])).strength(0.99),
-      y: d3.forceY((d) => yScale(d[paramY])).strength(0.99)
+      x: d3.forceX((d) => xScale(d[paramX])).strength(strength),
+      y: d3.forceY((d) => yScale(d[paramY])).strength(strength)
     }
   }
 
@@ -202,9 +204,7 @@ function createChart(){
   createCircles(data)
 }
 
-drawCanvas(fakeData);
-
-
+export default drawCanvas;
 
 
   // let xColorScale = d3.scaleLinear()
@@ -216,3 +216,5 @@ drawCanvas(fakeData);
   //   .domain([0, 1])
   //   .interpolate(d3.interpolateRgb)
   //   .range(['#FA9F28', '#D4F400'])
+
+
