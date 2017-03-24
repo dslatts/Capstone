@@ -30,7 +30,7 @@ export default class SongsForm extends Component {
           className="squaredOne"
           type="checkbox"
           name={this.props.album.id}
-          onChange={()=>{this.props.onAlbumToggle(this.props.album.id, this.state.songList.map(songObj => songObj.id))}}
+          onChange={()=>{this.props.onAlbumToggle(this.props.album.id, this.state.songList);}}
           checked={this.props.albumCheck(this.props.album.id)}
           value={this.props.album.id} />
         <img className="albumCover" src={this.props.album.images[0].url} />
