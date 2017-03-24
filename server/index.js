@@ -126,7 +126,7 @@ if (module === require.main) {
       const host = address === '::' ? 'localhost' : address;
       const urlSafeHost = host.includes(':') ? `[${host}]` : host;
       console.log(`Listening on http://${urlSafeHost}:${port}`);
-      db.sync({force: true})
+      db.sync({force: false})
       .then(function () {
         console.log('The postgres server is connected');
       });

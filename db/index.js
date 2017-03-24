@@ -6,6 +6,7 @@ var Artist = require('./models/artists');
 var User = require('./models/users');
 var Playlist = require('./models/playlists');
 var Song = require('./models/songs');
+var AudioFeature = require('./models/audiofeatures');
 
 User.belongsToMany(Song, {through: 'UserFavSongs'});
 User.hasMany(Playlist);

@@ -5,6 +5,7 @@ export default class AlbumsForm extends Component {
 constructor(props){
   super(props);
   this.state = {
+    // totalSongs = {}
     indexSelected: [],
     selectedSongs: {}
   };
