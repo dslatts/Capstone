@@ -17,7 +17,7 @@ const onHomeEnter = function(){
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" onEnter={onHomeEnter} component={HomeContainer}  />
+      <Route path="/" onEnter={onHomeEnter} component={HomeContainer} />
       <Route path="/:username/profile" component={ProfileContainer} />
     </Router>
   </Provider>,
