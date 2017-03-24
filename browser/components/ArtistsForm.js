@@ -95,7 +95,7 @@ onArtistsSubmit(event){
     ],
   }}
 />
-*/}
+
 <RadarChart cx={300} cy={250} outerRadius={150} width={600} height={500} data={data}>
           <Radar name="You" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
           <Radar name="Other" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6}/>
@@ -104,6 +104,7 @@ onArtistsSubmit(event){
           <PolarAngleAxis dataKey="subject" />
           <PolarRadiusAxis angle={30} domain={[0, 1]}/>
         </RadarChart>
+*/}
     </div>
 
 
