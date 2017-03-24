@@ -1,14 +1,23 @@
-import {GET_SONGS, REMOVE_SONGS} from '../actions/songs';
+import {GET_SONGS, REMOVE_SONGS, REMOVE_ALL} from '../actions/songs';
 
-const songsReducer = (state = {}, action) => {
-
+const initialState = {
+  songList: []
+}
+const songsReducer = (state = initialState, action) => {
+  let newState = Object.assign({}, state);
   switch (action.type) {
 
     case GET_SONGS:
-      return action.receivedSongs;
+      newState.songList.push(action.receivedSong);
+      return newState;
 
     case REMOVE_SONGS:
-      return {};
+      newState.songList = newState.songList.filter((song) => song !== action.songToRemove);
+      return newState;
+
+    case REMOVE_ALL:
+      newState.songList = [];
+      return newState;
 
     default:
       return state;

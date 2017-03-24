@@ -11,6 +11,10 @@ export default class Sidebar extends Component {
       {this.props.currentAlbumList.albums ?
         <AlbumsForm
         currentAlbumList={this.props.currentAlbumList}
+        getSongs={this.props.getSongs}
+        removeSongs={this.props.removeSongs}
+        removeAll={this.props.removeAll}
+        currentSongList={this.props.currentSongList}
         />
         : null}
     </div>);
