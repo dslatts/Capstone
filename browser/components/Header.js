@@ -11,12 +11,19 @@ export default function Header(props) {
     }
   }
 
+  function signedIn(){
+    if(props.currentUser[3]){
+      return (<Link to={`/${props.currentUser[3].id}/profile`}><img id="profilePic" src={profilePicture(props.currentUser[3].images[0])} /></Link>)
+    }
+  }
+
   return (
     <div>
       <nav id="header">
         <h1 id="appLogo">Spoti-Cry</h1>
         <button onClick={props.logout} id="logout">Log Out</button>
-        <Link to={`/${props.currentUser[3].id}/profile`}><img id="profilePic" src={profilePicture(props.currentUser[3].images[0])} /></Link>
+        {signedIn()}
+        {/*(props.currentUser) ?  : null*/}
       </nav>
     </div>
   );
