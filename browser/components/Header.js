@@ -14,8 +14,14 @@ export default function Header(props) {
     <div>
       <nav id="header">
         <h1 id="appLogo">Spoti-Cry</h1>
-        <button onClick={props.logout} id="logout">Log Out</button>
-        <Link to={`/${props.currentUser[3].id}/profile`}><img id="headerImg" src={profilePicture(props.currentUser[3].images[0])} /></Link>
+        <ul>
+          <li><img id="headerImg" src={profilePicture(props.currentUser[3].images[0])} />
+            <ul className="subMenu">
+              <li><Link to={`/${props.currentUser[3].id}/profile`}>Profile</Link></li>
+              <li onClick={props.logout}><Link to={'/'}>Log Out</Link></li>
+            </ul>
+          </li>
+        </ul>
       </nav>
     </div>
   );
