@@ -5,9 +5,8 @@ export default class AlbumsForm extends Component {
 constructor(props){
   super(props);
   this.state = {
-    // totalSongs = {}
-    indexSelected: [],
-    selectedSongs: {}
+    indexSelected: []
+
   };
   this.albumList = [];
   this.renderSelectToggle = this.renderSelectToggle.bind(this);
@@ -52,52 +51,45 @@ albumCheck(albumid){
   return (this.state.indexSelected.indexOf(albumid) > -1);
 }
 
-onAlbumToggle(songId, songlist){
+onAlbumToggle(albumId, songlist){
   let albums;
-  if (this.state.indexSelected.indexOf(songId) > -1) {  // is selected
-    albums = this.state.indexSelected.filter(id => id !== songId);  //unselects them
+  if (this.state.indexSelected.indexOf(albumId) > -1) {  // is selected
+    albums = this.state.indexSelected.filter(id => id !== albumId);  //unselects them
   } else {
-    albums = [...this.state.indexSelected, songId];
+    albums = [...this.state.indexSelected, albumId];
   }
   this.setState({
     indexSelected: albums
   });
-  this.addSongsFromAlbum(songlist, this.state.indexSelected.indexOf(songId) > -1);
+  this.addSongsFromAlbum(songlist, this.state.indexSelected.indexOf(albumId) > -1);
 }
 
 onSongClick(songId){
-  var newState = this.state.selectedSongs;
-  if (this.state.selectedSongs[songId]){
+  if (this.props.currentSongList.includes(songId)){
     this.setSongToFalse(songId);
   }
   else {
     this.setSongToTrue(songId);
   }
-  this.setState({
-    selectedSongs: newState
-  });
 }
 
 setSongToTrue(songId){
-  var newState = this.state.selectedSongs;
   document.getElementById(songId).className = 'songActive';
-  newState[songId] = true;
-  this.setState({selectedSongs: newState});
+  this.props.getSongs(songId);
 }
 
 setSongToFalse(songId){
-  var newState = this.state.selectedSongs;
   document.getElementById(songId).className = 'songInactive';
-  newState[songId] = false;
-  this.setState({selectedSongs: newState});
+  this.props.removeSongs(songId);
 }
 
 //call from onAlbumToggle
 addSongsFromAlbum(songArray, selectedBool){
   songArray.forEach((song) => {
-    if (selectedBool){
+    if (selectedBool && this.props.currentSongList.includes(song)){
       this.setSongToFalse(song);
-    } else {
+    }
+    else if (!selectedBool && !this.props.currentSongList.includes(song)) {
       this.setSongToTrue(song);
     }
   });

@@ -41,6 +41,10 @@ export default class HomePage extends Component {
       return (
         <Compare
         fetchAlbums={this.props.fetchAlbums}
+        getSongs={this.props.getSongs}
+        removeSongs={this.props.removeSongs}
+        removeAll={this.props.removeAll}
+        currentSongList={this.props.currentSongList}
         currentAlbumList={this.props.currentAlbumList} />);
     }
   }
