@@ -13,6 +13,10 @@ var User = db.define('user', {
   authToken: {
     type: Sequelize.TEXT,
     allowNull: false
+  },
+  audioFeatures: {
+    type: Sequelize.ARRAY(Sequelize.INTEGER),
+    defaultValue: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   }
 });
 

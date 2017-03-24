@@ -6,6 +6,7 @@ constructor(props){
   super(props);
   this.state = {
     indexSelected: []
+
   };
   this.albumList = [];
   this.renderSelectToggle = this.renderSelectToggle.bind(this);
