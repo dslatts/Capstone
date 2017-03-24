@@ -10,6 +10,12 @@ export default function Header(props) {
     }
   };
 
+  function signedIn(){
+    if(props.currentUser[3]){
+      return (<li><Link to={`/${props.currentUser[3].id}/profile`}>Profile</Link></li>)
+    }
+  }
+
   return (
     <div>
       <nav id="header">
@@ -17,7 +23,7 @@ export default function Header(props) {
         <ul>
           <li><img id="headerImg" src={profilePicture(props.currentUser[3].images[0])} />
             <ul className="subMenu">
-              <li><Link to={`/${props.currentUser[3].id}/profile`}>Profile</Link></li>
+              {signedIn()}
               <li onClick={props.logout}><Link to={'/'}>Log Out</Link></li>
             </ul>
           </li>

@@ -11,7 +11,7 @@ constructor(props){
   this.albumList = [];
   this.renderSelectToggle = this.renderSelectToggle.bind(this);
   this.selectToggle = this.selectToggle.bind(this);
-  this.onAlbumsSubmit = this.onAlbumsSubmit.bind(this);
+  // this.onAlbumsSubmit = this.onAlbumsSubmit.bind(this);
   this.onAlbumToggle = this.onAlbumToggle.bind(this);
   this.onSongClick = this.onSongClick.bind(this);
   this.albumCheck = this.albumCheck.bind(this);
@@ -19,10 +19,10 @@ constructor(props){
   this.setSongToTrue = this.setSongToTrue.bind(this);
 }
 
-onAlbumsSubmit(event){
-  event.preventDefault();
-  //dispatch goes here
-}
+// onAlbumsSubmit(event){
+//   event.preventDefault();
+//   //dispatch goes here
+// }
 
 //changes button to say select all/deselect all
 renderSelectToggle(){
@@ -91,8 +91,6 @@ setSongToTrue(song){
 }
 
 setSongToFalse(song){
-  console.log('inside deactivate song');
-  console.log(document.getElementById(song.id));
   document.getElementById(song.id).className = 'songInactive';
   this.props.removeSongs(song);
 }
@@ -106,21 +104,21 @@ render () {
   return (
     <div>
       {this.renderSelectToggle()}
-      <form onSubmit={this.onAlbumsSubmit}>
+      <div>
         {this.albumList && this.albumList.map((album) => {
-        return (<div key={album.id}>
-              <SongsForm
-                album={album}
-                onSongClick={this.onSongClick}
-                onAlbumToggle={this.onAlbumToggle}
-                addSongsFromAlbum={this.addSongsFromAlbum}
-                albumCheck={this.albumCheck}
-                />
-            </div>
+        return (
+          <div key={album.id}>
+            <SongsForm
+              album={album}
+              onSongClick={this.onSongClick}
+              onAlbumToggle={this.onAlbumToggle}
+              addSongsFromAlbum={this.addSongsFromAlbum}
+              albumCheck={this.albumCheck}
+              />
+          </div>
         );
-      })}
-        <button>Visualize</button>
-      </form>
+        })}
+      </div>
     </div>);
   }
 }

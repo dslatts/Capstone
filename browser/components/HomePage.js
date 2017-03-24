@@ -36,7 +36,18 @@ export default class HomePage extends Component {
       );
     }
     else if (this.state.createOrCompare === 'create'){
-      return (<Create />);
+      return (
+        <div>
+          <Create
+            fetchAlbums={this.props.fetchAlbums}
+            getSongs={this.props.getSongs}
+            removeSongs={this.props.removeSongs}
+            removeAll={this.props.removeAll}
+            currentSongList={this.props.currentSongList}
+            currentAlbumList={this.props.currentAlbumList}
+            />
+        </div>
+      );
     }
     else if (this.state.createOrCompare === 'compare'){
       return (
