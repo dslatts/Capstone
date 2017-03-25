@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import HeaderContainer from '../containers/HeaderContainer';
 import Visualone from './Visualone';
 import Visualtwo from './Visualtwo';
+import History from './History';
 
 var profilePicture = function(img){
     if (img) {
@@ -36,9 +37,9 @@ export default class Profile extends Component {
         {this.signedInName()}
         <Visualone />
         <div>
-        <Visualtwo />
-        {/*History*/}
-        <Visualtwo />
+          <Visualtwo />
+          <History />
+          <Visualtwo />
         </div>
       </div>
     );
