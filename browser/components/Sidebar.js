@@ -13,15 +13,15 @@ export default class Sidebar extends Component {
 
   render () {
     return (
-      <div>
-        <ul>
+      <div className="songContainer">
+        <ul className="songList">
           {this.props.currentSongList && this.props.currentSongList.map(song => {
             return (
-              <li key={song.id}>
+              <li className="selectedSong" key={song.id}>
                 <div id={'sidebar' + song.id}>
-                  <p>{song.name}</p>
-                  <p>{song.artists[0].name}</p>
-                  <div onClick={() => this.removeSong(song)}>X</div>
+                  <p className="selectedSongName">{song.name}</p>
+                  <p className="selectedSongArtistName">{song.artists[0].name}</p>
+                  <div className="removeSelectedSong" onClick={() => this.removeSong(song)}>X</div>
                 </div>
               </li>
             );

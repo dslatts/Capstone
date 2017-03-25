@@ -40,7 +40,7 @@ onArtistsSubmit(event){
 }
   render () {
     return (
-    <div>
+    <div className="SearchBar">
       <form onSubmit={this.onArtistsSubmit}>
         <input onChange={this.onArtistChange} placeholder="Search Artists" /><button>Search</button>
       </form>

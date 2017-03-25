@@ -21,14 +21,16 @@ export default class Compare extends Component {
         <button onClick={this.props.goBack}>BACK</button>
 
         {this.props.currentAlbumList.albums ?
-          <div>
+          <div className="songSelectionContainer">
             <Sidebar
+              className="songSelectionSidebar"
               getSongs={this.props.getSongs}
               removeSongs={this.props.removeSongs}
               removeAll={this.props.removeAll}
               currentSongList={this.props.currentSongList}
               />
-            <form onSubmit={this.onAlbumsSubmit}>
+            <form className="songSelectionForm" onSubmit={this.onAlbumsSubmit}>
+              <button className="submitSelection">Visualize</button>
               <AlbumsForm
                 currentAlbumList={this.props.currentAlbumList}
                 getSongs={this.props.getSongs}
@@ -36,10 +38,9 @@ export default class Compare extends Component {
                 removeAll={this.props.removeAll}
                 currentSongList={this.props.currentSongList}
                 />
-              <button>Visualize</button>
             </form>
           </div>
-          : null}
+        : null}
       </div>
     );
   }
