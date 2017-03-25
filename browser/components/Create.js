@@ -17,8 +17,7 @@ export default class Create extends Component {
       <div>
         <HeaderContainer />
         <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-        // TODO back button doesn't work yet. it's just a broken link. what we want to do here is refresh
-        <button><Link to="/">BACK</Link></button>
+        <button onClick={this.props.goBack}>BACK</button>
         {this.props.currentAlbumList.albums ?
           <div>
             <Sidebar

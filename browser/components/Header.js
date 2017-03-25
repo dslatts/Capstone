@@ -19,7 +19,7 @@ export default function Header(props) {
   return (
     <div>
       <nav id="header">
-        <h1 id="appLogo">Spoti-Cry</h1>
+        <Link to={'/'}><h1 id="appLogo">Spoti-Cry</h1></Link>
         <ul>
           <li><img id="headerImg" src={profilePicture(props.currentUser[3].images[0])} />
             <ul className="subMenu">
