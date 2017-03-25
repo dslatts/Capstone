@@ -34,7 +34,7 @@ export default function Header(props) {
   return (
     <div>
       <nav id="header">
-        <h1 id="appLogo">Spoti-Cry</h1>
+        <Link to={'/'}><h1 id="appLogo">Spoti-Cry</h1></Link>
         <ul>
           {signedInImg()}
         </ul>
