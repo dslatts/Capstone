@@ -17,8 +17,8 @@ export default class Profile extends Component {
   }
 
   signedInImg(){
-    if(this.props.currentUser[3]){
-      return (<img id="profilePic" src={profilePicture(this.props.currentUser[3].images[0])} />);
+    if (this.props.currentUser[3]){
+      return (<img id="profilePic" src={profilePicture(this.props.currentUser[3].images[0])} />)
     }
   }
 

@@ -11,7 +11,7 @@ export default function Header(props) {
   };
 
   function signedIn(){
-    if(props.currentUser[3]){
+    if (props.currentUser[3]){
       return (<li><Link to={`/${props.currentUser[3].id}/profile`}>Profile</Link></li>)
     }
   }

@@ -15,7 +15,7 @@ var User = db.define('user', {
     allowNull: false
   },
   audioFeatures: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
+    type: Sequelize.ARRAY(Sequelize.FLOAT),
     defaultValue: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   }
 });

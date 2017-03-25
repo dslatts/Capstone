@@ -92,7 +92,15 @@ router.get('/profile', (req, res, next) => {
 			});
       Promise.all([topArtists, topSongs, userPlaylists, userProfile, recentSongs])
       .spread((foundTopArtists, foundTopSongs, foundUserPlaylists, foundUserProfile, foundRecentSongs) => {
-        console.log(foundRecentSongs);
+        var SongIds = JSON.parse(foundRecentSongs).items.map(song => song.track.id).join(',');
+        var SongFeatures = pRequest({
+          url: 'https://api.spotify.com/v1/audio-features?ids=' + SongIds,
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${foundUser.authToken}`
+          }
+        });
         var artistlist = foundTopArtists.items.map(artistObj => {
           return Artist.findOrCreate({
             where: {
@@ -121,7 +129,7 @@ router.get('/profile', (req, res, next) => {
         const p1 = Promise.all(artistlist);
         const p2 = Promise.all(songlist);
         const p3 = Promise.all(playlistlist);
-        Promise.all([p1, p2, p3])
+        Promise.all([p1, p2, p3, SongFeatures])
         .then(arrayofitems => {
           const updatedArrOfSongs = arrayofitems[1].map(item => {
             item[0].setUsers(foundUser);
@@ -129,9 +137,18 @@ router.get('/profile', (req, res, next) => {
           const updatedArrofPlaylists = arrayofitems[2].map(item => {
             item[0].setUser(foundUser);
           });
-          return Promise.all([updatedArrOfSongs, updatedArrofPlaylists])
-          // NOTE array of items = [artists, songs, playlists]
-          .then(() => res.status(201).send([arrayofitems[0], arrayofitems[1], arrayofitems[2], foundUserProfile, useravgObj, JSON.parse(foundRecentSongs)]));
+          var newAvg = JSON.parse(arrayofitems[3]).audio_features.reduce((acc, audio) => {
+            return Object.keys(audio).slice(0, 11).map((feature, index) => {
+              return acc[index] + audio[feature];
+            });
+          }, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]).map(feature => feature / JSON.parse(arrayofitems[3]).audio_features.length);
+
+          var updateUser = foundUser.update({
+            audioFeatures: newAvg
+          });
+          return Promise.all([updatedArrOfSongs, updatedArrofPlaylists, updateUser])
+          // NOTE array of items = [artists, songs, playlists, SongFeatures]
+          .then(() => res.status(201).send([arrayofitems[0], arrayofitems[1], arrayofitems[2], foundUserProfile, {history: useravgObj, new: newAvg}, JSON.parse(foundRecentSongs), JSON.parse(arrayofitems[3])]));
         })
         .catch(next);
       })
