@@ -41,5 +41,6 @@ export default class Compare extends Component {
           </div>
           : null}
       </div>
-  );}
+    );
+  }
 }
