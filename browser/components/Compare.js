@@ -16,8 +16,10 @@ export default class Compare extends Component {
     return (
       <div>
         <HeaderContainer />
+        <h1>Pick songs to compare. Search Artist below!</h1>
         <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
         <button onClick={this.props.goBack}>BACK</button>
+
         {this.props.currentAlbumList.albums ?
           <div>
             <Sidebar

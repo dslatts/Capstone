@@ -5,4 +5,5 @@ export default function Visualone (props) {
     <div>
       <p>Placeholder for Visualize 1</p>
     </div>);
+
 }
