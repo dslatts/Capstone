@@ -16,17 +16,27 @@ export default function Header(props) {
     }
   }
 
+  function signedInImg(){
+    if(props.currentUser[3]){
+      return (
+        <li>
+          <img id="headerImg" src={profilePicture(props.currentUser[3].images[0])} />
+          <ul className="subMenu">
+            {signedIn()}
+            {/*NOTE used setTimeout */}
+            <li onClick={() => setTimeout(props.logout, 500)}><Link to={'/'}>Log Out</Link></li>
+          </ul>
+        </li>
+      )
+    }
+  }
+
   return (
     <div>
       <nav id="header">
         <h1 id="appLogo">Spoti-Cry</h1>
         <ul>
-          <li><img id="headerImg" src={profilePicture(props.currentUser[3].images[0])} />
-            <ul className="subMenu">
-              {signedIn()}
-              <li onClick={props.logout}><Link to={'/'}>Log Out</Link></li>
-            </ul>
-          </li>
+          {signedInImg()}
         </ul>
       </nav>
     </div>
