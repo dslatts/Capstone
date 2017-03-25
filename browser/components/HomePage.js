@@ -11,12 +11,17 @@ export default class HomePage extends Component {
       createOrCompare: ''
     };
     this.isLoggedIn = false;
+    this.goBack = this.goBack.bind(this);
     this.checkStatus = this.checkStatus.bind(this);
     this.onCreateClick = this.onCreateClick.bind(this);
     this.onCompareClick = this.onCompareClick.bind(this);
     this.determineComponents = this.determineComponents.bind(this);
   }
-
+  goBack(){
+    this.setState({
+      createOrCompare: ''
+    });
+  }
   checkStatus(){
     if (this.props.currentUser[3]){
       this.isLoggedIn = true;
@@ -39,6 +44,7 @@ export default class HomePage extends Component {
       return (
         <div>
           <Create
+            goBack={this.goBack}
             fetchAlbums={this.props.fetchAlbums}
             getSongs={this.props.getSongs}
             removeSongs={this.props.removeSongs}
@@ -53,6 +59,7 @@ export default class HomePage extends Component {
       return (
         <div>
           <Compare
+            goBack={this.goBack}
             fetchAlbums={this.props.fetchAlbums}
             getSongs={this.props.getSongs}
             removeSongs={this.props.removeSongs}
