@@ -22,31 +22,31 @@ export default class SongsForm extends Component {
   }
   render() {
     return (
-    <div>
+      <div id={`${this.props.album.id}`} className="album">
+        <div className="albumCoverImage">
+          <div>{this.props.album.name}</div>
+          <input
+            id={`${this.props.album.id}check`}
+            className="squaredOne"
+            type="checkbox"
+            name={this.props.album.id}
+            onChange={()=>{this.props.onAlbumToggle(this.props.album.id, this.state.songList);}}
+            checked={this.props.albumCheck(this.props.album.id)}
+            value={this.props.album.id} />
+          <img className="albumCover" src={this.props.album.images[0].url} />
+        </div>
 
-      <div>
-        <div>{this.props.album.name}</div>
-        <input
-          className="squaredOne"
-          type="checkbox"
-          name={this.props.album.id}
-          onChange={()=>{this.props.onAlbumToggle(this.props.album.id, this.state.songList);}}
-          checked={this.props.albumCheck(this.props.album.id)}
-          value={this.props.album.id} />
-        <img className="albumCover" src={this.props.album.images[0].url} />
+        <div>
+          <span className="songHeader">Track</span>
+          <span className="songHeader">Sample</span>
+        </div>
+          {this.state.songList.length > 0 && this.state.songList.map((song) => {
+            return (
+              <Song key={song.id} song={song} onSongClick={this.props.onSongClick} currentSongList={this.props.currentSongList} />
+            );
+          })
+        }
       </div>
-
-      <div>
-        <span className="songHeader">Track</span>
-        <span className="songHeader">Sample</span>
-      </div>
-        {this.state.songList.length > 0 && this.state.songList.map((song) => {
-          return (
-            <Song key={song.id} song={song} onSongClick={this.props.onSongClick} />
-          );
-        })
-      }
-    </div>
     );
   }
 }

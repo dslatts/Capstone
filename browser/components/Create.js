@@ -20,16 +20,17 @@ export default class Create extends Component {
         <button onClick={this.props.goBack}>BACK</button>
 
         {this.props.currentAlbumList.albums ?
-          <div>
+          <div className="songSelectionContainer">
             <Sidebar
+              className="songSelectionSidebar"
               getSongs={this.props.getSongs}
               removeSongs={this.props.removeSongs}
               removeAll={this.props.removeAll}
               currentSongList={this.props.currentSongList}
               />
-            <form onSubmit={this.onAlbumsSubmit}>
-              <button>Visualize</button>
-              <button>Create Playlist</button>
+            <form className="songSelectionForm" onSubmit={this.onAlbumsSubmit}>
+              <button className="submitSelection">Visualize</button>
+              <button className="submitSelection">Create Playlist</button>
               <AlbumsForm
                 currentAlbumList={this.props.currentAlbumList}
                 getSongs={this.props.getSongs}
@@ -39,7 +40,7 @@ export default class Create extends Component {
                 />
             </form>
           </div>
-          : null}
+        : null}
       </div>
   );}
 }

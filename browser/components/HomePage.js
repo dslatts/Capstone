@@ -42,7 +42,7 @@ export default class HomePage extends Component {
     }
     else if (this.state.createOrCompare === 'create'){
       return (
-        <div>
+        <div className="userSelection">
           <Create
             goBack={this.goBack}
             fetchAlbums={this.props.fetchAlbums}
@@ -57,7 +57,7 @@ export default class HomePage extends Component {
     }
     else if (this.state.createOrCompare === 'compare'){
       return (
-        <div>
+        <div className="userSelection">
           <Compare
             goBack={this.goBack}
             fetchAlbums={this.props.fetchAlbums}
