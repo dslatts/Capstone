@@ -82,8 +82,17 @@ router.get('/profile', (req, res, next) => {
           Authorization: `Bearer ${foundUser.authToken}`
         }
       });
-      Promise.all([topArtists, topSongs, userPlaylists, userProfile])
-      .spread((foundTopArtists, foundTopSongs, foundUserPlaylists, foundUserProfile) => {
+      let recentSongs = pRequest({
+				url: 'https://api.spotify.com/v1/me/player/recently-played?limit=50',
+				method: 'GET',
+				headers: {
+					Accept: 'application/json',
+					Authorization: `Bearer ${foundUser.authToken}`
+				}
+			});
+      Promise.all([topArtists, topSongs, userPlaylists, userProfile, recentSongs])
+      .spread((foundTopArtists, foundTopSongs, foundUserPlaylists, foundUserProfile, foundRecentSongs) => {
+        console.log(foundRecentSongs);
         var artistlist = foundTopArtists.items.map(artistObj => {
           return Artist.findOrCreate({
             where: {
@@ -122,7 +131,7 @@ router.get('/profile', (req, res, next) => {
           });
           return Promise.all([updatedArrOfSongs, updatedArrofPlaylists])
           // NOTE array of items = [artists, songs, playlists]
-          .then(() => res.status(201).send([arrayofitems[0], arrayofitems[1], arrayofitems[2], foundUserProfile, useravgObj]));
+          .then(() => res.status(201).send([arrayofitems[0], arrayofitems[1], arrayofitems[2], foundUserProfile, useravgObj, JSON.parse(foundRecentSongs)]));
         })
         .catch(next);
       })
