@@ -15,11 +15,13 @@ var profilePicture = function(img){
 export default class Profile extends Component {
   constructor(props){
     super(props);
+    this.signedInImg = this.signedInImg.bind(this);
+    this.signedInName = this.signedInName.bind(this);
   }
 
   signedInImg(){
     if (this.props.currentUser[3]){
-      return (<img id="profilePic" src={profilePicture(this.props.currentUser[3].images[0])} />)
+      return (<img id="profilePic" src={profilePicture(this.props.currentUser[3].images[0])} />);
     }
   }
 
@@ -38,7 +40,7 @@ export default class Profile extends Component {
         <Visualone />
         <div>
           <Visualtwo />
-          <History />
+          <History userHistory={this.props.currentUser[5].items} />
           <Visualtwo />
         </div>
       </div>
