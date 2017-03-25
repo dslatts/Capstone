@@ -32,7 +32,7 @@ export default function Header(props) {
   }
 
   return (
-    <div>
+    <div className="header">
       <nav id="header">
         <Link to={'/'}><h1 id="appLogo">Spoti-Cry</h1></Link>
         <ul>

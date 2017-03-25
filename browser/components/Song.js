@@ -14,14 +14,30 @@ export default function Song (props) {
       audio.play();
     }
   };
+
+  var highlightedRender = function(){
+    if (props.currentSongList.includes(props.song)){
+      return (
+        <div id={props.song.id} className="songActive" onClick={()=>{props.onSongClick(props.song)}}>
+          <p>{props.song.name}</p>
+          <audio controls><source src={props.song.preview_url} type="audio/mpeg" /></audio>
+          {/*<button id={`${props.song.id}_play`} onClick={toggle(props.song.id + '_audio')} >Play</button>
+          <audio id={`${props.song.id}_audio`} src={props.song.preview_url} preload="auto" type="audio/mpeg" playing="false" ></audio>*/}
+        </div>
+      );
+    } else {
+      return (
+        <div id={props.song.id} className="songInactive" onClick={()=>{props.onSongClick(props.song)}}>
+          <p>{props.song.name}</p>
+          <audio controls><source src={props.song.preview_url} type="audio/mpeg" /></audio>
+          {/*<button id={`${props.song.id}_play`} onClick={toggle(props.song.id + '_audio')} >Play</button>
+          <audio id={`${props.song.id}_audio`} src={props.song.preview_url} preload="auto" type="audio/mpeg" playing="false" ></audio>*/}
+        </div>
+      );
+    }
+  };
+
   return (
-    <div id={props.song.id} className="songInactive" onClick={() => props.onSongClick(props.song)}>
-      {/*TO DO: make song and player inline */}
-      <p>{props.song.name}</p>
-      {/*TO DO: Style audio component (Justin find it repulsive)*/}
-      <audio controls><source src={props.song.preview_url} type="audio/mpeg" /></audio>
-      {/*<button id={`${props.song.id}_play`} onClick={toggle(props.song.id + '_audio')} >Play</button>
-    <audio id={`${props.song.id}_audio`} src={props.song.preview_url} preload="auto" type="audio/mpeg" playing="false" ></audio>*/}
-    </div>
+    highlightedRender()
   );
 }

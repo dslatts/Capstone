@@ -84,3 +84,43 @@ ul.subMenu li {
   opacity:1;
 }
 
+.songContainer{
+  display:flex;
+  float:left;
+  width:25%;
+  height:100%;
+  background-color: lightgrey;
+}
+
+.songSelectionForm{
+  display:flex;
+  float:left;
+}
+
+.submitSelection{
+  height:50px;
+  width:100px;
+  display:flex;
+  float:left;
+}
+
+.selectedSong{
+  display:block;
+}
+
+.selectedSongName{
+  display:flex;
+  float:left;
+  margin: 0;
+}
+
+.selectedSongArtistName{
+  display:flex;
+  float:left;
+  margin: 0;
+  margin-left: 16px;
+}
+
+.removedSelectedSong{
+  display:flex;
+}
