@@ -18,8 +18,8 @@ export default class Compare extends Component {
         <HeaderContainer />
         <h1>Pick songs to compare. Search Artist below!</h1>
         <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-        {/*TODO back button doesn't work yet. it's just a broken link. what we want to do here is refresh*/}
-        <button><Link to="http://localhost:1337/">BACK</Link></button>
+        <button onClick={this.props.goBack}>BACK</button>
+
         {this.props.currentAlbumList.albums ?
           <div>
             <Sidebar

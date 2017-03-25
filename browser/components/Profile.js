@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import HeaderContainer from '../containers/HeaderContainer';
+import Visualone from './Visualone';
+import Visualtwo from './Visualtwo';
 
- var profilePicture = function(img){
+var profilePicture = function(img){
     if (img) {
       return img.url;
     } else {
@@ -22,7 +24,7 @@ export default class Profile extends Component {
 
   signedInName(){
     if (this.props.currentUser[3]){
-      return (<p>{this.props.currentUser[3].display_name}</p>)
+      return (<p>{this.props.currentUser[3].display_name}</p>);
     }
   }
 
@@ -32,8 +34,12 @@ export default class Profile extends Component {
         <HeaderContainer />
         {this.signedInImg()}
         {this.signedInName()}
-        {/*(this.props.currentUser) ?  : null}
-        {(this.props.currentUser) ?  : null*/}
+        <Visualone />
+        <div>
+        <Visualtwo />
+        {/*History*/}
+        <Visualtwo />
+        </div>
       </div>
     );
   }
