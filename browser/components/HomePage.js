@@ -84,10 +84,12 @@ export default class HomePage extends Component {
     return (
     <div>
       {!this.isLoggedIn ?
-      <a href={'/api/auth/spotify'}><button id="Login">Log In</button></a>
-      :
-      this.determineComponents()
-    }
+        <div>
+          <p>You need to connect to your Spotify to use Spoti-cry :`(</p>
+          <a href={'/api/auth/spotify'}><button id="Login">Log In</button></a>
+        </div>
+        : this.determineComponents()
+      }
     </div>);
   }
 }

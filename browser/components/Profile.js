@@ -35,7 +35,11 @@ export default class Profile extends Component {
         {this.signedInImg()}
         {this.signedInName()}
         <Visualone />
+        <div>
         <Visualtwo />
+        {/*History*/}
+        <Visualtwo />
+        </div>
       </div>
     );
   }
