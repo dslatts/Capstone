@@ -2,36 +2,44 @@ import React from 'react';
 
 export default function Song (props) {
   var toggle = function(DOMID){
-    // e.preventDefault();
-    // console.log(e);
     var audio = document.getElementById(DOMID);
-    console.log(DOMID);
-    if (audio.playing){
-      audio.playing = false;
-      audio.pause();
-    } else {
-      audio.playing = true;
+    var button = document.getElementById(`${props.song.id}_play`);
+    if (button.value === 'notPlaying'){
       audio.play();
+      button.value = 'playing';
+      button.innerText = 'Stop';
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+      button.value = 'notPlaying';
+      button.innerText = 'Play';
     }
   };
 
   var highlightedRender = function(){
     if (props.currentSongList.includes(props.song)){
       return (
-        <div id={props.song.id} className="songActive" onClick={()=>{props.onSongClick(props.song)}}>
-          <p>{props.song.name}</p>
-          <audio controls><source src={props.song.preview_url} type="audio/mpeg" /></audio>
-          {/*<button id={`${props.song.id}_play`} onClick={toggle(props.song.id + '_audio')} >Play</button>
-          <audio id={`${props.song.id}_audio`} src={props.song.preview_url} preload="auto" type="audio/mpeg" playing="false" ></audio>*/}
+        <div id={props.song.id} className="songActive" >
+          <div onClick={()=>{props.onSongClick(props.song)}}>
+            <p>{props.song.name}</p>
+          </div>
+          <div>
+            <button id={`${props.song.id}_play`} value="notPlaying" onClick={() => toggle(props.song.id + '_audio')}>Play</button>
+            <audio id={`${props.song.id}_audio`} src={props.song.preview_url} preload="auto" type="audio/mpeg" />
+          </div>
         </div>
+
       );
     } else {
       return (
-        <div id={props.song.id} className="songInactive" onClick={()=>{props.onSongClick(props.song)}}>
-          <p>{props.song.name}</p>
-          <audio controls><source src={props.song.preview_url} type="audio/mpeg" /></audio>
-          {/*<button id={`${props.song.id}_play`} onClick={toggle(props.song.id + '_audio')} >Play</button>
-          <audio id={`${props.song.id}_audio`} src={props.song.preview_url} preload="auto" type="audio/mpeg" playing="false" ></audio>*/}
+        <div id={props.song.id} className="songInactive" >
+          <div onClick={()=>{props.onSongClick(props.song)}}>
+            <p>{props.song.name}</p>
+          </div>
+          <div>
+            <button id={`${props.song.id}_play`} value="notPlaying" onClick={() => toggle(props.song.id + '_audio')}>Play</button>
+            <audio id={`${props.song.id}_audio`} src={props.song.preview_url} preload="auto" type="audio/mpeg" />
+          </div>
         </div>
       );
     }
