@@ -9,7 +9,6 @@ export default class Compare extends Component {
 
   onAlbumsSubmit(event){
     event.preventDefault();
-    console.log('inside compare');
   }
 
   render () {

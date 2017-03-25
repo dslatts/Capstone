@@ -9,7 +9,6 @@ export default class Create extends Component {
 
   onAlbumsSubmit(event){
     event.preventDefault();
-    console.log('inside create');
   }
 
   render () {
