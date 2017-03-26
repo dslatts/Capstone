@@ -196,12 +196,11 @@ function createChart(){
   let forces = {stacked: createStackedForce(),
   scatter: createScatterForce()};
 
-  setScales()
+  setScales() //changes based on
   createChart()
-  createStackedForce()
-  createForceSimulation()
-  createAxes()
-  createCircles(data)
+  createForceSimulation() //touches circles, scales, changes on chart type
+  createAxes() //touches scales,
+  createCircles(data) //touches svg
 }
 
 export default drawCanvas;
@@ -218,3 +217,9 @@ export default drawCanvas;
   //   .range(['#FA9F28', '#D4F400'])
 
 
+
+//do i need to use react-vis or another library?
+  //do i need to use forces?
+  //cluster, stack, scatter
+  //sunburst graph
+  //history/ radar
