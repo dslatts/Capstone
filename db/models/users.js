@@ -3,11 +3,21 @@ const db = require('../_db');
 
 var User = db.define('user', {
   name: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false
   },
   spotifyId: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  authToken: {
+    type: Sequelize.TEXT,
+    allowNull: false
+  },
+  audioFeatures: {
+    type: Sequelize.ARRAY(Sequelize.FLOAT),
+    defaultValue: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   }
-})
+});
 
 module.exports = User;

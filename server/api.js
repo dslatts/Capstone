@@ -7,7 +7,8 @@ api
   .use('/users', require('./api/users'))
   .use('/playlists', require('./api/playlists'))
   .use('/albums', require('./api/albums'))
-  .use('/auth', require('./api/auth'));
+  .use('/auth', require('./api/auth'))
+  .use('/tracks', require('./api/tracks'));
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end());

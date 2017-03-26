@@ -1,17 +1,95 @@
 import React, {Component} from 'react';
-import ArtistsForm from './ArtistsForm';
-import AlbumsForm from './AlbumsForm';
+import Create from './Create';
+import Compare from './Compare';
+import HeaderContainer from '../containers/HeaderContainer';
+import Sidebar from './Sidebar';
 
 export default class HomePage extends Component {
-constructor(props){
-  super(props);
-}
+  constructor(props){
+    super(props);
+    this.state = {
+      createOrCompare: ''
+    };
+    this.isLoggedIn = false;
+    this.goBack = this.goBack.bind(this);
+    this.checkStatus = this.checkStatus.bind(this);
+    this.onCreateClick = this.onCreateClick.bind(this);
+    this.onCompareClick = this.onCompareClick.bind(this);
+    this.determineComponents = this.determineComponents.bind(this);
+  }
+  goBack(){
+    this.setState({
+      createOrCompare: ''
+    });
+  }
+  checkStatus(){
+    if (this.props.currentUser[3]){
+      this.isLoggedIn = true;
+    }
+    else {
+      this.isLoggedIn = false;
+    }
+  }
+  determineComponents(){
+    if (this.state.createOrCompare === ''){
+      return (
+        <div>
+        <HeaderContainer />
+        <button onClick={this.onCreateClick}>Create Playlist</button>
+        <button onClick={this.onCompareClick}>Compare Music</button>
+        </div>
+      );
+    }
+    else if (this.state.createOrCompare === 'create'){
+      return (
+        <div className="userSelection">
+          <Create
+            goBack={this.goBack}
+            fetchAlbums={this.props.fetchAlbums}
+            getSongs={this.props.getSongs}
+            removeSongs={this.props.removeSongs}
+            removeAll={this.props.removeAll}
+            currentSongList={this.props.currentSongList}
+            currentAlbumList={this.props.currentAlbumList}
+            />
+        </div>
+      );
+    }
+    else if (this.state.createOrCompare === 'compare'){
+      return (
+        <div className="userSelection">
+          <Compare
+            goBack={this.goBack}
+            fetchAlbums={this.props.fetchAlbums}
+            getSongs={this.props.getSongs}
+            removeSongs={this.props.removeSongs}
+            removeAll={this.props.removeAll}
+            currentSongList={this.props.currentSongList}
+            currentAlbumList={this.props.currentAlbumList}
+            />
+        </div>
+      );
+    }
+  }
+
+  onCreateClick(){
+    this.setState({createOrCompare: 'create'});
+  }
+  onCompareClick(){
+    this.setState({createOrCompare: 'compare'});
+  }
+
   render () {
-    console.log(this.props);
+    this.checkStatus();
     return (
     <div>
-      <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-      <AlbumsForm currentAlbumList={this.props.currentAlbumList} />
+      {!this.isLoggedIn ?
+        <div>
+          <p>You need to connect to your Spotify to use Spoti-cry :`(</p>
+          <a href={'/api/auth/spotify'}><button id="Login">Log In</button></a>
+        </div>
+        : this.determineComponents()
+      }
     </div>);
   }
 }
