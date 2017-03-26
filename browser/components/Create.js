@@ -4,6 +4,7 @@ import AlbumsForm from './AlbumsForm';
 import HeaderContainer from '../containers/HeaderContainer';
 import Sidebar from './Sidebar';
 import axios from 'axios';
+import {browserHistory} from 'react-router';
 
 export default class Create extends Component {
   constructor(props){
@@ -25,7 +26,7 @@ export default class Create extends Component {
             playlistId: playlistId,
             uris: songs
           })
-          .then(() => alert(`Playlist Created!`))
+          .then(() => browserHistory.push(`${playlistId}/confirm`))
           .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));

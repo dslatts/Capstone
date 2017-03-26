@@ -25,7 +25,7 @@ export default function History (props) {
           <tbody>
               {props.userHistory && props.userHistory.map((item) => {
               return (
-                <tr key={item.track.id}>
+                <tr key={item.track.id + item.track.played_at}>
                   <td>{item.track.name}</td>
                   <td>{createArtistString(item.track.artists)}</td>
                 </tr>);
