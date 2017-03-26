@@ -78,21 +78,18 @@ router.post('/:playlistName/addSongs', (req, res, next) => {
       // api.setAccessToken('fill in token');
       // api.createPlaylist('username', {name: `${req.params.playlistName}`, public: false});
       return pRequest({
-        url: `https://api.spotify.com/v1/users/${req.session.passport.user}/playlists/${req.body.playlistId}/tracks`,
+        url: `https://api.spotify.com/v1/users/${req.session.passport.user}/playlists/${req.body.playlistId}/tracks?position=0&uris=${req.body.uris.map(trackId => 'spotify%3Atrack%3A' + trackId).join(',')}`,
         method: 'POST',
         json: true,
         headers: {
           Accept: 'application/json',
           Authorization: `Bearer ${foundUser.authToken}`
         },
-        body: {
-          tracks: req.body.tracks.map(trackId => 'spotify:track:' + trackId).join(','),
-          public: false
-        }
+        dataType: 'json'
       })
-      .then(snapshot => {console.log('this returns an id of the snapshot of the playlist. not sure what to do with id...');});
+      .then(snapshot => res.send(snapshot));
     })
-    .catch(next);
+    .catch(err => console.log('===error message:', err));
   }
 });
 
