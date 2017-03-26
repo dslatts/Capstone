@@ -3,12 +3,33 @@ import ArtistsForm from './ArtistsForm';
 import AlbumsForm from './AlbumsForm';
 import HeaderContainer from '../containers/HeaderContainer';
 import Sidebar from './Sidebar';
-import {Link} from 'react-router';
+import axios from 'axios';
 
 export default class Create extends Component {
-
+  constructor(props){
+    super(props);
+    this.onAlbumsSubmit = this.onAlbumsSubmit.bind(this);
+    this.submitPlaylist = this.submitPlaylist.bind(this);
+  }
   onAlbumsSubmit(event){
     event.preventDefault();
+  }
+
+  submitPlaylist(){
+    var songs = this.props.currentSongList.map((song) => song.id);
+    var name = document.getElementById('playlistName').value;
+    axios.get(`/api/playlists/${name}`)
+      .then((playlist) => playlist.data.spotifyId)
+      .then((playlistId) => {
+          axios.post(`/api/playlists/${name}/addSongs`, {
+            playlistId: playlistId,
+            uris: songs
+          })
+          .then(() => alert(`Playlist Created!`))
+          .catch((err) => console.error(err));
+      })
+      .catch((err) => console.error(err));
+
   }
 
   render () {
@@ -27,10 +48,10 @@ export default class Create extends Component {
               removeSongs={this.props.removeSongs}
               removeAll={this.props.removeAll}
               currentSongList={this.props.currentSongList}
+              inCreate={true}
               />
-            <form className="songSelectionForm" onSubmit={this.onAlbumsSubmit}>
-              <button className="submitSelection">Visualize</button>
-              <button className="submitSelection">Create Playlist</button>
+            <form className="songSelectionForm">
+              <button className="submitSelection" onClick={this.onAlbumsSubmit}>Visualize</button>
               <AlbumsForm
                 currentAlbumList={this.props.currentAlbumList}
                 getSongs={this.props.getSongs}
@@ -39,6 +60,8 @@ export default class Create extends Component {
                 currentSongList={this.props.currentSongList}
                 />
             </form>
+            <button className="submitSelection" onClick={this.submitPlaylist}>Create Playlist</button>
+            <input id="playlistName" type="text" placeholder="Name Your Playlist" />
           </div>
         : null}
       </div>
