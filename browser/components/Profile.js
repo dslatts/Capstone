@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import HeaderContainer from '../containers/HeaderContainer';
-import Visualone from './Visualone';
+// import Visualone from './Visualone';
 import Visualtwo from './Visualtwo';
 import History from './History';
+import sunburst from '../datavis/Sunburst.js';
+import dataVisual from '../datavis/DataVisual.js';
 
 var profilePicture = function(img){
     if (img) {
@@ -37,7 +39,8 @@ export default class Profile extends Component {
         <HeaderContainer />
         {this.signedInImg()}
         {this.signedInName()}
-        <Visualone />
+        <sunburst />
+        <dataVisual />
         <div>
           <Visualtwo />
           <History userHistory={this.props.currentUser[5].items} />

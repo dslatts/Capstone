@@ -33,7 +33,7 @@ router.get('/profile', (req, res, next) => {
                                             .map((feature, index) => acc[index] + feature), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                                           )
                                    .map(feature => feature / foundAllUsers.length)
-      const useravgObj = {
+      const usersavgObj = {
         danceability: useravg[0],
         energy: useravg[1],
         key: useravg[2],
@@ -45,6 +45,19 @@ router.get('/profile', (req, res, next) => {
         liveness: useravg[8],
         valence: useravg[9],
         tempo: useravg[10]
+      }
+      const useravgObj = {
+        danceability: foundUser.audioFeatures[0],
+        energy: foundUser.audioFeatures[1],
+        key: foundUser.audioFeatures[2],
+        loudness: foundUser.audioFeatures[3],
+        mode: foundUser.audioFeatures[4],
+        speechiness: foundUser.audioFeatures[5],
+        acousticness: foundUser.audioFeatures[6],
+        instrumentalness: foundUser.audioFeatures[7],
+        liveness: foundUser.audioFeatures[8],
+        valence: foundUser.audioFeatures[9],
+        tempo: foundUser.audioFeatures[10]
       }
       let topArtists = pRequest({
         url: `https://api.spotify.com/v1/me/top/artists/`,
@@ -143,12 +156,26 @@ router.get('/profile', (req, res, next) => {
             });
           }, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]).map(feature => feature / JSON.parse(arrayofitems[3]).audio_features.length);
 
+          const newAvgObj = {
+            danceability: newAvg[0],
+            energy: newAvg[1],
+            key: newAvg[2],
+            loudness: newAvg[3],
+            mode: newAvg[4],
+            speechiness: newAvg[5],
+            acousticness: newAvg[6],
+            instrumentalness: newAvg[7],
+            liveness: newAvg[8],
+            valence: newAvg[9],
+            tempo: newAvg[10]
+          }
+
           var updateUser = foundUser.update({
             audioFeatures: newAvg
           });
           return Promise.all([updatedArrOfSongs, updatedArrofPlaylists, updateUser])
           // NOTE array of items = [artists, songs, playlists, SongFeatures]
-          .then(() => res.status(201).send([arrayofitems[0], arrayofitems[1], arrayofitems[2], foundUserProfile, {history: useravgObj, new: newAvg}, JSON.parse(foundRecentSongs), JSON.parse(arrayofitems[3])]));
+          .then(() => res.status(201).send([arrayofitems[0], arrayofitems[1], arrayofitems[2], foundUserProfile, {history: useravgObj, new: newAvgObj, allUsers: usersavgObj}, JSON.parse(foundRecentSongs), JSON.parse(arrayofitems[3])]));
         })
         .catch(next);
       })
