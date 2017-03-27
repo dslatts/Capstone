@@ -24,6 +24,7 @@ export default function History (props) {
           </thead>
           <tbody>
               {props.userHistory && props.userHistory.map((item) => {
+                console.log(item);
               return (
                 <tr key={item.track.id + item.track.played_at}>
                   <td>{item.track.name}</td>
