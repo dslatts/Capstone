@@ -22,10 +22,10 @@ constructor(props){
 //changes button to say select all/deselect all
 renderSelectToggle(){
   if (this.state.indexSelected.length < this.albumList.length){
-    return (<button onClick={() => this.selectToggle(0)}>Select All</button>);
+    return (<button className='submitSelection' onClick={() => this.selectToggle(0)}>Select All</button>);
   }
   else {
-    return (<button onClick={() => this.selectToggle(1)}>Deselect All</button>);
+    return (<button className='submitSelection' onClick={() => this.selectToggle(1)}>Deselect All</button>);
   }
 }
 

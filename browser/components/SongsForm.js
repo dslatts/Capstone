@@ -42,7 +42,7 @@ export default class SongsForm extends Component {
         </div>
           {this.state.songList.length > 0 && this.state.songList.map((song) => {
             return (
-              <Song key={song.id} song={song} onSongClick={this.props.onSongClick} currentSongList={this.props.currentSongList} />
+              <Song key={song.id + 'songForm'} song={song} onSongClick={this.props.onSongClick} currentSongList={this.props.currentSongList} />
             );
           })
         }

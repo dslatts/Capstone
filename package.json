@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register server/server.tests.js db/db.tests.js",
-    "start": "webpack -w & nodemon server/index.js"
+    "start": "webpack -w & nodemon server/index.js",
+    "build": "postcss --use autoprefixer public/stylesheets/style.css -d build/"
   },
   "repository": {
     "type": "git",
