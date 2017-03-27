@@ -1,51 +1,9 @@
-/*.squaredOne {
-  width: 28px;
-  height: 28px;
-  position: relative;
-  margin: 20px auto;
-  background: #fcfff4;
-  background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-  background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
-}
-.squaredOne label {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  cursor: pointer;
-  background: -webkit-linear-gradient(top, #222222 0%, #45484d 100%);
-  background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
-  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
-}
-.squaredOne label:after {
-  content: '';
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  background: #27ae60;
-  background: -webkit-linear-gradient(top, #27ae60 0%, #145b32 100%);
-  background: linear-gradient(to bottom, #27ae60 0%, #145b32 100%);
-  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
-  opacity: 0;
-}
-.squaredOne label:hover::after {
-  opacity: 0.3;
-}
-.squaredOne input[type=checkbox] {
-  visibility: hidden;
-}
-.squaredOne input[type=checkbox]:checked + label:after {
-  opacity: 1;
-}*/
-
-/*BACKGROUND*/
 html {
   background-color: #0B0F15;
-  /*background: radial-gradient(at top left, rgba(11,15,21,0.2), rgba(11,15,21,0.00), rgba(11,15,21,0));*/
+}
+
+* {
+  font-family: 'Oxygen', sans-serif;
 }
 
 body {
@@ -58,6 +16,7 @@ body {
   /*background-color: #898b8e;*/
   background: radial-gradient(at bottom left, rgba(255,255,255,0.25), rgba(255,255,255,0.00), rgba(255,255,255,0));
   display:flex;
+  box-sizing: border-box;
   justify-content: space-between;
   flex-flow: row wrap;
   align-content: space-between;
@@ -106,11 +65,13 @@ ul.subMenu li {
 ul.subMenu li .menuLinks {
   color: #EDEBE8;
   text-decoration: none;
+
 }
 #appLogo{
   width: 150px;
   height: 80px;
 }
+
 #header div:hover .subMenu{
   opacity:1;
 }
@@ -197,27 +158,44 @@ ul.subMenu li .menuLinks {
   display:flex;
 }
 
-.selectedSong{
+.selectedSongContainer{
   display:block;
+}
+
+.selectedSong{
+  display:flex;
+  justify-content: space-between;
 }
 
 .selectedSongName{
   display:flex;
+  width: 100%;
   margin: 0;
+  color: #EDEBE8;
+  font-size: 12px;
 }
 
 .selectedSongArtistName{
   display:flex;
   margin: 0;
   margin-left: 16px;
+  color: #EDEBE8;
+  font-size: 12px;
 }
 
-.removedSelectedSong{
+.removeSelectedSong{
   display:flex;
+  color: #EDEBE8;
+  font-size: 12px;
 }
 
 .audioButton{
   display:flex;
   width: 50px;
   height: 25px;
+}
+
+#loginMessage {
+  margin: auto;
+  text-align: center;
 }
