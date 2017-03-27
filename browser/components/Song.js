@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default function Song (props) {
-  var toggle = function(DOMID){
-    var audio = document.getElementById(DOMID);
-    var button = document.getElementById(`${props.song.id}_play`);
+  const toggle = function(DOMID){
+    const audio = document.getElementById(DOMID);
+    const button = document.getElementById(`${props.song.id}_play`);
     if (button.value === 'notPlaying'){
       audio.play();
       button.value = 'playing';
