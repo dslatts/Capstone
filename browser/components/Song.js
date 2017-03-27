@@ -4,15 +4,13 @@ export default function Song (props) {
   var toggle = function(DOMID){
     var audio = document.getElementById(DOMID);
     var button = document.getElementById(`${props.song.id}_play`);
-    if (button.value === 'notPlaying'){
+    if (button.className === 'fa fa-play-circle fa-2x'){
       audio.play();
-      button.value = 'playing';
-      button.innerText = 'Stop';
+      button.className = 'fa fa-stop-circle fa-2x';
     } else {
       audio.pause();
       audio.currentTime = 0;
-      button.value = 'notPlaying';
-      button.innerText = 'Play';
+      button.className = 'fa fa-play-circle fa-2x';
     }
   };
 
@@ -21,7 +19,7 @@ export default function Song (props) {
       return (
         <div id={props.song.id} className="songActive" >
           <div className="audioButton">
-            <button id={`${props.song.id}_play`} value="notPlaying" onClick={() => toggle(props.song.id + '_audio')}>Play</button>
+            <i id={`${props.song.id}_play`} className="fa fa-play-circle fa-2x" aria-hidden="true" value="notPlaying" onClick={() => toggle(props.song.id + '_audio')} />
             <audio id={`${props.song.id}_audio`} src={props.song.preview_url} preload="auto" type="audio/mpeg" />
           </div>
           <div onClick={()=>{props.onSongClick(props.song)}}>
@@ -34,7 +32,7 @@ export default function Song (props) {
       return (
         <div id={props.song.id} className="songInactive" >
           <div className="audioButton">
-            <button id={`${props.song.id}_play`} value="notPlaying" onClick={() => toggle(props.song.id + '_audio')}>Play</button>
+            <i id={`${props.song.id}_play`} className="fa fa-play-circle fa-2x" aria-hidden="true" value="notPlaying" onClick={() => toggle(props.song.id + '_audio')} />
             <audio id={`${props.song.id}_audio`} src={props.song.preview_url} preload="auto" type="audio/mpeg" />
           </div>
           <div onClick={()=>{props.onSongClick(props.song)}}>

@@ -113,3 +113,16 @@ ul.subMenu li {
     border: 0;
     font-size: 15px;
 }
+
+#selectors > div {
+  width: 25%;
+}
+#selectors > div:hover {
+  color: gray;
+}
+
+hr {
+  width: 3px;
+  height: 20px;
+  background-color: black;
+}

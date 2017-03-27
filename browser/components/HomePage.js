@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Create from './Create';
 import Compare from './Compare';
 import HeaderContainer from '../containers/HeaderContainer';
-import Sidebar from './Sidebar';
+//import 'bulma/css/bulma.css';
 
 export default class HomePage extends Component {
   constructor(props){
@@ -35,15 +35,18 @@ export default class HomePage extends Component {
       return (
         <div>
           <HeaderContainer />
-          <div>
-            <div>
-              <button onClick={this.onCreateClick}>Create Playlist</button>
-              <p>Craft the perfect playlist to target whatever mood
-              you want your listeners to feel, and post it to your Spotify</p>
+          <div id="selectors" className="columns">
+            <div className="column" onClick={this.onCreateClick}>
+              <i className="fa fa-music fa-5x" aria-hidden="true" />
+              <h3>Create Playlist</h3>
+              <h5>Craft the perfect playlist to target whatever mood
+              you want your listeners to feel, and post it to your Spotify</h5>
             </div>
-            <div>
-              <button onClick={this.onCompareClick}>Compare Music</button>
-              <p>Pick your favorite songs and see how they compare by mood</p>
+            <hr />
+            <div className="column" onClick={this.onCompareClick}>
+              <i className="fa fa-area-chart fa-5x" aria-hidden="true" />
+              <h3>Compare Music</h3>
+              <h5>Pick your favorite songs and see how they compare by mood</h5>
             </div>
           </div>
         </div>
@@ -96,7 +99,7 @@ export default class HomePage extends Component {
         <div id="loginMessage">
           <h1>Welcome to [INSERT APP NAME]</h1>
           <h4>Please connect to your Spotify to use [INSERT APP NAME]</h4>
-          <a href={'/api/auth/spotify'}><button id="loginButton">Log In</button></a>
+          <a href={'/api/auth/spotify'}><button id="loginButton"><i className="fa fa-spotify" aria-hidden="true" />  Log In</button></a>
         </div>
         : this.determineComponents()
       }
