@@ -36,7 +36,7 @@ export default class Create extends Component {
     return (
       <div>
         <HeaderContainer />
-        <h1>Pick songs to add to your playlist. Search Artist below!</h1>
+        <h1 className='titleText'>Pick songs to add to your playlist. Search Artist below!</h1>
         <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
         <button onClick={this.props.goBack}>BACK</button>
 
