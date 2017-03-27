@@ -7,7 +7,7 @@ export default function Playlist (props) {
     <div>
       <HeaderContainer />
       <h1>Playlist Successfully Posted!</h1>
-      <p>Check it out <a target="_blank" rel="noopener noreferrer" href={`https://play.spotify.com/user/${props.currentUser[3].id}/playlist/${props.currentUser[2][0][0].spotifyId}`}>here</a></p>
+      <p>Check it out <a target="_blank" rel="noopener noreferrer" href={`https://play.spotify.com/user/${props.currentUser.spotifyProfile.id}/playlist/${props.currentUser.spotifyProfile.id}`}>here</a></p>
       <Link to={'/'}><button>Start Over!</button></Link>
     </div>);
 }

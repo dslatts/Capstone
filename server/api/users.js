@@ -2,16 +2,10 @@ const router = require('express').Router();
 const Promise = require('bluebird');
 var db = require('../../db');
 var User = db.models.user;
-var Playlist = db.models.playlist;
+// var Playlist = db.models.playlist;
 var Song = db.models.song;
-var Artist = db.models.artist;
+var History = db.models.history;
 const pRequest = require('request-promise');
-
-// router.get('/', (req, res, next) => {
-//   req.session.passport.token = 'hello world';
-//   console.log(req.session.passport);
-//   res.send(req.session);
-// });
 
 router.get('/profile', (req, res, next) => {
   if (!req.session.passport){
@@ -26,13 +20,13 @@ router.get('/profile', (req, res, next) => {
       }
     })
 
-    Promise.all([allUsers, oneUser])
+    return Promise.all([allUsers, oneUser])
     .then(([foundAllUsers, foundUser]) => {
       const useravg = foundAllUsers.map(user => user.audioFeatures)
                                    .reduce((acc, userfeatures) => userfeatures
                                             .map((feature, index) => acc[index] + feature), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                                           )
-                                   .map(feature => feature / foundAllUsers.length)
+                                   .map(feature => feature / foundAllUsers.length);
       const usersavgObj = {
         danceability: useravg[0],
         energy: useravg[1],
@@ -45,47 +39,7 @@ router.get('/profile', (req, res, next) => {
         liveness: useravg[8],
         valence: useravg[9],
         tempo: useravg[10]
-      }
-      const useravgObj = {
-        danceability: foundUser.audioFeatures[0],
-        energy: foundUser.audioFeatures[1],
-        key: foundUser.audioFeatures[2],
-        loudness: foundUser.audioFeatures[3],
-        mode: foundUser.audioFeatures[4],
-        speechiness: foundUser.audioFeatures[5],
-        acousticness: foundUser.audioFeatures[6],
-        instrumentalness: foundUser.audioFeatures[7],
-        liveness: foundUser.audioFeatures[8],
-        valence: foundUser.audioFeatures[9],
-        tempo: foundUser.audioFeatures[10]
-      }
-      let topArtists = pRequest({
-        url: `https://api.spotify.com/v1/me/top/artists/`,
-        method: 'GET',
-        json: true,
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${foundUser.authToken}`
-        }
-      });
-      let topSongs = pRequest({
-        url: `https://api.spotify.com/v1/me/top/tracks`,
-        method: 'GET',
-        json: true,
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${foundUser.authToken}`
-        }
-      });
-      let userPlaylists = pRequest({
-        url: `https://api.spotify.com/v1/me/playlists`,
-        method: 'GET',
-        json: true,
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${foundUser.authToken}`
-        }
-      });
+      };
       let userProfile = pRequest({
         url: `https://api.spotify.com/v1/me`,
         method: 'GET',
@@ -103,8 +57,8 @@ router.get('/profile', (req, res, next) => {
 					Authorization: `Bearer ${foundUser.authToken}`
 				}
 			});
-      Promise.all([topArtists, topSongs, userPlaylists, userProfile, recentSongs])
-      .spread((foundTopArtists, foundTopSongs, foundUserPlaylists, foundUserProfile, foundRecentSongs) => {
+      return Promise.all([userProfile, recentSongs])
+      .spread((foundUserProfile, foundRecentSongs) => {
         var SongIds = JSON.parse(foundRecentSongs).items.map(song => song.track.id).join(',');
         var SongFeatures = pRequest({
           url: 'https://api.spotify.com/v1/audio-features?ids=' + SongIds,
@@ -114,48 +68,23 @@ router.get('/profile', (req, res, next) => {
             Authorization: `Bearer ${foundUser.authToken}`
           }
         });
-        var artistlist = foundTopArtists.items.map(artistObj => {
-          return Artist.findOrCreate({
-            where: {
-              name: artistObj.name,
-              spotifyId: artistObj.id
-            }
-          });
-        });
-        var songlist = foundTopSongs.items.map(songObj => {
+        var seen = {};
+        var songlist = JSON.parse(foundRecentSongs).items.filter(item => seen.hasOwnProperty(item.track.id) ? false : (seen[item.track.id] = true)).map(songObj => {
           return Song.findOrCreate({
             where: {
-              title: songObj.name,
-              spotifyId: songObj.id
+              title: songObj.track.name,
+              spotifyId: songObj.track.id
             }
           });
         });
-        var playlistlist = foundUserPlaylists.items.map(playlistObj => {
-          return Playlist.findOrCreate({
-            where: {
-              title: playlistObj.name,
-              spotifyId: playlistObj.id
-            }
-          });
-        });
-
-        const p1 = Promise.all(artistlist);
-        const p2 = Promise.all(songlist);
-        const p3 = Promise.all(playlistlist);
-        Promise.all([p1, p2, p3, SongFeatures])
+        const p1 = Promise.all(songlist);
+        return Promise.all([p1, SongFeatures])
         .then(arrayofitems => {
-          const updatedArrOfSongs = arrayofitems[1].map(item => {
-            item[0].setUsers(foundUser);
-          });
-          const updatedArrofPlaylists = arrayofitems[2].map(item => {
-            item[0].setUser(foundUser);
-          });
-          var newAvg = JSON.parse(arrayofitems[3]).audio_features.reduce((acc, audio) => {
+          var newAvg = JSON.parse(arrayofitems[1]).audio_features.reduce((acc, audio) => {
             return Object.keys(audio).slice(0, 11).map((feature, index) => {
               return acc[index] + audio[feature];
             });
-          }, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]).map(feature => feature / JSON.parse(arrayofitems[3]).audio_features.length);
-
+          }, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]).map(feature => feature / JSON.parse(arrayofitems[1]).audio_features.length);
           const newAvgObj = {
             danceability: newAvg[0],
             energy: newAvg[1],
@@ -168,14 +97,51 @@ router.get('/profile', (req, res, next) => {
             liveness: newAvg[8],
             valence: newAvg[9],
             tempo: newAvg[10]
-          }
+          };
+          const UserHistory = History.create(newAvgObj)
 
           var updateUser = foundUser.update({
             audioFeatures: newAvg
           });
-          return Promise.all([updatedArrOfSongs, updatedArrofPlaylists, updateUser])
-          // NOTE array of items = [artists, songs, playlists, SongFeatures]
-          .then(() => res.status(201).send([arrayofitems[0], arrayofitems[1], arrayofitems[2], foundUserProfile, {history: useravgObj, new: newAvgObj, allUsers: usersavgObj}, JSON.parse(foundRecentSongs), JSON.parse(arrayofitems[3])]));
+          const reformattedRecentSongs = JSON.parse(foundRecentSongs).items.map((song, index) => ({
+            artists: song.track.artists,
+            duration: song.track.duration_ms,
+            href: song.track.href,
+            id: song.track.id,
+            name: song.track.name,
+            preview_url: song.track.preview_url,
+            context: song.context,
+            played_at: song.played_at,
+            audio_features: JSON.parse(arrayofitems[1]).audio_features[index]
+          }));
+          return Promise.all([UserHistory, updateUser])
+          .then(([newUserHistory, updatedUser]) => {
+            const updatedArrOfSongs = arrayofitems[0].map(item => {
+              newUserHistory.setSongs(item[0]);
+            });
+            const historyAssociation = newUserHistory.setUser(foundUser);
+            return Promise.all([updatedArrOfSongs, historyAssociation])
+            .then(() => {
+              return User.findOne({
+                where: {
+                  name: req.session.passport.user
+                },
+                include: [{
+                  model: History, include: [{model: Song}]
+                }]
+              })
+              .then(refreshedUser => res.status(201).send(
+                {
+                  spotifyProfile: foundUserProfile,
+                  allUsersAvg: usersavgObj,
+                  recentSongs: reformattedRecentSongs,
+                  localProfile: refreshedUser
+                }
+              ));
+            });
+          })
+          .catch(err => console.error('THISISMYERROR', err));
+          // NOTE array of items = [songs, SongFeatures]
         })
         .catch(next);
       })

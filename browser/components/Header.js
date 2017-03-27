@@ -11,16 +11,17 @@ export default function Header(props) {
   };
 
   function signedIn(){
-    if (props.currentUser[3]){
-      return (<li><Link className='menuLinks' to={`/${props.currentUser[3].id}/profile`}>Profile</Link></li>)
+    console.log('Header', props, props.currentUser.spotifyProfile.id)
+    if (props.currentUser.spotifyProfile){
+      return (<li><Link className='menuLinks' to={`/${props.currentUser.spotifyProfile.id}/profile`}>Profile</Link></li>)
     }
   }
 
   function signedInImg(){
-    if(props.currentUser[3]){
+    if(props.currentUser.spotifyProfile){
       return (
         <div className="UserImgDropdown">
-          <img id="headerImg" src={profilePicture(props.currentUser[3].images[0])} />
+          <img id="headerImg" src={profilePicture(props.currentUser.spotifyProfile.images[0])} />
           <ul className="subMenu">
             {signedIn()}
             {/*NOTE used setTimeout */}

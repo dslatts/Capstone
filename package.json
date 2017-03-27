@@ -24,6 +24,7 @@
     "bcryptjs": "^2.4.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.15.2",
+    "bulma": "^0.4.0",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.5.2",
     "chai-properties": "^1.2.1",
@@ -68,6 +69,7 @@
     "spotify-web-api-js": "^0.21.2",
     "supertest": "^3.0.0",
     "supertest-as-promised": "^4.0.2",
+    "victory": "^0.18.3",
     "volleyball": "^1.4.1"
   },
   "devDependencies": {

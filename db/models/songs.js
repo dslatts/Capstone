@@ -3,12 +3,10 @@ const db = require('../_db');
 
 var Song = db.define('song', {
   title: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
   },
   spotifyId: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
   }
 })
 

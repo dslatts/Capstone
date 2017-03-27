@@ -199,3 +199,26 @@ ul.subMenu li .menuLinks {
   margin: auto;
   text-align: center;
 }
+
+#loginButton {
+    color: #ffffff;
+    background-color: #2ebd59;
+    border-radius: 20px;
+    width: 100px;
+    height: 30px;
+    border: 0;
+    font-size: 15px;
+}
+
+#selectors > div {
+  width: 25%;
+}
+#selectors > div:hover {
+  color: gray;
+}
+
+hr {
+  width: 3px;
+  height: 20px;
+  background-color: black;
+}
