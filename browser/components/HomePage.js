@@ -23,7 +23,7 @@ export default class HomePage extends Component {
     });
   }
   checkStatus(){
-    if (this.props.currentUser[3]){
+    if (this.props.currentUser.localProfile){
       this.isLoggedIn = true;
     }
     else {
