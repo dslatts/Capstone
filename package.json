@@ -69,6 +69,7 @@
     "spotify-web-api-js": "^0.21.2",
     "supertest": "^3.0.0",
     "supertest-as-promised": "^4.0.2",
+    "victory": "^0.18.3",
     "volleyball": "^1.4.1"
   },
   "devDependencies": {

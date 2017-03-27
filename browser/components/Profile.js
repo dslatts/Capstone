@@ -3,8 +3,8 @@ import HeaderContainer from '../containers/HeaderContainer';
 // import Visualone from './Visualone';
 import Visualtwo from './Visualtwo';
 import History from './History';
-import sunburst from '../datavis/Sunburst.js';
-import dataVisual from '../datavis/DataVisual.js';
+import RdrChart from '../datavis/radarChart.js';
+import AreaChart from '../datavis/AreaChart.js';
 
 var profilePicture = function(img){
     if (img) {
@@ -45,6 +45,8 @@ export default class Profile extends Component {
         {this.signedInName()}
         <div>
           {/*should place profile elements here*/}
+          <RdrChart currentUser={this.props.currentUser} />
+          <AreaChart currentUser={this.props.currentUser} />
         </div>
       </div>
     );
