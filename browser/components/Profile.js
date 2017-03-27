@@ -22,14 +22,18 @@ export default class Profile extends Component {
   }
 
   signedInImg(){
-    if (this.props.currentUser[3]){
-      return (<img id="profilePic" src={profilePicture(this.props.currentUser[3].images[0])} />);
+    console.log(this.props.currentUser);
+    if (this.props.currentUser.spotifyProfile){
+      console.log('in img');
+      return (<img id="profilePic" src={profilePicture(this.props.currentUser.spotifyProfile.images[0])} />);
     }
   }
 
   signedInName(){
-    if (this.props.currentUser[3]){
-      return (<p>{this.props.currentUser[3].display_name}</p>);
+    console.log(this.props.currentUser);
+    if (this.props.currentUser.spotifyProfile){
+      console.log('in name');
+      return (<p>{this.props.currentUser.spotifyProfile.display_name}</p>);
     }
   }
 
@@ -39,12 +43,8 @@ export default class Profile extends Component {
         <HeaderContainer />
         {this.signedInImg()}
         {this.signedInName()}
-        <sunburst />
-        <dataVisual />
         <div>
-          <Visualtwo />
-          <History userHistory={this.props.currentUser[5].items} />
-          <Visualtwo />
+          {/*should place profile elements here*/}
         </div>
       </div>
     );
