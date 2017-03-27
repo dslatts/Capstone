@@ -2,9 +2,11 @@ import axios from 'axios';
 
 export const SET_USER = 'SET_USER';
 export const REMOVE_USER = 'REMOVER_USER';
+export const UPDATE_PLAYLISTS = 'UPDATE_PLAYLISTS';
 
 export const setUser = (user) => ({ type: SET_USER, currentUser: user});
 export const removeUser = () => ({ type: REMOVE_USER});
+export const updatePlaylists = (playlists) => ({type: UPDATE_PLAYLISTS, playlists: playlists});
 
 //thunk action creators
 export const fetchUser = () => {
@@ -31,3 +33,16 @@ export const logout = () => {
       });
   };
 };
+
+export const fetchPlaylist = () => {
+  return (dispatch) => {
+        axios.get('/api/playlists')
+        .then((res) => res.data)
+        .then((playlists) => {
+          dispatch(updatePlaylists(playlists));
+        })
+        .catch(function (err) {
+        console.error(err);
+      });
+  }
+}
