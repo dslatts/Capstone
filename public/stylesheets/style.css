@@ -103,3 +103,13 @@ ul.subMenu li {
   margin: auto;
   text-align: center;
 }
+
+#loginButton {
+    color: #ffffff;
+    background-color: #2ebd59;
+    border-radius: 20px;
+    width: 100px;
+    height: 30px;
+    border: 0;
+    font-size: 15px;
+}

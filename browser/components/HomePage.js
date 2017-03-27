@@ -34,9 +34,18 @@ export default class HomePage extends Component {
     if (this.state.createOrCompare === ''){
       return (
         <div>
-        <HeaderContainer />
-        <button onClick={this.onCreateClick}>Create Playlist</button>
-        <button onClick={this.onCompareClick}>Compare Music</button>
+          <HeaderContainer />
+          <div>
+            <div>
+              <button onClick={this.onCreateClick}>Create Playlist</button>
+              <p>Craft the perfect playlist to target whatever mood
+              you want your listeners to feel, and post it to your Spotify</p>
+            </div>
+            <div>
+              <button onClick={this.onCompareClick}>Compare Music</button>
+              <p>Pick your favorite songs and see how they compare by mood</p>
+            </div>
+          </div>
         </div>
       );
     }
