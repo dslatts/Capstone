@@ -44,9 +44,7 @@ export default class Profile extends Component {
         {this.signedInImg()}
         {this.signedInName()}
         <div>
-          <Visualtwo />
-          <History userHistory={this.props.currentUser.recentSongs} />
-          <Visualtwo />
+          {/*should place profile elements here*/}
         </div>
       </div>
     );
