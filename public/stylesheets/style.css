@@ -1,17 +1,9 @@
-* {
-  font-family: 'Oxygen', sans-serif;
+html {
+  background-color: #0B0F15;
 }
 
-.albumCover {
-  width: 25%;
-  height:25%;
-}
-.songActive{
-  background-color: #203659;
-  display:flex;
-  float:left;
-  width: 100%;
-  height: 50px;
+* {
+  font-family: 'Oxygen', sans-serif;
 }
 
 body {
@@ -24,6 +16,7 @@ body {
   /*background-color: #898b8e;*/
   background: radial-gradient(at bottom left, rgba(255,255,255,0.25), rgba(255,255,255,0.00), rgba(255,255,255,0));
   display:flex;
+  box-sizing: border-box;
   justify-content: space-between;
   flex-flow: row wrap;
   align-content: space-between;
@@ -72,11 +65,13 @@ ul.subMenu li {
 ul.subMenu li .menuLinks {
   color: #EDEBE8;
   text-decoration: none;
+
 }
 #appLogo{
   width: 150px;
   height: 80px;
 }
+
 #header div:hover .subMenu{
   opacity:1;
 }
@@ -163,23 +158,35 @@ ul.subMenu li .menuLinks {
   display:flex;
 }
 
-.selectedSong{
+.selectedSongContainer{
   display:block;
+}
+
+.selectedSong{
+  display:flex;
+  justify-content: space-between;
 }
 
 .selectedSongName{
   display:flex;
+  width: 100%;
   margin: 0;
+  color: #EDEBE8;
+  font-size: 12px;
 }
 
 .selectedSongArtistName{
   display:flex;
   margin: 0;
   margin-left: 16px;
+  color: #EDEBE8;
+  font-size: 12px;
 }
 
-.removedSelectedSong{
+.removeSelectedSong{
   display:flex;
+  color: #EDEBE8;
+  font-size: 12px;
 }
 
 .audioButton{
@@ -192,4 +199,3 @@ ul.subMenu li .menuLinks {
   margin: auto;
   text-align: center;
 }
-
