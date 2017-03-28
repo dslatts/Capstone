@@ -1,22 +1,17 @@
-import {GET_ARTISTS, REMOVE_ARTIST} from '../actions/artist';
+import {GET_PLAYLIST} from '../actions/playlist';
 
-const artistReducer = (state = {}, action) => {
+const playlistReducer = (state = {}, action) => {
 
   const newState = Object.assign({}, state);
 
   switch (action.type) {
-    case GET_ARTISTS:
-      newState.currentArtist = action.receivedArtists;
-      break;
-
-    case REMOVE_ARTIST:
-      newState.currentArtist = {};
-      break;
+    case GET_PLAYLIST:
+      newState[action.playlistId] = action.audioFeatures;
+      return newState;
 
     default:
       return state;
   }
-  return newState;
 };
 
-export default artistReducer;
+export default playlistReducer;
