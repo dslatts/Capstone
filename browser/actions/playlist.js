@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const GET_PLAYLIST = 'GET_ARTISTS';
+export const GET_PLAYLIST = 'GET_PLAYLIST';
 
 export const getPlaylist = (playistId, audioFeatures) => ({ type: GET_PLAYLIST, playlistId: playistId, audioFeatures: audioFeatures});
 
