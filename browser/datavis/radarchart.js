@@ -60,7 +60,6 @@ import React, {Component} from 'react';
        </RadarChart>
     );
   }
-
 }
 
 
