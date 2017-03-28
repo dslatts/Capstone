@@ -28,7 +28,7 @@ import React, {Component} from 'react';
     console.log(this.state);
    }
 
-   //if (this.props.currentUser.localProfile.histories.length > 1)
+   //if (this.props.currentUser.localProfile.histories.length > 1)!
     render () {
       return (
  <RadarChart cx={300} cy={250} outerRadius={150} width={600} height={500} data={this.state.data}>
