@@ -1,5 +1,5 @@
 html {
-  background-color: #0B0F15;
+  background-color: gray;
 }
 
 * {
@@ -106,7 +106,7 @@ ul.subMenu li .menuLinks {
   border-width: 1px 0px 1px 0px;
 }
 .songActive p {
-  color: #333333;
+  color: gray;
 }
 .songInactive{
   background-color: rgba(25,30,40,0.1);
@@ -261,4 +261,7 @@ hr {
   z-index: 150;
   opacity: 0.8;
   order: 1;
+  
+.playlistTable {
+  border: 1px solid black;
 }
