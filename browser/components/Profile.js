@@ -54,7 +54,7 @@ export default class Profile extends Component {
         <HeaderContainer />
         {this.signedInImg()}
         {this.signedInName()}
-        <div>
+        <div >
         {this.props.currentUser.playlists && this.props.currentUser.playlists.map((playlist) => {
           return (<UserPlaylist key={playlist[0].spotifyId} playlist={playlist[0]} loadPlaylist={this.loadPlaylist} />);
         })}

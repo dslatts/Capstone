@@ -11,7 +11,6 @@ export default function Header(props) {
   };
 
   function signedIn(){
-    console.log('Header', props, props.currentUser.spotifyProfile.id)
     if (props.currentUser.spotifyProfile){
       return (<li><Link className='menuLinks' to={`/${props.currentUser.spotifyProfile.id}/profile`}>Profile</Link></li>)
     }
