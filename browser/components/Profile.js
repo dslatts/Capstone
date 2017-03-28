@@ -3,8 +3,12 @@ import HeaderContainer from '../containers/HeaderContainer';
 // import Visualone from './Visualone';
 import Visualtwo from './Visualtwo';
 import History from './History';
+import sunburst from '../datavis/Sunburst.js';
+import dataVisual from '../datavis/DataVisual.js';
+import UserPlaylist from './UserPlaylist';
 import RdrChart from '../datavis/radarChart.js';
 import AreaChart from '../datavis/AreaChart.js';
+
 
 var profilePicture = function(img){
     if (img) {
@@ -38,12 +42,16 @@ export default class Profile extends Component {
   }
 
   render () {
+    console.log(this.props.currentUser.playlists && this.props.currentUser.playlists.map((obj) => obj[0]));
     return (
       <div>
         <HeaderContainer />
         {this.signedInImg()}
         {this.signedInName()}
         <div>
+        {this.props.currentUser.playlists && this.props.currentUser.playlists.map((playlist) => {
+          return (<UserPlaylist key={playlist[0].spotifyId} playlist={playlist[0]} />);
+        })}
           {/*should place profile elements here*/}
           {/*<RdrChart currentUser={this.props.currentUser} />*/}
           {/*<AreaChart currentUser={this.props.currentUser} />*/}

@@ -18,7 +18,7 @@ export default function Header(props) {
   }
 
   function signedInImg(){
-    if(props.currentUser.spotifyProfile){
+    if(props.currentUser.spotifyProfile.images){
       return (
         <div className="UserImgDropdown">
           <img id="headerImg" src={profilePicture(props.currentUser.spotifyProfile.images[0])} />
