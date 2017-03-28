@@ -1,11 +1,20 @@
 import Profile from '../components/Profile';
 import { connect } from 'react-redux';
-
+import {fetchPlaylist} from '../actions/playlist';
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    playlists: state.playlists
   };
 };
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPlaylist: function(playlistId){
+      dispatch(fetchPlaylist(playlistId));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
