@@ -26,23 +26,18 @@ export default class Profile extends Component {
   }
 
   signedInImg(){
-    console.log(this.props.currentUser);
     if (this.props.currentUser.spotifyProfile){
-      console.log('in img');
       return (<img id="profilePic" src={profilePicture(this.props.currentUser.spotifyProfile.images[0])} />);
     }
   }
 
   signedInName(){
-    console.log(this.props.currentUser);
     if (this.props.currentUser.spotifyProfile){
-      console.log('in name');
       return (<p>{this.props.currentUser.spotifyProfile.display_name}</p>);
     }
   }
 
   render () {
-    console.log(this.props.currentUser.playlists && this.props.currentUser.playlists.map((obj) => obj[0]));
     return (
       <div>
         <HeaderContainer />
