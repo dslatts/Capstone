@@ -31,14 +31,17 @@ router.get('/', (req, res, next) => {
       })
       .then(userPlaylists => {
         var playlistlist = userPlaylists.items.map(playlistObj => {
-          return Playlist.findOrCreate({
-            where: {
-              title: playlistObj.name,
-              spotifyId: playlistObj.id
-            }
-          });
+          if (playlistObj.owner.id === req.session.passport.user){
+            console.log(playlistObj.name);
+            return Playlist.findOrCreate({
+              where: {
+                title: playlistObj.name,
+                spotifyId: playlistObj.id
+              }
+            });
+          }
         });
-        Promise.all(playlistlist)
+        Promise.all(playlistlist.filter((playlist) => playlist))
         .then(arrofPlaylists => {
           const updatedArrofPlaylists = arrofPlaylists.map(item => {
             item[0].setUser(foundUser);
