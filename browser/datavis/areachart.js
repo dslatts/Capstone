@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {VictoryChart, VictoryArea, VictoryLine, VictoryAxis, VictoryZoomContainer, VictoryBrushContainer} from 'victory';
+
 //Two area charts
 
 //creating a playlist
@@ -14,7 +15,6 @@ export default class TimelineChart extends Component {
     const userHistory = this.props.currentUser.localProfile.histories.map(function(val, index){
                   return {x: index + 1, y: val.valence}
                 })
-    console.log(userHistory);
   }
 
   handleZoom(domain) {
@@ -42,6 +42,7 @@ export default class TimelineChart extends Component {
     return (
       <div>
           <VictoryChart width={1000} height={400} style={chartStyle} domain={{x: [1, this.props.currentUser.localProfile.histories.length], y: [0, 1]}}
+
             containerComponent={
               <VictoryZoomContainer responsive={false}
                 dimension="x"
@@ -59,12 +60,14 @@ export default class TimelineChart extends Component {
                   return {x: index + 1, y: val.valence}
                 })
               }
+
             />
 
           </VictoryChart>
 
           <VictoryChart
             padding={{top: 0, left: 50, right: 50, bottom: 30}}
+
             width={1000} height={100} style={chartStyle} domain={{x: [1, this.props.currentUser.localProfile.histories.length], y: [0, 1]}}
             containerComponent={
               <VictoryBrushContainer responsive={false}
@@ -89,6 +92,7 @@ export default class TimelineChart extends Component {
                   return {x: index + 1, y: val.valence}
                 })
               }
+
             />
           </VictoryChart>
 

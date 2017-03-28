@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
-import artistReducer from './artist';
+import playlistReducer from './playlist';
 import albumReducer from './album';
 import songsReducer from './songs';
 import userReducer from './user';
 
 const rootReducer = combineReducers({
-  currentArtist: artistReducer,
   currentAlbumList: albumReducer,
   currentSongList: songsReducer,
-  currentUser: userReducer
+  currentUser: userReducer,
+  playlists: playlistReducer
 });
 
 export default rootReducer;
