@@ -201,13 +201,17 @@ ul.subMenu li .menuLinks {
 }
 
 #loginButton {
-    color: #ffffff;
-    background-color: #2ebd59;
-    border-radius: 20px;
-    width: 100px;
-    height: 30px;
-    border: 0;
-    font-size: 15px;
+  color: #ffffff;
+  background-color: #2ebd59;
+  border-radius: 20px;
+  width: 150px;
+  height: 35px;
+  border: 0;
+  font-size: 20px;
+  margin-top: 20px;
+}
+#loginButton:hover {
+  background-color: #1ed760;
 }
 
 #selectors > div {
@@ -261,7 +265,19 @@ hr {
   z-index: 150;
   opacity: 0.8;
   order: 1;
-  
+}
 .playlistTable {
   border: 1px solid black;
+}
+
+#loadingScreen{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 500px;
+}
+
+.icon {
+  font-size: 100px;
 }

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Create from './Create';
 import Compare from './Compare';
 import HeaderContainer from '../containers/HeaderContainer';
-//import 'bulma/css/bulma.css';
 
 export default class HomePage extends Component {
   constructor(props){
@@ -97,8 +96,8 @@ export default class HomePage extends Component {
     <div>
       {!this.isLoggedIn ?
         <div id="loginMessage">
-          <h1>Welcome to [INSERT APP NAME]</h1>
-          <h4>Please connect to your Spotify to use [INSERT APP NAME]</h4>
+          <h1>Welcome to attitune</h1>
+          <h4>Please connect to your Spotify to use our service</h4>
           <a href={'/api/auth/spotify'}><button id="loginButton"><i className="fa fa-spotify" aria-hidden="true" />  Log In</button></a>
         </div>
         : this.determineComponents()
