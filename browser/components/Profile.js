@@ -45,8 +45,8 @@ export default class Profile extends Component {
         {this.signedInName()}
         <div>
           {/*should place profile elements here*/}
-          <RdrChart currentUser={this.props.currentUser} />
-          <AreaChart currentUser={this.props.currentUser} />
+          {/*<RdrChart currentUser={this.props.currentUser} />*/}
+          {/*<AreaChart currentUser={this.props.currentUser} />*/}
         </div>
       </div>
     );
