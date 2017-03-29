@@ -77,8 +77,12 @@ ul.subMenu li {
   padding: 10px 15px 10px 15px;
   background-color:rgba(0, 0, 0, 0.0);
 }
-ul.subMenu li .menuLinks {
-  color: #EDEBE8;
+ul.subMenu li:nth-child(1) .menuLinks {
+  color: #15c1db;
+  text-decoration: none;
+}
+ul.subMenu li:nth-child(2) .menuLinks {
+  color: #ff6868;
   text-decoration: none;
 }
 #appLogo{
@@ -93,6 +97,11 @@ ul.subMenu li .menuLinks {
 /*TEXT - deprecated*/
 .titleText{
   color: #EDEBE8;
+  left:40%;
+  position:absolute;
+  display:flex;
+  flex-wrap:nowrap;
+  width:35vw;
 }
 
 /*HomePage*/
@@ -133,6 +142,7 @@ ul.subMenu li .menuLinks {
 .songSelectionContainer{
   top:11vh;
   position:fixed;
+  width: 100vw;
 }
 
 .songContainer{
@@ -189,19 +199,19 @@ ul.subMenu li .menuLinks {
 .songSelectionForm{
   display:flex;
   flex-wrap:wrap;
-  height: 90vh;
+  height: 89vh;
   top: 11vh;
   width: 75%;
-  bottom:0;
-  right: 0;
+  bottom: 0vw;
+  left: 25vw;
   position:fixed;
   overflow-y:scroll;
-  overflow-x:auto;
+  overflow-x:hidden;
 }
 
-.searchContainer > *{
+/*.searchContainer > *{
   width: 100%;
-}
+}*/
 
 .songSelection{
   display:flex;
@@ -210,6 +220,7 @@ ul.subMenu li .menuLinks {
 
 .albums{
   padding-left: 0%;
+  margin-top: 5%;
   width:100%;
 }
 
@@ -217,13 +228,23 @@ ul.subMenu li .menuLinks {
   width:100%;
 }
 
-.songsList{
-  padding: 0.5% 3% 0% 4%;
-  border: 1px solid #222222;
-  box-shadow: inset -8px -8px 119px 2px rgba(0,0,0,0.60);
-  height: 60vh;
-  overflow-x: hidden;
-  overflow-y: scroll;
+.albumInfoContainer{
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.albumName{
+  align-self: flex-end;
+  padding-left: 20px;
+  padding-bottom: 30px;
+  display:flex;
+}
+
+.albumName > p{
+  color: #ccddee;
+  font-size: 30px;
+  font-weight: 100px;
+  text-transform: uppercase;
 }
 
 .albumCover {
@@ -231,20 +252,164 @@ ul.subMenu li .menuLinks {
   height:25%;
 }
 
-.submitSelection{
-  height:45px;
-  width:90px;
-	-moz-box-shadow: 0px 10px 14px -7px #2f7e8a;
-	-webkit-box-shadow: 0px 10px 14px -7px #2f7e8a;
-	box-shadow: 0px 10px 14px -7px #2f7e8a;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #37839e), color-stop(1, #15c1db));
-	background:-moz-linear-gradient(top, #37839e 5%, #15c1db 100%);
-	background:-webkit-linear-gradient(top, #37839e 5%, #15c1db 100%);
-	background:-o-linear-gradient(top, #37839e 5%, #15c1db 100%);
-	background:-ms-linear-gradient(top, #37839e 5%, #15c1db 100%);
-	background:linear-gradient(to bottom, #37839e 5%, #15c1db 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#37839e', endColorstr='#15c1db',GradientType=0);
-	background-color:#37839e;
+/*check boxes for album*/
+/*.squaredOne[data=true]{
+  display:block;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  border: 1px solid #FF9100;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background: #FF9100;
+  transition: background 0.25s ease;
+  background: #fff;
+  border: 1px solid #E5E5E5;
+  z-index: -1;
+}
+
+.squaredOne[data=false]{
+  display:block;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  border: 1px solid #FF9100;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background: #FF9100;
+  transition: background 0.25s ease;
+  z-index: -1;
+}
+
+.squaredOne[data=true] .checkbox__inner::before{
+  background: #99BF4C;
+  transition: all 0.2s ease;
+  transform: rotate(47deg);
+  width: 10px;
+  top: 26px;
+  left: 13px;
+  z-index: 0;
+}
+.squaredOne[data=true] .checkbox__inner::after {
+  background: #99BF4C;
+  transition: all 0.2s ease;
+  transform: rotate(45deg);
+  left: 27px;
+}
+
+.squaredOne[data=true] .checkbox__inner::before {
+  background: #FF0000;
+  transform: rotate(45deg);
+  width: 19px;
+  top: 23px;
+  left: 14px;
+}
+.squaredOne[data=true] .checkbox__inner::after {
+  background: #FF0000;
+  height: 19px;
+  top: 14px;
+  left: 23px;
+}
+.squaredOne[data=false]:hover {
+  background: #FF9E2C;
+}
+
+.squaredOne[data=false] .checkbox__inner {
+  position: relative;
+}
+.squaredOne[data=false] .checkbox__inner::before, .squaredOne[data=false] .checkbox__inner::after {
+  position: absolute;
+  content: '+';
+  background: #fff;
+  transition: all 0.3s ease;
+}
+.squaredOne[data=false] .checkbox__inner::before {
+  height: 1px;
+  width: 19px;
+  top: 23px;
+  left: 14px;
+}
+.squaredOne[data=false] .checkbox__inner::after {
+  width: 1px;
+  height: 19px;
+  top: 14px;
+  left: 23px;
+}
+.squaredOne[data=false] .checkbox__input {
+  -webkit-appearance: none;
+  z-index: 100;
+}
+
+.squaredOne[data=true] .checkbox__inner {
+  position: relative;
+}
+.squaredOne[data=true] .checkbox__inner::before, .squaredOne[data=true] .checkbox__inner::after {
+  position: absolute;
+  content: '';
+  background: #fff;
+  transition: all 0.3s ease;
+}
+.squaredOne[data=true] .checkbox__inner::before {
+  height: 1px;
+  width: 19px;
+  top: 23px;
+  left: 14px;
+}
+.squaredOne[data=true] .checkbox__inner::after {
+  width: 1px;
+  height: 19px;
+  top: 14px;
+  left: 23px;
+}
+.squaredOne[data=true] .checkbox__input {
+  -webkit-appearance: none;
+  z-index: 100;
+}*/
+
+.albumCover:hover {
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+}
+
+.albumCover:active {
+  box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.5);
+}
+
+.closedSongList{
+  padding: 0.5% 3% 0% 4%;
+  border-bottom: : 1px solid #454444;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 0vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.openSongList{
+  padding: 0.5% 3% 0% 4%;
+  border: 1px solid #222222;
+  box-shadow: inset -8px -8px 119px 2px rgba(0,0,0,0.60);
+  margin-bottom: 20px;
+  height: 60vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.backButton{
+  height:30px;
+  width:60px;
+  align-items: center;
+  align-content: center;
+	-moz-box-shadow: 0px 10px 14px -7px #333444;
+	-webkit-box-shadow: 0px 10px 14px -7px #333444;
+	box-shadow: 0px 10px 14px -7px #333444;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #222333), color-stop(1, #334450));
+	background:-moz-linear-gradient(top, #222333 5%, #334450 100%);
+	background:-webkit-linear-gradient(top, #222333 5%, #334450 100%);
+	background:-o-linear-gradient(top, #222333 5%, #334450 100%);
+	background:-ms-linear-gradient(top, #222333 5%, #334450 100%);
+	background:linear-gradient(to bottom, #222333 5%, #334450 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#222333', endColorstr='#334450',GradientType=0);
+	background-color:#222333;
 	-moz-border-radius:8px;
 	-webkit-border-radius:8px;
 	border-radius:8px;
@@ -258,18 +423,20 @@ ul.subMenu li .menuLinks {
 	text-decoration:none;
 	text-shadow:0px 1px 0px #4393ad;
   display:block;
+  border: 0px;
+  padding: 2px;
 }
-.submitSelection:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #15c1db), color-stop(1, #37839e));
-	background:-moz-linear-gradient(top, #15c1db 5%, #37839e 100%);
-	background:-webkit-linear-gradient(top, #15c1db 5%, #37839e 100%);
-	background:-o-linear-gradient(top, #15c1db 5%, #37839e 100%);
-	background:-ms-linear-gradient(top, #15c1db 5%, #37839e 100%);
-	background:linear-gradient(to bottom, #15c1db 5%, #37839e 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#15c1db', endColorstr='#37839e',GradientType=0);
-	background-color:#15c1db;
+.backButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #334450), color-stop(1, #222333));
+	background:-moz-linear-gradient(top, #334450 5%, #222333 100%);
+	background:-webkit-linear-gradient(top, #334450 5%, #222333 100%);
+	background:-o-linear-gradient(top, #334450 5%, #222333 100%);
+	background:-ms-linear-gradient(top, #334450 5%, #222333 100%);
+	background:linear-gradient(to bottom, #334450 5%, #222333 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#334450', endColorstr='#222333',GradientType=0);
+	background-color:#334450;
 }
-.submitSelection:active {
+.backButton:active {
 	position:relative;
 	top:1px;
 }
@@ -313,9 +480,18 @@ ul.subMenu li .menuLinks {
   height: 25px;
 }
 
+/*LOGIN*/
 #loginMessage {
   margin: auto;
   text-align: center;
+  color: #eeeeff;
+}
+
+#loginMessage > h1 {
+  font-size: 50px;
+}
+#loginMessage > h4 {
+  font-size: 25px;
 }
 
 #loginButton {
@@ -326,17 +502,39 @@ ul.subMenu li .menuLinks {
   height: 35px;
   border: 0;
   font-size: 20px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 #loginButton:hover {
   background-color: #1ed760;
 }
 
 #selectors > div {
+  border: 1px solid black;
   width: 25%;
+  display: inline-block;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 100px;
+  box-shadow: none;
+  color: #c9c9c9;
 }
-#selectors > div:hover {
-  color: gray;
+#selectors > div:nth-child(1):hover {
+  box-shadow: 5px 10px 10px -1px rgba(17, 17, 48, 0.75);
+  color: #15c1db;
+}
+#selectors > div:nth-child(2):hover {
+  box-shadow: 5px 10px 10px -1px rgba(48, 17, 17, 0.75);
+  color: #ff6868;
+}
+
+#selectors > div:nth-child(1):active {
+  box-shadow: 1px 2px 10px -1px rgba(17, 17, 48, 0.5);
+  color: #82eeff;
+}
+
+#selectors > div:nth-child(2):active {
+  box-shadow: 1px 2px 10px -1px rgba(48, 17, 17, 0.5);
+  color: #ff9696;
 }
 
 hr {
@@ -433,10 +631,37 @@ hr {
     }
 }
 
+/*Visualize button*/
+.submitSelection{
+  background: #222;
+	background: linear-gradient(#333, #222);
+	border: 1px solid #000;
+	color: #9bd;
+	text-shadow: 0 -1px 0 #000;
+  height: 50px;
+  width: 150px;
+}
+
+.submitSelection:hover{
+	background: #292929;
+	background: linear-gradient(#393939, #202530);
+	color: #9bd;
+	outline: none;
+  animation: glow 800ms ease-out infinite alternate;
+}
+
+.submitSelection:active {
+	background: #292929;
+	background: linear-gradient(#202530, #393939);
+	box-shadow: 0 1px 0 #000, inset 1px 0 1px #222;
+	top: 1px;
+}
+
 /*Profile*/
 .Profile{
   color:#EDEBE8;
   top:11vh;
+  overflow-y: scroll;
 }
 
 .ProfileHeader {
@@ -453,6 +678,7 @@ hr {
   display:flex;
   padding-right: 2%;
   overflow-x: scroll;
+  overflow-y: visible;
 }
 
 .smallProfileCharts>*{
@@ -500,10 +726,30 @@ hr {
 
 
 /*artist search form*/
-/*.artistSearchInput{
+.SearchBar{
+  display:flex;
+  padding: 30px;
+  position:absolute;
+  width:100%;
+  right:0;
+  z-index: -1;
+}
+
+.artistSearchSubmission{
+  align-self: center;
+  height:10vw;
+  width:70%;
+  position:relative;
+}
+
+.artistSearchInput{
+  height: 50px;
+  font-size: 40px;
+  display: flex;
+  font-weight: 100;
   border: none;
   outline: none;
-  color: #555;
+  color: #fff;
   padding: 3px;
   padding-right: 60px;
   width: 0px;
@@ -514,7 +760,7 @@ hr {
   z-index: 3;
   transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
   cursor: pointer;
-
+  text-transform: uppercase;
 }
 
 .artistSearchInput:focus:hover {
@@ -522,15 +768,17 @@ hr {
 }
 
 .artistSearchInput:focus {
-  width: 700px;
+  width: 400px;
+  z-index: 1;
   border-bottom: 1px solid #BBB;
   cursor: text;
 }
 
-input[type="submit"] {
-  float: right;
-  background: url(/images/magGlass_icon.png) center center no-repeat;
-  text-indent: -10000px;
+#search_submit {
+  height: 50px;
+  width: 50px;
+  background: url('../images/magGlass_icon.png') center center no-repeat;
+  /*text-indent: 10000px;*/
   border: none;
   position: absolute;
   top: 0;
@@ -542,9 +790,9 @@ input[type="submit"] {
   transition: opacity .4s ease;
 }
 
-input[type="submit"]:hover {
+#search_submit:hover {
   opacity: 0.8;
-}*/
+}
 
 
 /*Radar Chart*/
