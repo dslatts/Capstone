@@ -2,7 +2,7 @@ import React from 'react'
 import Bubble from './Bubble.js'
 import ReactTransitionGroup from 'react-addons-transition-group'
 import {scaleLinear, scalePoint} from 'd3-scale'
-
+import {Xaxis, Yaxis, Grid} from 'react-d3-core';
 import { connect } from 'react-redux';
 
 
@@ -11,12 +11,9 @@ class CompareChart extends React.Component{
   constructor(props){
     super(props)
     this.state = {width: 500, height: 500, group:'', params:['valence', 'energy'], songGroups: {artists: [], album: []}, displayChart:false}
-    this.setScales = this.setScales.bind(this);
     this.getXCoord = this.getXCoord.bind(this);
     this.changeParam = this.changeParam.bind(this);
     this.changeGroup = this.changeGroup.bind(this);
-    this.newXScale = this.newXScale.bind(this);
-    this.newYScale = this.newYScale.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
@@ -34,38 +31,6 @@ class CompareChart extends React.Component{
 
       this.setState({displayChart: true, songGroups: {artists: artistArr, album: albumsArr}});
     }
-  }
-
-  newXScale(data){
-      if (this.state.songGroups){
-      return (data) => scalePoint()
-        .domain([0, this.state.width])
-        .padding(0.25)
-      }
-  }
-
-  newYScale(){
-  return scaleLinear()
-      .range([this.state.height, 0])
-  }
-
-  setScales(){
-      let xScale, yScale
-
-      if (this.state.params.length === 2){
-      //set x scale for scatter/cluster chart
-      xScale = () => scaleLinear()
-        .range([0, this.state.width])
-      }
-      else {
-      //set x scale for stacked chart
-
-
-    }
-      yScale = () => scaleLinear()
-      .range([this.state.height, 0])
-
-      this.setState({xScale: xScale, yScale: yScale})
   }
 
   getXCoord(song){
@@ -109,10 +74,10 @@ class CompareChart extends React.Component{
   render(){
     //params, group
     let scatterScale = scaleLinear()
-        .range([0, this.state.width])
+        .range([0, this.state.width - 100])
 
     let yScale = scaleLinear()
-    .range([this.state.height, 0])
+    .range([this.state.height - 100, 0])
 
     let stackedScale = (this.state.group) ? (scalePoint()
         .domain(this.state.songGroups[this.state.group])
@@ -122,18 +87,21 @@ class CompareChart extends React.Component{
 
     let xScale
 
+
+
     //pass the value to the node
     //conditional is based on
 
 
     xScale = (!this.state.group) ? scatterScale : stackedScale
 
+
     return (
       (this.state.displayChart) ?
       <div>
         <svg width={this.state.width} height={this.state.height}>
           <g>
-            {/*<ReactTransitionGroup component ="g">*/}
+            <ReactTransitionGroup component ="g">
               {this.props.currentSongList.songList.map((song) =>
                 {
                 return (<Bubble
@@ -143,8 +111,63 @@ class CompareChart extends React.Component{
                 y={yScale(song.audioFeatures[this.state.params[0]])} />
                 )}
               )}
-            {/*</ReactTransitionGroup> */}
+            </ReactTransitionGroup>
           </g>
+          {(this.state.group) ?
+            <Xaxis
+            width={this.state.width}
+            height={this.state.height}
+            margins={{top: 50, right: 50, bottom: 50, left: 50}}
+            x = {
+              (this.state.group === 'artists') ?
+              ((d) => d.artists[0].name) : ((d) => d.album)
+            }
+            xDomain = {this.state.songGroups[this.state.group]}
+            xRange = {[0, this.state.width]}
+            xScale = 'ordinal'
+            xLabel = {this.state.group}
+            style = {{stroke: 'white', fill: 'white'}}
+            /> :
+            <Xaxis
+            width={this.state.width}
+            height={this.state.height}
+            margins={{top: 50, right: 50, bottom: 50, left: 50}}
+            x = {
+              (d) => d.audioFeatures[this.state.params[1]]
+            }
+            xDomain = {[0, 1]}
+            xRange = {[0, this.state.width]}
+            xScale = 'linear'
+            xLabel = {this.state.params[1]}
+            style = {{stroke: 'white', fill: 'white'}}
+            />
+          }
+            <Yaxis
+            margins={{top: 50, right: 50, bottom: 50, left: 50}}
+            width={this.state.width}
+            height={this.state.height}
+            y = {
+              (d) => d.audioFeatures[this.state.params[0]]
+            }
+            yDomain = {[0, 1]}
+            yRange = {[this.state.height, 0]}
+            yScale = 'linear'
+            yLabel = {this.state.params[0]}
+            style = {{stroke: 'white', fill: 'white'}}
+            />
+            <Grid
+            margins={{top: 50, right: 50, bottom: 50, left: 50}}
+            width={this.state.width}
+            height={this.state.height}
+            type='y'
+            y = {
+              (d) => d.audioFeatures[this.state.params[0]]
+            }
+            yDomain = {[0, 1]}
+            yRange = {[this.state.height, 0]}
+            yScale = 'linear'
+            style = {{stroke: 'white', fill: 'white'}}
+            />
         </svg>
         <div>
           Group By:
@@ -173,39 +196,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(CompareChart);
 
 
-//fix the buttons func
 
-//fix the other func ( the story getter,)
-// x coord- can this be simplified
-// find what logic we are repeating accross these functions.
-
-/*component renders -> no songs on props.
-component receives songs
-if component haas songs, can show the visualization.
-
-*/
-
-
-//fix group change buttons, metrics change buttons
-
-//group button - initial state is empty
-//if click a button and it is the current group - unselects getGroups
-//if click a button and it is not the current group - changes group
-
-
-//change parameters:
-/*
-if we have a group
-  going to change x param
-
-if we have a group
-  if x = clicked
-    x = y
-  change y param to it
-
-if no group
-  if param.includes
-    params.reverse
-  else param x = y, param y = x
-*/
 
