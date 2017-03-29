@@ -49,10 +49,12 @@ export default class Create extends Component {
               inCreate={true}
               />
             <div className="songSelectionForm">
-              <h1 className='titleText'>Pick songs to add to your playlist. Search Artist below!</h1>
-              <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-              <button className="submitSelection" onClick={this.props.goBack}>BACK</button>
-              <button className="submitSelection" onClick={this.onAlbumsSubmit}>Visualize</button>
+              <div className="searchContainer">
+                <h1 className='titleText'>Pick songs to add to your playlist. Search Artist below!</h1>
+                <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
+                <button className="submitSelection" onClick={this.props.goBack}>BACK</button>
+                <button className="submitSelection" onClick={this.onAlbumsSubmit}>Visualize</button>
+              </div>
               <AlbumsForm
                 currentAlbumList={this.props.currentAlbumList}
                 getSongs={this.props.getSongs}
@@ -61,8 +63,10 @@ export default class Create extends Component {
                 currentSongList={this.props.currentSongList}
                 />
             </div>
-            <button className="submitSelection" onClick={this.submitPlaylist}>Create Playlist</button>
-            <input id="playlistName" type="text" placeholder="Name Your Playlist" />
+            <div className="playlistSubmission">
+              <input id="playlistName" type="text" placeholder="Name Your Playlist" />
+              <button onClick={this.submitPlaylist}>Create Playlist</button>
+            </div>
           </div>
         :
         <div className="songSelectionContainer">

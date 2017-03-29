@@ -19,23 +19,22 @@ export default class SongsForm extends Component {
         axios.get(`/api/tracks/audio-features/?ids=${songIds}`)
         .then(res => res.data)
         .then(features => {
-          console.log(features)
             let songsWithFeatures = songs.items.map((song, index) => {
                 return {
-                artists: song.artists,
-                id: song.id,
-                name: song.name,
-                preview_url: song.preview_url,
-                duration: song.duration_ms,
-                audioFeatures: features.audio_features[index],
-                album: this.props.album.name,
-                image: this.props.album.images[0].url
+                  artists: song.artists,
+                  id: song.id,
+                  name: song.name,
+                  preview_url: song.preview_url,
+                  duration: song.duration_ms,
+                  audioFeatures: features.audio_features[index],
+                  album: this.props.album.name,
+                  image: this.props.album.images[0].url
                 }
             });
             this.setState({songList: songsWithFeatures})
         });
     })
-.catch(err => console.error(err));
+    .catch(err => console.error(err));
   }
 
   render() {
@@ -54,10 +53,6 @@ export default class SongsForm extends Component {
           <img className="albumCover" src={this.props.album.images[0].url} />
         </div>
 
-        <div>
-          <span className="songHeader">Track</span>
-          <span className="songHeader">Sample</span>
-        </div>
         <div className="songsList">
           {this.state.songList.length > 0 && this.state.songList.map((song) => {
             return (

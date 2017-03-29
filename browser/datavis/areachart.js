@@ -29,7 +29,6 @@ export default class TimelineChart extends Component {
     let myArr = [];
     let axisTicker = 5;
     let axisLength = Math.round(this.props.currentUser.localProfile.histories.length/5)
-    console.log(axisLength)
     const makeAxisValues = function(){
       for (var i = 0; i < axisLength; i++) {
         myArr.push(axisTicker)
@@ -37,7 +36,6 @@ export default class TimelineChart extends Component {
       }
     }
     makeAxisValues();
-    console.log(myArr)
     const chartStyle = { parent: {minWidth: "100%", marginLeft: "10%"}};
     return (
       <div>

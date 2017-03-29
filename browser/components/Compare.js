@@ -26,10 +26,12 @@ export default class Compare extends Component {
               currentSongList={this.props.currentSongList}
               />
             <div className="songSelectionForm" onSubmit={this.onAlbumsSubmit}>
-              <h1 className='titleText'>Pick songs to compare. Search Artist below!</h1>
-              <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-              <button className="submitSelection" onClick={this.props.goBack}>BACK</button>
-              <button className="submitSelection">Visualize</button>
+              <div className="searchContainer">
+                <h1 className='titleText'>Pick songs to compare. Search Artist below!</h1>
+                <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
+                <button className="submitSelection" onClick={this.props.goBack}>BACK</button>
+                <button className="submitSelection">Visualize</button>
+              </div>
               <AlbumsForm
                 currentAlbumList={this.props.currentAlbumList}
                 getSongs={this.props.getSongs}
