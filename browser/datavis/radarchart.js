@@ -33,16 +33,6 @@ import React, {Component} from 'react';
     const current = this.state.data.reduce((acc, datum) => datum.B + acc, 0);
     const prev = this.state.data.reduce((acc, datum) => datum.C + acc, 0);
     let returnarr = [['All Users Average History', usersAvg, '#8884d8', 'A'], ['Current Login', current, '#82ca9d', 'B'], ['Previous Login', prev, '#ce1471', 'C']].sort(function(a, b){return a[[1]] - b[1];});
-    // returnarr[0].push('areaSmall', 0.4);
-    // returnarr[1].push('areaMedium', 0.5);
-    // returnarr[2].push('areaLarge', 0.6);
-    // let returnObj = {};
-    // returnarr.forEach(objArr => {
-    //   returnObj[objArr[0]] = {
-    //     class: objArr[2],
-    //     opacity: objArr[3]
-    //   };
-    // });
     return returnarr;
   }
 

@@ -26,7 +26,7 @@ onArtistsSubmit(event){
     <div className="SearchBar">
       <form className="artistSearchSubmission" onSubmit={this.onArtistsSubmit}>
         <input className="artistSearchInput" onChange={this.onArtistChange} placeholder="Search Artists" />
-        <input id="search_submit" type="submit"></input>
+        <input id="search_submit" type="submit" value=""></input>
       </form>
     </div>
     );
