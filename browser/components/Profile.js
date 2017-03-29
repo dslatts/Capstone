@@ -50,16 +50,18 @@ export default class Profile extends Component {
 
   render () {
     return (
-      <div>
+      <div className="Profile">
         <HeaderContainer />
         {this.signedInImg()}
         {this.signedInName()}
-        <div >
-        {this.props.currentUser.playlists && this.props.currentUser.playlists.map((playlist) => {
-          return (<UserPlaylist key={playlist[0].spotifyId} playlist={playlist[0]} loadPlaylist={this.loadPlaylist} />);
-        })}
-          {/*should place profile elements here*/}
+        <div className="smallProfileCharts">
           <RdrChart currentUser={this.props.currentUser} />
+          <div className="playlistsContainer">
+            {this.props.currentUser.playlists && this.props.currentUser.playlists.map((playlist) => {
+              return (<UserPlaylist className="playListInactive" key={playlist[0].spotifyId} playlist={playlist[0]} loadPlaylist={this.loadPlaylist} />);
+            })}
+          </div>
+          {/*should place profile elements here*/}
           <AreaChart currentUser={this.props.currentUser} />
         </div>
       </div>
