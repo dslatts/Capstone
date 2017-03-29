@@ -589,3 +589,8 @@ input[type="submit"]:hover {
 .icon {
   font-size: 100px;
 }
+
+#logo {
+  height: 10vh;
+  padding-bottom: 1vh;
+}
