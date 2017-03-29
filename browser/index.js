@@ -7,22 +7,26 @@ import {Provider} from 'react-redux';
 import Sunburst from './datavis/Sunburst.js';
 
 import store from './store';
-import {fetchUser} from './actions/user';
+import {fetchUser, fetchPlaylist} from './actions/user';
 import HomeContainer from './containers/HomeContainer';
 import ProfileContainer from './containers/ProfileContainer';
 import PlaylistContainer from './containers/PlaylistContainer';
-
+import LoadingContainer from './containers/LoadingContainer';
 const refreshUser = function(){
-  fetchUser()(store.dispatch);
+  store.dispatch(fetchUser())
+};
+const loadPlaylists = function(){
+  store.dispatch(fetchPlaylist());
 };
 
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" onEnter={refreshUser} component={HomeContainer} />
-       <Route path="/tests" component={Sunburst} />
-      <Route path="/:username/profile" component={ProfileContainer} />
-      <Route path="/:playlist/confirm" onEnter={refreshUser} component={PlaylistContainer} />
+      <Route path="/tests" component={Sunburst} />
+      <Route path="/load" onEnter={refreshUser} component={LoadingContainer} />
+      <Route path="/:username/profile" onEnter={loadPlaylists} component={ProfileContainer} />
+      <Route path="/:playlist/confirm" onEnter={loadPlaylists} component={PlaylistContainer} />
     </Router>
   </Provider>,
   document.getElementById('app')

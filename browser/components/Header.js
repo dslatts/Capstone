@@ -11,14 +11,13 @@ export default function Header(props) {
   };
 
   function signedIn(){
-    console.log('Header', props, props.currentUser.spotifyProfile.id)
     if (props.currentUser.spotifyProfile){
       return (<li><Link className='menuLinks' to={`/${props.currentUser.spotifyProfile.id}/profile`}>Profile</Link></li>)
     }
   }
 
   function signedInImg(){
-    if(props.currentUser.spotifyProfile){
+    if(props.currentUser.spotifyProfile.images){
       return (
         <div className="UserImgDropdown">
           <img id="headerImg" src={profilePicture(props.currentUser.spotifyProfile.images[0])} />
@@ -35,7 +34,7 @@ export default function Header(props) {
   return (
     <div className="header">
       <nav id="header">
-        <Link to={'/'}><h1 id="appLogo">Spoti-Cry</h1></Link>
+        <Link to={'/'}><h1 id="appLogo">attitune</h1></Link>
         <div>
           {signedInImg()}
         </div>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {VictoryChart, VictoryArea, VictoryLine, VictoryAxis, VictoryZoomContainer, VictoryBrushContainer} from 'victory';
+
 //Two area charts
 
 //creating a playlist
@@ -11,7 +12,7 @@ export default class TimelineChart extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    // for VictoryAxis
+
     const userHistory = this.props.currentUser.localProfile.histories.map(function(val, index){
                   return {x: index + 1, y: val.valence}
                 })
@@ -72,7 +73,6 @@ export default class TimelineChart extends Component {
               />
             }
           >
-        
             <VictoryArea
               style={{
                 data: {stroke: "tomato"}

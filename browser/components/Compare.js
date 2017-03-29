@@ -25,11 +25,13 @@ export default class Compare extends Component {
               removeAll={this.props.removeAll}
               currentSongList={this.props.currentSongList}
               />
-            <form className="songSelectionForm" onSubmit={this.onAlbumsSubmit}>
-              <h1 className='titleText'>Pick songs to compare. Search Artist below!</h1>
-              <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-              <button className="submitSelection" onClick={this.props.goBack}>BACK</button>
-              <button className="submitSelection">Visualize</button>
+            <div className="songSelectionForm" onSubmit={this.onAlbumsSubmit}>
+              <div className="searchContainer">
+                <h1 className='titleText'>Pick songs to compare. Search Artist below!</h1>
+                <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
+                <button className="submitSelection" onClick={this.props.goBack}>BACK</button>
+                <button className="submitSelection">Visualize</button>
+              </div>
               <AlbumsForm
                 currentAlbumList={this.props.currentAlbumList}
                 getSongs={this.props.getSongs}
@@ -37,7 +39,7 @@ export default class Compare extends Component {
                 removeAll={this.props.removeAll}
                 currentSongList={this.props.currentSongList}
                 />
-            </form>
+            </div>
           </div>
         :
         <div className="songSelectionContainer">

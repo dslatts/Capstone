@@ -76,4 +76,41 @@ router.get('/recentSongs', (req, res, next) => {
 	}
 });
 
+router.get('/:playlistId', (req, res, next) => {
+		if (!req.session.passport){
+    const err = new Error('need to be logged in to use this function');
+    err.status = 403;
+    next(err);
+  } else {
+    // returns the result at the end of this promise chain. should be the created playlist object
+    // with the name, spotify ID and the owner of this playlist
+    return User.findOne({
+      where: {
+        name: req.session.passport.user
+      }
+    })
+    .then(foundUser => {
+			return pRequest({
+				url: `https://api.spotify.com/v1/users/${req.session.passport.user}/playlists/${req.params.playlistId}/tracks`,
+				method: 'GET',
+				headers: {
+					Accept: 'application/json',
+					Authorization: `Bearer ${foundUser.authToken}`
+				}
+			})
+			.then(playlistObj => {
+				console.log(playlistObj);
+				if (!playlistObj) {
+					const err = new Error('no recent tracks played');
+					err.status = 404;
+					next(err);
+				} else {
+					res.send(playlistObj);
+				}
+			});
+		})
+		.catch(next);
+	}
+});
+
 module.exports = router;
