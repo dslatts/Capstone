@@ -91,7 +91,6 @@ function createSunburst(input){
       valence: R.mean(totalValences),
       children: nestedData
     }
-    console.log(rootNode);
     return rootNode
   }
 

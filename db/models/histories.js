@@ -2,8 +2,8 @@ const Sequelize = require('sequelize');
 const db = require('../_db');
 
 var History = db.define('history', {
-  time: {
-    type: Sequelize.TIME,
+  date: {
+    type: Sequelize.DATE,
     allowNull: false,
     defaultValue: Sequelize.NOW
   },

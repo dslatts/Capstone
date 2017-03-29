@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {VictoryChart, VictoryLine, VictoryAxis, VictoryZoomContainer, VictoryBrushContainer} from 'victory';
+import {VictoryChart, VictoryArea, VictoryLine, VictoryAxis, VictoryZoomContainer, VictoryBrushContainer} from 'victory';
+
 //Two area charts
 
 //creating a playlist
@@ -8,8 +9,8 @@ import {VictoryChart, VictoryLine, VictoryAxis, VictoryZoomContainer, VictoryBru
 //y axis: Average valence
 export default class TimelineChart extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
@@ -25,7 +26,7 @@ export default class TimelineChart extends Component {
     const chartStyle = { parent: {minWidth: "100%", marginLeft: "10%"}};
     return (
       <div>
-          <VictoryChart width={1000} height={400} scale={{x: "time"}} style={chartStyle}
+          <VictoryChart width={1500} height={500} style={chartStyle} scale={{x: "time"}} domain={{ y: [0, 1]}}
             containerComponent={
               <VictoryZoomContainer responsive={false}
                 dimension="x"
@@ -34,27 +35,22 @@ export default class TimelineChart extends Component {
               />
             }
           >
-            <VictoryLine
+            <VictoryArea
               style={{
                 data: {stroke: "tomato"}
               }}
-              data={[
-                {x: new Date(1982, 1, 1), y: 125},
-                {x: new Date(1987, 1, 1), y: 257},
-                {x: new Date(1993, 1, 1), y: 345},
-                {x: new Date(1997, 1, 1), y: 515},
-                {x: new Date(2001, 1, 1), y: 132},
-                {x: new Date(2005, 1, 1), y: 305},
-                {x: new Date(2011, 1, 1), y: 270},
-                {x: new Date(2015, 1, 1), y: 470}
-              ]}
+              data={
+                this.props.currentUser.localProfile.histories.map(function(val, index){
+                  return {x: new Date(val.date.slice(0, 4), val.date.slice(5, 7) - 1, val.date.slice(8, 10), val.date.slice(11, 13), val.date.slice(14, 16)),  y: val.valence}
+                })
+              }
             />
 
           </VictoryChart>
 
           <VictoryChart
             padding={{top: 0, left: 50, right: 50, bottom: 30}}
-            width={1000} height={100} scale={{x: "time"}} style={chartStyle}
+            width={1500} height={200} style={chartStyle} domain={{ y: [0, 1]}} scale={{x: "time"}}
             containerComponent={
               <VictoryBrushContainer responsive={false}
                 dimension="x"
@@ -63,31 +59,15 @@ export default class TimelineChart extends Component {
               />
             }
           >
-            <VictoryAxis
-              tickValues={[
-                new Date(1985, 1, 1),
-                new Date(1990, 1, 1),
-                new Date(1995, 1, 1),
-                new Date(2000, 1, 1),
-                new Date(2005, 1, 1),
-                new Date(2010, 1, 1)
-              ]}
-              tickFormat={(x) => new Date(x).getFullYear()}
-            />
-            <VictoryLine
+            <VictoryArea
               style={{
                 data: {stroke: "tomato"}
               }}
-              data={[
-                {x: new Date(1982, 1, 1), y: 125},
-                {x: new Date(1987, 1, 1), y: 257},
-                {x: new Date(1993, 1, 1), y: 345},
-                {x: new Date(1997, 1, 1), y: 515},
-                {x: new Date(2001, 1, 1), y: 132},
-                {x: new Date(2005, 1, 1), y: 305},
-                {x: new Date(2011, 1, 1), y: 270},
-                {x: new Date(2015, 1, 1), y: 470}
-              ]}
+              data={
+                this.props.currentUser.localProfile.histories.map(function(val, index){
+                  return {x: new Date(val.date.slice(0, 4), val.date.slice(5, 7) - 1, val.date.slice(8, 10), val.date.slice(11, 13), val.date.slice(14, 16)),  y: val.valence}
+                })
+              }
             />
           </VictoryChart>
 
@@ -95,7 +75,3 @@ export default class TimelineChart extends Component {
     );
   }
 }
-
-
-
-//playlist chart

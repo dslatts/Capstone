@@ -7,7 +7,8 @@ const mapStateToProps = (state) => {
   return {
     currentAlbumList: state.currentAlbumList,
     currentUser: state.currentUser,
-    currentSongList: state.currentSongList.songList
+    currentSongList: state.currentSongList.songList,
+    isLoading: state.isLoading
   };
 };
 
