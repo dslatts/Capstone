@@ -660,10 +660,14 @@ hr {
 /*Profile*/
 .Profile{
   color:#EDEBE8;
-  position:fixed;
   top:11vh;
   overflow-y: scroll;
 }
+
+.ProfileHeader {
+  position: fixed;
+}
+
 .Profile>img{
   align-content: center;
 }
@@ -679,6 +683,11 @@ hr {
 
 .smallProfileCharts>*{
   width: 25%;
+}
+
+.PlaylistChart {
+  min-width: 100%;
+  margin-left: 10%;
 }
 
 .playlistsContainer{
@@ -836,4 +845,9 @@ hr {
 
 .icon {
   font-size: 100px;
+}
+
+#logo {
+  height: 10vh;
+  padding-bottom: 1vh;
 }

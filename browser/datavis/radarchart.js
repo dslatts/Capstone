@@ -51,11 +51,3 @@ import React, {Component} from 'react';
     );
   }
 }
-
-
-  // TODO: State will be two objects
-  // AllUsers (Average), YourHistory
-  // Function to convert the data to the format needed
-  // state.currentUser.allUsersAvg
-  // state.currentUser.localProfile.Histories[last item]
-  // state.currentUser.localProfile.Histories[last item - 1]
