@@ -16,14 +16,14 @@ export const fetchPlaylist = (playlistId) => {
           axios.get(`/api/tracks/audio-features?ids=${trackIds}`)
           .then((res) => res.data)
           .then((features) => {
-            features.audio_features.forEach((audio, index) => {
-              features.audio_features[index].track = tracks[index];
+            let feats = features.audio_features.map((audio, index) => {
+                if (audio){
+                    audio.track = tracks[index];
+                    return audio;
+                }
             });
-            dispatch(getPlaylist(playlistId, features.audio_features));
-          })
-          .catch(function (err) {
-            console.error(err);
-        });
+            dispatch(getPlaylist(playlistId, feats));
+          });
         })
         .catch(function (err) {
             console.error(err);

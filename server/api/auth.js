@@ -16,7 +16,7 @@ router.get('/callback',
   passport.authenticate('spotify', { failureRedirect: '/' }),
   function(req, res, next) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.redirect('/load');
     next();
   });
 
