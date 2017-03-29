@@ -17,14 +17,14 @@ export default function Header(props) {
   }
 
   function signedInImg(){
-    if(props.currentUser.spotifyProfile.images){
+    if(props.currentUser.spotifyProfile && props.currentUser.spotifyProfile.images){
       return (
         <div className="UserImgDropdown">
           <img id="headerImg" src={profilePicture(props.currentUser.spotifyProfile.images[0])} />
           <ul className="subMenu">
             {signedIn()}
             {/*NOTE used setTimeout */}
-            <li onClick={() => setTimeout(props.logout, 500)}><Link className='menuLinks' to={'/'}>Log Out</Link></li>
+            <li><Link to={'/'} onClick={() => props.logout()}>Log Out</Link></li>
           </ul>
         </div>
       )

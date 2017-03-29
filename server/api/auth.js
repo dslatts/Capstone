@@ -22,7 +22,7 @@ router.get('/callback',
 
 router.get('/logout', (req, res, next) => {
   req.session.destroy();
-  res.send('you have successfully logged out')
+  res.redirect('/');
 });
 
 module.exports = router;
