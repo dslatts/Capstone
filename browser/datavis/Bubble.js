@@ -56,7 +56,47 @@ export default class Bubble extends React.Component {
 
   render(){
     return (
-    <circle r={5} cx={this.props.x} cy={this.props.y} fill="orange" opacity={0.6}/>
+    <circle r={5} cx={this.props.x} cy={this.props.y} fill="orange" opacity={0.6} />
     )
   }
 }
+
+
+//chart type:
+// renders conditionally, changes based on buttons clicked
+//
+/*
+
+#00AAAA
+  scales are created on chart page?
+  where do we create the scales- should be on the page.
+  where do we create the groups
+
+
+  currently I am blocked because I have to wait for the component to get state, and it is trying to render the components before it has the state it needs
+  if we can prevent the components from breaking out in d3 we can stop them from
+
+  Stacked Chart- buttons logic
+  Scatter Plot- fix button logic
+  -bubble charts on hovers
+  -axes
+  -color map
+  -styling
+  -transitions to work
+
+  -styling so it's not ugly
+
+
+  about rendering x and y coordinates
+
+  need to grab a song->
+  state current song lists gets changed
+  ->state is changed, songs groups sets are worked
+  I really just don't work on d3 right now
+
+
+  Sunburst- on hovers
+
+
+
+*/
