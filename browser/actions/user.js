@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {setTrue, setFalse} from './loading';
 
 export const SET_USER = 'SET_USER';
 export const REMOVE_USER = 'REMOVER_USER';
@@ -16,6 +17,8 @@ export const fetchUser = () => {
       .then((user) => {
         dispatch(setUser(user));
       })
+      .then(() => {
+        dispatch(setFalse());})
       .catch(function (err) {
         console.error(err);
       });
