@@ -7,7 +7,6 @@ const pRequest = require('request-promise');
 
 // finds all albums for a given artist
 router.get('/:artist/albums', (req, res, next) => {
-  console.log('in albums');
   pRequest({
     url: 'https://api.spotify.com/v1/search',
     method: 'GET',
@@ -34,7 +33,6 @@ router.get('/:artist/albums', (req, res, next) => {
 // therefore, each album in the list will have its unique id, so the "album" param coming in here
 // should already be in Spotify ID form, so we have no need to query for it.
 router.get('/:artist/albums/:album/songs}', (req, res, next) => {
-  console.log('hello world');
   pRequest({
     url: 'https://api.spotify.com/v1/albums/' + req.params.album,
     method: 'GET',

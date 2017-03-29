@@ -103,7 +103,7 @@ render () {
   }
   return (
     <div className="songSelection">
-      {this.renderSelectToggle()}
+      {/*this.renderSelectToggle()*/}
       <div className="albums">
         {this.albumList && this.albumList.map((album) => {
           return (

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const GET_PLAYLIST = 'GET_ARTISTS';
+export const GET_PLAYLIST = 'GET_PLAYLIST';
 
 export const getPlaylist = (playistId, audioFeatures) => ({ type: GET_PLAYLIST, playlistId: playistId, audioFeatures: audioFeatures});
 
@@ -19,7 +19,6 @@ export const fetchPlaylist = (playlistId) => {
             features.audio_features.forEach((audio, index) => {
               features.audio_features[index].track = tracks[index];
             });
-            console.log('features', features);
             dispatch(getPlaylist(playlistId, features.audio_features));
           })
           .catch(function (err) {

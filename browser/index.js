@@ -13,10 +13,10 @@ import ProfileContainer from './containers/ProfileContainer';
 import PlaylistContainer from './containers/PlaylistContainer';
 
 const refreshUser = function(){
-  fetchUser()(store.dispatch);
+  store.dispatch(fetchUser())
 };
 const loadPlaylists = function(){
-  fetchPlaylist()(store.dispatch);
+  store.dispatch(fetchPlaylist());
 };
 
 render(

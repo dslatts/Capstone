@@ -24,8 +24,9 @@ onArtistsSubmit(event){
   render () {
     return (
     <div className="SearchBar">
-      <form onSubmit={this.onArtistsSubmit}>
-        <input onChange={this.onArtistChange} placeholder="Search Artists" /><button>Search</button>
+      <form className="artistSearchSubmission" onSubmit={this.onArtistsSubmit}>
+        <input className="artistSearchInput" onChange={this.onArtistChange} placeholder="Search Artists" /><button>Submit</button>
+        {/*<input id="search_submit" type="submit"/>*/}
       </form>
     </div>
     );
