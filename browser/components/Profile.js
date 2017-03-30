@@ -52,6 +52,10 @@ export default class Profile extends Component {
   }
 
   loadPlaylist(playlistId){
+    if (this.props.selectedPlaylist){
+      console.log(1);
+      document.getElementById(this.props.selectedPlaylist + 'playlist').className = 'playListInactive';
+    }
     if (this.props.playlists[playlistId]){
       //IF PLAYLIST ALREADY LOADED ON STATE, CREATE GRAPH FROM IT
       this.setState({
@@ -62,6 +66,9 @@ export default class Profile extends Component {
       //IF NOT ON STATE, LOAD IT ON STATE, THEN CREATE GRAPH FROM IT
       this.props.fetchPlaylist(playlistId);
     }
+    console.log(3);
+    document.getElementById(playlistId + 'playlist').className = 'playListActive';
+    console.log(4);
   }
 
   render () {
@@ -79,7 +86,7 @@ export default class Profile extends Component {
           <RdrChart currentUser={this.props.currentUser} />
           <div className="playlistsContainer">
             {this.props.currentUser.playlists && this.props.currentUser.playlists.map((playlist) => {
-              return (<UserPlaylist className="playListInactive" key={playlist[0].spotifyId} playlist={playlist[0]} loadPlaylist={this.loadPlaylist} />);
+              return (<UserPlaylist key={playlist[0].spotifyId} playlist={playlist[0]} loadPlaylist={this.loadPlaylist} />);
             })}
           {/*should place profile elements here*/}
           </div>

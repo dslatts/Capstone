@@ -19,12 +19,12 @@ import React, {Component} from 'react';
     };
     this.state = {
       data: [
-        { subject: 'Danceability', A: currentUser.allUsersAvg.danceability, B: currentLogin.danceability, C: lastLogin.danceability, fullMark: 1 },
-        { subject: 'Tempo', A: mapIt(currentUser.allUsersAvg.tempo, 0, 225, 0, 1), B: mapIt(currentLogin.tempo, 0, 225, 0, 1), C: mapIt(lastLogin.tempo, 0, 225, 0, 1), fullMark: 1 },
-        { subject: 'Happiness', A: currentUser.allUsersAvg.valence, B: currentLogin.valence, C: lastLogin.valence, fullMark: 1 },
-        { subject: 'Energy', A: currentUser.allUsersAvg.energy, B: currentLogin.energy, C: lastLogin.energy, fullMark: 1 },
-        { subject: 'Acousticness', A: currentUser.allUsersAvg.acousticness, B: currentLogin.acousticness, C: lastLogin.acousticness, fullMark: 1 },
-        { subject: 'Loudness', A: mapIt(currentUser.allUsersAvg.loudness, -60, 0, 0, 1), B: mapIt(currentLogin.loudness, -60, 0, 0, 1), C: mapIt(lastLogin.loudness, -60, 0, 0, 1), fullMark: 1 }]
+        { subject: 'Danceability', A: mapIt(currentUser.allUsersAvg.danceability, 0.45, 0.85, 0, 1), B: mapIt(currentLogin.danceability, 0.45, 0.85, 0, 1), C: mapIt(lastLogin.danceability, 0.45, 0.85, 0, 1), fullMark: 1 },
+        { subject: 'Tempo', A: mapIt(currentUser.allUsersAvg.tempo, 90, 140, 0, 1), B: mapIt(currentLogin.tempo, 90, 140, 0, 1), C: mapIt(lastLogin.tempo, 90, 140, 0, 1), fullMark: 1 },
+        { subject: 'Happiness', A: mapIt(currentUser.allUsersAvg.valence, 0.2, 0.75, 0, 1), B: mapIt(currentLogin.valence, 0.2, 0.75, 0, 1), C: mapIt(lastLogin.valence, 0.2, 0.75, 0, 1), fullMark: 1 },
+        { subject: 'Energy', A: mapIt(currentUser.allUsersAvg.energy, 0, 0.75, 0, 1), B: mapIt(currentLogin.energy, 0, 0.75, 0, 1), C: mapIt(lastLogin.energy, 0, 0.75, 0, 1), fullMark: 1 },
+        { subject: 'Acousticness', A: mapIt(currentUser.allUsersAvg.acousticness, 0.4, 1, 0, 1), B: mapIt(currentLogin.acousticness, 0.4, 1, 0, 1), C: mapIt(lastLogin.acousticness, 0.4, 1, 0, 1), fullMark: 1 },
+        { subject: 'Loudness', A: mapIt(currentUser.allUsersAvg.loudness, -10, 0, 0, 1), B: mapIt(currentLogin.loudness, -10, 0, 0, 1), C: mapIt(lastLogin.loudness, -10, 0, 0, 1), fullMark: 1 }]
     };
   }
 

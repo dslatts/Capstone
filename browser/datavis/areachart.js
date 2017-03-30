@@ -24,10 +24,9 @@ export default class AreaChart extends Component {
   }
 
   render() {
-    let windowHeight = window.innerHeight 
-    let windowWidth = window.innerWidth 
-    console.log(window.innerHeight);
-      console.log(window.innerWidth);
+    const sortedHistories = this.props.currentUser.localProfile.histories.slice().sort((a,b) => a.id - b.id);
+    let windowHeight = window.innerHeight;
+    let windowWidth = window.innerWidth;
     const chartStyle = { parent: {minWidth: "100%", marginLeft: "10%"}};
     return (
       <div>
@@ -45,8 +44,8 @@ export default class AreaChart extends Component {
                 data: {stroke: "tomato"}
               }}
               data={
-                this.props.currentUser.localProfile.histories.map(function(val, index){
-                  return {x: new Date(val.date.slice(0, 4), val.date.slice(5, 7) - 1, val.date.slice(8, 10), val.date.slice(11, 13), val.date.slice(14, 16), val.date.slice(17, 19)),  y: val.valence}
+                sortedHistories.map(function(val, index){
+                  return {x: new Date(val.date.slice(0, 4), val.date.slice(5, 7) - 1, val.date.slice(8, 10), val.date.slice(11, 13), val.date.slice(14, 16)),  y: val.valence}
                 })
               }
             />
@@ -69,13 +68,12 @@ export default class AreaChart extends Component {
                 data: {stroke: "tomato"}
               }}
               data={
-                this.props.currentUser.localProfile.histories.map(function(val, index){
-                  return {x: new Date(val.date.slice(0, 4), val.date.slice(5, 7) - 1, val.date.slice(8, 10), val.date.slice(11, 13), val.date.slice(14, 16), val.date.slice(17, 19)),  y: val.valence}
+                sortedHistories.map(function(val, index){
+                  return {x: new Date(val.date.slice(0, 4), val.date.slice(5, 7) - 1, val.date.slice(8, 10), val.date.slice(11, 13), val.date.slice(14, 16)),  y: val.valence}
                 })
               }
             />
           </VictoryChart>
-
       </div>
     );
   }
