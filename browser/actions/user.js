@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {setTrue, setFalse} from './loading';
+import {setFalse} from './loading';
 
 export const SET_USER = 'SET_USER';
 export const REMOVE_USER = 'REMOVER_USER';
@@ -29,7 +29,7 @@ export const logout = () => {
   return (dispatch) => {
     axios.get('/api/auth/logout')
       .then(() => {
-        dispatch(removeUser())
+        dispatch(removeUser());
       })
       .catch(function(err) {
         console.error(err);
@@ -47,5 +47,5 @@ export const fetchPlaylist = () => {
         .catch(function (err) {
         console.error(err);
       });
-  }
-}
+  };
+};

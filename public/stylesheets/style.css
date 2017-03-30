@@ -376,7 +376,7 @@ ul.subMenu li:nth-child(2) .menuLinks {
 
 .closedSongList{
   padding: 0.5% 3% 0% 4%;
-  border-bottom: : 1px solid #454444;
+  border-bottom: 1px solid #454444;
   margin-top: 20px;
   margin-bottom: 20px;
   height: 0vh;
@@ -482,7 +482,9 @@ ul.subMenu li:nth-child(2) .menuLinks {
 
 /*LOGIN*/
 #loginMessage {
+
   margin: auto;
+  padding-top: 30vh;
   text-align: center;
   color: #eeeeff;
 }
@@ -841,6 +843,7 @@ hr {
   justify-content: center;
   flex-direction: column;
   height: 500px;
+  color: #EDEBE8;
 }
 
 .icon {
@@ -850,4 +853,13 @@ hr {
 #logo {
   height: 10vh;
   padding-bottom: 1vh;
+}
+
+#playlistSuccess {
+  position: fixed;
+  top: 40vh;
+  font-size: 30px;
+  color: #EDEBE8;
+  text-align: center;
+  left: 35vw;
 }
