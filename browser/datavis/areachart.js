@@ -12,6 +12,7 @@ export default class AreaChart extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+
   }
 
   handleZoom(domain) {
@@ -23,10 +24,14 @@ export default class AreaChart extends Component {
   }
 
   render() {
+    let windowHeight = window.innerHeight 
+    let windowWidth = window.innerWidth 
+    console.log(window.innerHeight);
+      console.log(window.innerWidth);
     const chartStyle = { parent: {minWidth: "100%", marginLeft: "10%"}};
     return (
       <div>
-          <VictoryChart width={80%} height={500} style={chartStyle} scale={{x: "time"}} domain={{ y: [0, 1]}}
+          <VictoryChart width={windowWidth * .80} height={windowHeight * .30} style={chartStyle} scale={{x: "time"}} domain={{ y: [0, 1]}}
             containerComponent={
               <VictoryZoomContainer responsive={false}
                 dimension="x"
@@ -50,7 +55,7 @@ export default class AreaChart extends Component {
 
           <VictoryChart
             padding={{top: 0, left: 50, right: 50, bottom: 30}}
-            width={1500} height={200} style={chartStyle} domain={{ y: [0, 1]}} scale={{x: "time"}}
+            width={windowWidth * .80} height={windowHeight * .20} style={chartStyle} domain={{ y: [0, 1]}} scale={{x: "time"}}
             containerComponent={
               <VictoryBrushContainer responsive={false}
                 dimension="x"

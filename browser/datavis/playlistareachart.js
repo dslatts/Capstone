@@ -16,10 +16,10 @@ export default class PlaylistChart extends Component {
     }
 
     render () {
-
-      console.log(this.props.playlist);
+      let windowHeight = window.innerHeight;
+      let windowWidth = window.innerWidth;
       return (
-        <AreaChart width={1500} height={400} data={data}
+        <AreaChart width={windowWidth * .8} height={windowHeight * .3} data={data}
             margin={{top: 10, right: 30, left: 0, bottom: 0}}>
         <XAxis dataKey="song"/>
         <YAxis domain={[0, 1]}/>
