@@ -36,15 +36,18 @@ export default class HomePage extends Component {
           <HeaderContainer />
           <div id="selectors" className="columns">
             <div className="column" onClick={this.onCreateClick}>
-              <i className="fa fa-music fa-5x" aria-hidden="true" />
-              <h3>Create Playlist</h3>
+              <span className="icon is-large">
+                <i className="fa fa-music" aria-hidden="true" />
+              </span>
+              <h2>Create Playlist</h2>
               <h5>Craft the perfect playlist to target whatever mood
               you want your listeners to feel, and post it to your Spotify</h5>
             </div>
-            <hr />
             <div className="column" onClick={this.onCompareClick}>
-              <i className="fa fa-area-chart fa-5x" aria-hidden="true" />
-              <h3>Compare Music</h3>
+              <span className="icon is-large">
+                <i className="fa fa-area-chart" aria-hidden="true" />
+              </span>
+              <h2>Compare Music</h2>
               <h5>Pick your favorite songs and see how they compare by mood</h5>
             </div>
           </div>
