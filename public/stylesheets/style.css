@@ -633,6 +633,10 @@ hr {
 }
 
 /*Visualize button*/
+button:focus {
+  outline:0;
+}
+
 .submitSelection{
   background: #222;
 	background: linear-gradient(#333, #222);
@@ -663,6 +667,24 @@ hr {
   color:#EDEBE8;
   top:11vh;
   overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  padding-top: 5vh;
+}
+
+.displayName{
+  align-self: center;
+  font-weight: 100;
+  font-size: 30px;
+  left: 44vw;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#profilePic {
+  left: 44vw;
+  position: relative;
+  border-radius: 50%;
 }
 
 .ProfileHeader {
@@ -680,10 +702,11 @@ hr {
   padding-right: 2%;
   overflow-x: scroll;
   overflow-y: visible;
+  justify-content: space-around;
 }
 
 .smallProfileCharts>*{
-  width: 25%;
+  width: 27%;
 }
 
 .PlaylistChart {
@@ -695,9 +718,10 @@ hr {
   padding: 0.5% 1% 0% 1%;
   border: 1px solid #222222;
   box-shadow: inset -8px -8px 119px 2px rgba(0,0,0,0.60);
-  height: 30vh;
+  height: 50vh;
   overflow-x: hidden;
   overflow-y: scroll;
+  margin: 6vh;
 }
 
 .playListActive{
@@ -705,12 +729,14 @@ hr {
 }
 .playListActive h1 {
   color: #EDEBE8;
+  font-size: 20px;
 }
 .playListInactive{
   background-color: rgba(25,30,35,0.01);
 }
 .playListInactive h1 {
   color: #BBBBBB;
+  font-size: 18px;
 }
 
 /*artist search form*/

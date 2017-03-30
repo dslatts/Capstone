@@ -30,7 +30,7 @@ export default class AreaChart extends Component {
     const chartStyle = { parent: {minWidth: "100%", marginLeft: "10%"}};
     return (
       <div>
-          <VictoryChart width={windowWidth * .80} height={windowHeight * .30} style={chartStyle} scale={{x: "time"}} domain={{ y: [0, 1]}}
+          <VictoryChart width={windowWidth * .80} height={windowHeight * .50} style={chartStyle} scale={{x: "time"}} domain={{ y: [0, 1]}}
             containerComponent={
               <VictoryZoomContainer responsive={false}
                 dimension="x"
@@ -54,7 +54,7 @@ export default class AreaChart extends Component {
 
           <VictoryChart
             padding={{top: 0, left: 50, right: 50, bottom: 30}}
-            width={windowWidth * .80} height={windowHeight * .20} style={chartStyle} domain={{ y: [0, 1]}} scale={{x: "time"}}
+            width={windowWidth * .80} height={windowHeight * .10} style={chartStyle} domain={{ y: [0, 1]}} scale={{x: "time"}}
             containerComponent={
               <VictoryBrushContainer responsive={false}
                 dimension="x"

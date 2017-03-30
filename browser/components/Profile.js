@@ -47,14 +47,14 @@ export default class Profile extends Component {
 
   signedInName(){
     if (this.props.currentUser.spotifyProfile){
-      return (<p>{this.props.currentUser.spotifyProfile.display_name}</p>);
+      return (<p className="displayName">{`Welcome, ${this.props.currentUser.spotifyProfile.display_name.split(' ')[0]}`}</p>);
     }
   }
 
   loadPlaylist(playlistId){
-    if (this.props.selectedPlaylist){
-      console.log(1);
-      document.getElementById(this.props.selectedPlaylist + 'playlist').className = 'playListInactive';
+    if (this.state.selectedPlaylist[0]){
+      let list = document.getElementsByClassName('playListActive');
+      list[0].className = 'playListInactive';
     }
     if (this.props.playlists[playlistId]){
       //IF PLAYLIST ALREADY LOADED ON STATE, CREATE GRAPH FROM IT
@@ -66,10 +66,13 @@ export default class Profile extends Component {
       //IF NOT ON STATE, LOAD IT ON STATE, THEN CREATE GRAPH FROM IT
       this.props.fetchPlaylist(playlistId);
     }
-    console.log(3);
-    document.getElementById(playlistId + 'playlist').className = 'playListActive';
-    console.log(4);
+    let foundPlaylist = document.getElementById(playlistId + 'playlist');
+    foundPlaylist.className = 'playListActive';
   }
+
+  // renderName(foundPlaylist){
+  //   return (<div className="profilePlaylistName"><p>foundPlaylist.innerHTML</p></div>)
+  // }
 
   render () {
     return (

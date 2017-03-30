@@ -23,7 +23,7 @@ import React, {Component} from 'react';
         { subject: 'Tempo', A: mapIt(currentUser.allUsersAvg.tempo, 90, 140, 0, 1), B: mapIt(currentLogin.tempo, 90, 140, 0, 1), C: mapIt(lastLogin.tempo, 90, 140, 0, 1), fullMark: 1 },
         { subject: 'Happiness', A: mapIt(currentUser.allUsersAvg.valence, 0.2, 0.75, 0, 1), B: mapIt(currentLogin.valence, 0.2, 0.75, 0, 1), C: mapIt(lastLogin.valence, 0.2, 0.75, 0, 1), fullMark: 1 },
         { subject: 'Energy', A: mapIt(currentUser.allUsersAvg.energy, 0, 0.75, 0, 1), B: mapIt(currentLogin.energy, 0, 0.75, 0, 1), C: mapIt(lastLogin.energy, 0, 0.75, 0, 1), fullMark: 1 },
-        { subject: 'Acousticness', A: mapIt(currentUser.allUsersAvg.acousticness, 0.4, 1, 0, 1), B: mapIt(currentLogin.acousticness, 0.4, 1, 0, 1), C: mapIt(lastLogin.acousticness, 0.4, 1, 0, 1), fullMark: 1 },
+        { subject: 'Acousticness', A: mapIt(currentUser.allUsersAvg.acousticness, 0, 0.75, 0, 1), B: mapIt(currentLogin.acousticness, 0, 0.75, 0, 1), C: mapIt(lastLogin.acousticness, 0, 0.75, 0, 1), fullMark: 1 },
         { subject: 'Loudness', A: mapIt(currentUser.allUsersAvg.loudness, -10, 0, 0, 1), B: mapIt(currentLogin.loudness, -10, 0, 0, 1), C: mapIt(lastLogin.loudness, -10, 0, 0, 1), fullMark: 1 }]
     };
   }
