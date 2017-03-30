@@ -6,13 +6,12 @@ let data = [
      ];
 
 export default class PlaylistChart extends Component {
-  
   constructor(props){
     super(props);
     }
 
-  componentWillReceiveProps(){
-      mutateData(this.props.playlist)
+  componentWillReceiveProps(nextProps){
+      mutateData(nextProps.playlist);
     }
 
     render () {
