@@ -1,6 +1,5 @@
 import React from 'react'
 import Bubble from './Bubble.js'
-import ReactTransitionGroup from 'react-addons-transition-group'
 import {scaleLinear, scalePoint} from 'd3-scale'
 import {Xaxis, Yaxis, Grid} from 'react-d3-core';
 import { connect } from 'react-redux';
@@ -10,7 +9,7 @@ class CompareChart extends React.Component{
 
   constructor(props){
     super(props)
-    this.state = {width: 500, height: 500, group:'', params:['valence', 'energy'], songGroups: {artists: [], album: []}, displayChart:false}
+    this.state = {width: 500, height: 500, padding:25, group:'', params:['valence', 'energy'], songGroups: {artists: [], album: []}, displayChart:false}
     this.getXCoord = this.getXCoord.bind(this);
     this.changeParam = this.changeParam.bind(this);
     this.changeGroup = this.changeGroup.bind(this);
@@ -74,14 +73,14 @@ class CompareChart extends React.Component{
   render(){
     //params, group
     let scatterScale = scaleLinear()
-        .range([0, this.state.width - 100])
+        .range([0, this.state.width - (this.state.padding * 2)])
 
     let yScale = scaleLinear()
-    .range([this.state.height - 100, 0])
+    .range([this.state.height - (this.state.padding * 2), 0])
 
     let stackedScale = (this.state.group) ? (scalePoint()
         .domain(this.state.songGroups[this.state.group])
-        .range([0, this.state.width])
+        .range([0, this.state.width - (this.state.padding * 2)])
         .padding(0.25)) : null
 
 
@@ -100,74 +99,75 @@ class CompareChart extends React.Component{
       (this.state.displayChart) ?
       <div>
         <svg width={this.state.width} height={this.state.height}>
+        <g width={this.state.width - (this.state.padding * 2)} height={this.state.height - (this.state.padding * 2)} transform={`translate(${this.state.padding},${this.state.padding})`}>
+          <Grid
+            margins={{top: 0, right: 0, bottom: 0, left: 0}}
+            width={this.state.width - (this.state.padding * 2)}
+            height={this.state.height - (this.state.padding * 2)}
+            y = {
+              (d) => d.audioFeatures[this.state.params[0]]
+            }
+            type = {'y'}
+            yDomain = {[0, 1]}
+            yRange = {[this.state.height - (this.state.padding * 2), 0]}
+            yScale = 'linear'
+            style = {{stroke: 'white', fill: 'white'}}
+            />
           <g>
-            <ReactTransitionGroup component ="g">
               {this.props.currentSongList.songList.map((song) =>
                 {
                 return (<Bubble
                 d={song}
+                params= {this.state.params}
                 key={song.id}
                 x={xScale(this.getXCoord(song))}
                 y={yScale(song.audioFeatures[this.state.params[0]])} />
                 )}
               )}
-            </ReactTransitionGroup>
           </g>
           {(this.state.group) ?
             <Xaxis
-            width={this.state.width}
-            height={this.state.height}
-            margins={{top: 50, right: 50, bottom: 50, left: 50}}
+            width={this.state.width - (this.state.padding * 2)}
+            height={this.state.height - (this.state.padding * 2)}
+            margins={{top: 0, right: 0, bottom: (this.state.padding / 2), left: 0}}
             x = {
               (this.state.group === 'artists') ?
               ((d) => d.artists[0].name) : ((d) => d.album)
             }
             xDomain = {this.state.songGroups[this.state.group]}
-            xRange = {[0, this.state.width]}
+            xRange = {[0, this.state.width - (this.state.padding * 2)]}
             xScale = 'ordinal'
-            xLabel = {this.state.group}
             style = {{stroke: 'white', fill: 'white'}}
             /> :
             <Xaxis
-            width={this.state.width}
-            height={this.state.height}
-            margins={{top: 50, right: 50, bottom: 50, left: 50}}
+            width={this.state.width - (this.state.padding * 2)}
+            height={this.state.height - (this.state.padding * 2)}
+            margins={{top: 0, right: 0, bottom: 0, left:  0}}
             x = {
               (d) => d.audioFeatures[this.state.params[1]]
             }
             xDomain = {[0, 1]}
-            xRange = {[0, this.state.width]}
+            xRange = {[0, this.state.width - (this.state.padding * 2)]}
             xScale = 'linear'
-            xLabel = {this.state.params[1]}
             style = {{stroke: 'white', fill: 'white'}}
             />
           }
             <Yaxis
-            margins={{top: 50, right: 50, bottom: 50, left: 50}}
-            width={this.state.width}
-            height={this.state.height}
+            margins={{top: 0, right: 0, bottom: 0, left: -this.state.padding}}
+            width={this.state.width - (this.state.padding * 2)}
+            height={this.state.height - (this.state.padding * 2)}
             y = {
               (d) => d.audioFeatures[this.state.params[0]]
             }
             yDomain = {[0, 1]}
-            yRange = {[this.state.height, 0]}
-            yScale = 'linear'
-            yLabel = {this.state.params[0]}
-            style = {{stroke: 'white', fill: 'white'}}
-            />
-            <Grid
-            margins={{top: 50, right: 50, bottom: 50, left: 50}}
-            width={this.state.width}
-            height={this.state.height}
-            type='y'
-            y = {
-              (d) => d.audioFeatures[this.state.params[0]]
-            }
-            yDomain = {[0, 1]}
-            yRange = {[this.state.height, 0]}
+            yRange = {[this.state.height - (this.state.padding * 2), 0]}
             yScale = 'linear'
             style = {{stroke: 'white', fill: 'white'}}
             />
+
+
+
+          </g>
         </svg>
         <div>
           Group By:
@@ -194,7 +194,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(CompareChart);
-
-
-
-
