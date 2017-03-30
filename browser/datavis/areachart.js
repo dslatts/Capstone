@@ -7,15 +7,12 @@ import {VictoryChart, VictoryArea, VictoryLine, VictoryAxis, VictoryZoomContaine
 
 //x axis: Each time user is logged in (date)
 //y axis: Average valence
-export default class TimelineChart extends Component {
+export default class AreaChart extends Component {
 
   constructor(props) {
     super(props);
     this.state = {};
 
-    const userHistory = this.props.currentUser.localProfile.histories.map(function(val, index){
-                  return {x: index + 1, y: val.valence}
-                })
   }
 
   handleZoom(domain) {
@@ -27,21 +24,13 @@ export default class TimelineChart extends Component {
   }
 
   render() {
-    let myArr = [];
-    let axisTicker = 5;
-    let axisLength = Math.round(this.props.currentUser.localProfile.histories.length/5)
     const sortedHistories = this.props.currentUser.localProfile.histories.slice().sort((a,b) => a.id - b.id);
-    const makeAxisValues = function(){
-      for (var i = 0; i < axisLength; i++) {
-        myArr.push(axisTicker)
-        axisTicker += 5;
-      }
-    }
-    makeAxisValues();
+    let windowHeight = window.innerHeight;
+    let windowWidth = window.innerWidth;
     const chartStyle = { parent: {minWidth: "100%", marginLeft: "10%"}};
     return (
       <div>
-          <VictoryChart width={1200} height={400} style={chartStyle} scale={{x: "time"}} domain={{ y: [0, 1]}}
+          <VictoryChart width={windowWidth * .80} height={windowHeight * .30} style={chartStyle} scale={{x: "time"}} domain={{ y: [0, 1]}}
             containerComponent={
               <VictoryZoomContainer responsive={false}
                 dimension="x"
@@ -65,7 +54,7 @@ export default class TimelineChart extends Component {
 
           <VictoryChart
             padding={{top: 0, left: 50, right: 50, bottom: 30}}
-            width={1200} height={200} style={chartStyle} domain={{ y: [0, 1]}} scale={{x: "time"}}
+            width={windowWidth * .80} height={windowHeight * .20} style={chartStyle} domain={{ y: [0, 1]}} scale={{x: "time"}}
             containerComponent={
               <VictoryBrushContainer responsive={false}
                 dimension="x"
@@ -85,7 +74,6 @@ export default class TimelineChart extends Component {
               }
             />
           </VictoryChart>
-
       </div>
     );
   }

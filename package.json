@@ -51,6 +51,7 @@
     "pretty-error": "^2.0.2",
     "ramda": "^0.23.0",
     "react": "^15.3.2",
+    "react-d3-core": "^1.3.9",
     "react-d3-radar": "^0.2.6",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",

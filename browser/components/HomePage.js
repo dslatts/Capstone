@@ -99,7 +99,7 @@ export default class HomePage extends Component {
     <div>
       {!this.isLoggedIn ?
         <div id="loginMessage">
-          <h1>Welcome to attitune</h1>
+          <h1>Welcome to Attitune</h1>
           <h4>Please connect to your Spotify to use our service</h4>
           <a href={'/api/auth/spotify'}><button id="loginButton"><i className="fa fa-spotify" aria-hidden="true" />  Log In</button></a>
         </div>

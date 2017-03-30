@@ -78,8 +78,8 @@ export default class Profile extends Component {
         </div>
         {this.signedInImg()}
         {this.signedInName()}
-        <div>
-        <AreaChart currentUser={this.props.currentUser} />
+        <div className='PlaylistChart'>
+        <PlaylistChart playlist={this.state.selectedPlaylist} />
         </div>
         <div className="smallProfileCharts">
           <RdrChart currentUser={this.props.currentUser} />
@@ -90,8 +90,8 @@ export default class Profile extends Component {
           {/*should place profile elements here*/}
           </div>
           </div>
-          <div className='PlaylistChart'>
-          <PlaylistChart playlist={this.props.playlists} />
+          <div>
+          <AreaChart currentUser={this.props.currentUser} />
           </div>
         </div>
     );
