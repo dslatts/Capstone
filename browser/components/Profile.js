@@ -46,7 +46,7 @@ export default class Profile extends Component {
   }
 
   signedInName(){
-    if (this.props.currentUser.spotifyProfile){
+    if (this.props.currentUser.spotifyProfile && this.props.currentUser.spotifyProfile.display_name){
       return (<p className="displayName">{`Welcome, ${this.props.currentUser.spotifyProfile.display_name.split(' ')[0]}`}</p>);
     }
   }
