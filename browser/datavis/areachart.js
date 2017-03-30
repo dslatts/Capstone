@@ -7,15 +7,11 @@ import {VictoryChart, VictoryArea, VictoryLine, VictoryAxis, VictoryZoomContaine
 
 //x axis: Each time user is logged in (date)
 //y axis: Average valence
-export default class TimelineChart extends Component {
+export default class AreaChart extends Component {
 
   constructor(props) {
     super(props);
     this.state = {};
-
-    const userHistory = this.props.currentUser.localProfile.histories.map(function(val, index){
-                  return {x: index + 1, y: val.valence}
-                })
   }
 
   handleZoom(domain) {
@@ -27,20 +23,10 @@ export default class TimelineChart extends Component {
   }
 
   render() {
-    let myArr = [];
-    let axisTicker = 5;
-    let axisLength = Math.round(this.props.currentUser.localProfile.histories.length/5)
-    const makeAxisValues = function(){
-      for (var i = 0; i < axisLength; i++) {
-        myArr.push(axisTicker)
-        axisTicker += 5;
-      }
-    }
-    makeAxisValues();
     const chartStyle = { parent: {minWidth: "100%", marginLeft: "10%"}};
     return (
       <div>
-          <VictoryChart width={1500} height={500} style={chartStyle} scale={{x: "time"}} domain={{ y: [0, 1]}}
+          <VictoryChart width={80%} height={500} style={chartStyle} scale={{x: "time"}} domain={{ y: [0, 1]}}
             containerComponent={
               <VictoryZoomContainer responsive={false}
                 dimension="x"
@@ -55,7 +41,7 @@ export default class TimelineChart extends Component {
               }}
               data={
                 this.props.currentUser.localProfile.histories.map(function(val, index){
-                  return {x: new Date(val.date.slice(0, 4), val.date.slice(5, 7) - 1, val.date.slice(8, 10), val.date.slice(11, 13), val.date.slice(14, 16)),  y: val.valence}
+                  return {x: new Date(val.date.slice(0, 4), val.date.slice(5, 7) - 1, val.date.slice(8, 10), val.date.slice(11, 13), val.date.slice(14, 16), val.date.slice(17, 19)),  y: val.valence}
                 })
               }
             />
@@ -79,7 +65,7 @@ export default class TimelineChart extends Component {
               }}
               data={
                 this.props.currentUser.localProfile.histories.map(function(val, index){
-                  return {x: new Date(val.date.slice(0, 4), val.date.slice(5, 7) - 1, val.date.slice(8, 10), val.date.slice(11, 13), val.date.slice(14, 16)),  y: val.valence}
+                  return {x: new Date(val.date.slice(0, 4), val.date.slice(5, 7) - 1, val.date.slice(8, 10), val.date.slice(11, 13), val.date.slice(14, 16), val.date.slice(17, 19)),  y: val.valence}
                 })
               }
             />

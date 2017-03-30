@@ -85,7 +85,7 @@ export default class Profile extends Component {
           </div>
           </div>
           <div className='PlaylistChart'>
-          <PlaylistChart playlist={this.props.playlists} />
+          <PlaylistChart playlist={this.state.selectedPlaylist} />
           </div>
         </div>
     );
