@@ -13,8 +13,11 @@ export default function Playlist (props) {
   return (
     <div>
       <HeaderContainer />
-      <h1>Playlist Successfully Posted!</h1>
-      <p>Check it out <a target="_blank" rel="noopener noreferrer" href={playlistURL}>here</a></p>*/}
-      <Link to={'/'}><button>Start Over!</button></Link>
+      <div id="playlistSuccess">
+        <h1>Playlist Successfully Posted!</h1>
+        <p>Check it out <a target="_blank" rel="noopener noreferrer" href={playlistURL}>here</a></p>
+        <br />
+        <Link to={'/'}><button className="submitSelection">Start Over!</button></Link>
+      </div>
     </div>);
 }
