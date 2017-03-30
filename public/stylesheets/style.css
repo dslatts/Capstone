@@ -54,7 +54,6 @@ body {
   display: flex;
   border-radius: 50%;
   height: 7vh;
-  padding-left: 1vw;
   z-index:5
 }
 ul.subMenu {
@@ -622,12 +621,12 @@ hr {
 
 @keyframes glow {
     0% {
-		border-color: #336;
-		box-shadow: 0 0 5px rgba(0,0,255,.2), inset 0 0 5px rgba(0,0,255,.1), 0 2px 0 #000;
+  		border-color: #336;
+  		box-shadow: 0 0 5px rgba(0,0,255,.2), inset 0 0 5px rgba(0,0,255,.1), 0 2px 0 #000;
     }
     100% {
-		border-color: #39C;
-		box-shadow: 0 0 20px rgba(30,100,180,.6), inset 0 0 10px rgba(30,100,180,.4), 0 2px 0 #000;
+  		border-color: #39C;
+  		box-shadow: 0 0 20px rgba(30,100,180,.6), inset 0 0 10px rgba(30,100,180,.4), 0 2px 0 #000;
     }
 }
 
@@ -701,29 +700,16 @@ hr {
 
 .playListActive{
   background-color: rgba(25,30,35,0.01);
-  display:flex;
-  width: 100%;
-  height: 50px;
-  border-bottom: #888888 solid;
-  border-width: 0px 0px 1px 0px;
-  align-items: center;
 }
 .playListActive h1 {
-  color: gray;
+  color: #EDEBE8;
 }
 .playListInactive{
   background-color: rgba(25,30,35,0.01);
-  display:flex;
-  width: 100%;
-  height: 50px;
-  border-bottom: #888888 solid;
-  border-width: 0px 0px 1px 0px;
-  align-items: center;
 }
 .playListInactive h1 {
-  color: #EDEBE8;
+  color: #BBBBBB;
 }
-
 
 /*artist search form*/
 .SearchBar{
@@ -833,6 +819,10 @@ hr {
   z-index: 150;
   opacity: 0.8;
   order: 1;
+}
+
+tspan{
+  fill: #BBBBBB;
 }
 
 #loadingScreen{
