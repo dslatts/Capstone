@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import SongsForm from './SongsForm';
+import CompareChart from '../datavis/CompareChart';
 
 export default class AlbumsForm extends Component {
 constructor(props){
@@ -102,23 +103,26 @@ render () {
     });
   }
   return (
-    <div className="songSelection">
-      {/*this.renderSelectToggle()*/}
-      <div className="albums">
-        {this.albumList && this.albumList.map((album) => {
-          return (
-            <div key={album.id}>
-              <SongsForm
-                album={album}
-                onSongClick={this.onSongClick}
-                onAlbumToggle={this.onAlbumToggle}
-                addSongsFromAlbum={this.addSongsFromAlbum}
-                albumCheck={this.albumCheck}
-                currentSongList={this.props.currentSongList}
-                />
-            </div>
-          );
-        })}
+    <div>
+      <div className ="data"> <CompareChart /></div>
+      <div className="songSelection">
+        {/*this.renderSelectToggle()*/}
+        <div className="albums">
+          {this.albumList && this.albumList.map((album) => {
+            return (
+              <div key={album.id}>
+                <SongsForm
+                  album={album}
+                  onSongClick={this.onSongClick}
+                  onAlbumToggle={this.onAlbumToggle}
+                  addSongsFromAlbum={this.addSongsFromAlbum}
+                  albumCheck={this.albumCheck}
+                  currentSongList={this.props.currentSongList}
+                  />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>);
   }
