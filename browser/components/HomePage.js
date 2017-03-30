@@ -63,6 +63,7 @@ export default class HomePage extends Component {
             getSongs={this.props.getSongs}
             removeSongs={this.props.removeSongs}
             removeAll={this.props.removeAll}
+            removeAlbums={this.props.removeAlbums}
             currentSongList={this.props.currentSongList}
             currentAlbumList={this.props.currentAlbumList}
             />
@@ -78,6 +79,7 @@ export default class HomePage extends Component {
             getSongs={this.props.getSongs}
             removeSongs={this.props.removeSongs}
             removeAll={this.props.removeAll}
+            removeAlbums={this.props.removeAlbums}
             currentSongList={this.props.currentSongList}
             currentAlbumList={this.props.currentAlbumList}
             />
