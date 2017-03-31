@@ -29,7 +29,6 @@ export default class Compare extends Component {
               <div className="searchContainer">
                 <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
                 <button className="backButton" onClick={this.props.goBack}>BACK</button>
-                <button className="submitSelection">Visualize</button>
               </div>
               <AlbumsForm
                 createOrCompare={this.props.createOrCompare}

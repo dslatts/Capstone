@@ -19,13 +19,13 @@ export default class CreateChart extends Component {
     let windowHeight = window.innerHeight;
     let windowWidth = window.innerWidth;
     return (
-      <AreaChart width={windowWidth * .8} height={windowHeight * .5} data={data}
+      <AreaChart width={windowWidth * .7} height={windowHeight * .5} data={data}
             margin={{top: 10, right: 30, left: 0, bottom: 0}}>
         <XAxis dataKey="song"/>
         <YAxis domain={[0, 1]}/>
         <CartesianGrid strokeDasharray="3 3"/>
         <Tooltip/>
-        <Area type='monotone' dataKey='happiness' stroke='#8884d8' fill='#8884d8' />
+        <Area type='monotone' dataKey='happiness' stroke='#f26d26' fill='#f26d26' />
       </AreaChart>
     );
   }
