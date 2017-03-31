@@ -66,6 +66,7 @@ export default class HomePage extends Component {
             removeAlbums={this.props.removeAlbums}
             currentSongList={this.props.currentSongList}
             currentAlbumList={this.props.currentAlbumList}
+            createOrCompare={this.state.createOrCompare}
             />
         </div>
       );
@@ -82,6 +83,7 @@ export default class HomePage extends Component {
             removeAlbums={this.props.removeAlbums}
             currentSongList={this.props.currentSongList}
             currentAlbumList={this.props.currentAlbumList}
+            createOrCompare={this.state.createOrCompare}
             />
         </div>
       );

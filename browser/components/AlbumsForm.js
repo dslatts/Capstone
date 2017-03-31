@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import SongsForm from './SongsForm';
 import CompareChart from '../datavis/CompareChart';
+import CreateChart from '../datavis/CreateChart';
 
 export default class AlbumsForm extends Component {
 constructor(props){
@@ -102,9 +103,13 @@ render () {
     return album.album_type === 'album';
     });
   }
+  console.log(this.props);
   return (
     <div>
-      <div className ="data"> <CompareChart /></div>
+      {this.props.createOrCompare === 'compare' ?
+        <div className ="data"><CompareChart /></div>
+        : <div className ="data"><CreateChart playlist={this.props.currentSongList} /></div>
+      }
       <div className="songSelection">
         {/*this.renderSelectToggle()*/}
         <div className="albums">

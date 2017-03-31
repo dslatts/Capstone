@@ -60,8 +60,7 @@ export default class SongsForm extends Component {
             type="checkbox"
             name={this.props.album.id}
             onChange={() => {this.props.onAlbumToggle(this.props.album.id, this.state.songList);}}
-            data={this.props.albumCheck(this.props.album.id)}
-            for={`${this.props.album.id}input`} >
+            data={this.props.albumCheck(this.props.album.id)}>
             <span className=".checkbox__inner">
               <input className=".checkbox__input" type="checkbox" id={`${this.props.album.id}input`} />
             </span>

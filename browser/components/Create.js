@@ -60,9 +60,9 @@ export default class Create extends Component {
               <div className="searchContainer">
                 <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
                 <button className="backButton" onClick={this.props.goBack}>BACK</button>
-                <button className="submitSelection" onClick={this.onAlbumsSubmit}>Visualize</button>
               </div>
               <AlbumsForm
+                createOrCompare={this.props.createOrCompare}
                 currentAlbumList={this.props.currentAlbumList}
                 getSongs={this.props.getSongs}
                 removeSongs={this.props.removeSongs}
