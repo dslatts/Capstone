@@ -19,7 +19,7 @@ export default class Compare extends Component {
   render () {
     return (
       <div>
-        <HeaderContainer />
+        <HeaderContainer goBack={this.props.goBack} />
 
         {this.props.currentAlbumList.albums ?
           <div className="songSelectionContainer">
