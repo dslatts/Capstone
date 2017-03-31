@@ -6,7 +6,12 @@ import Sidebar from './Sidebar';
 import {Link} from 'react-router';
 
 export default class Compare extends Component {
-
+  componentWillUnmount(){
+    //Remove all songs and albums off state when you go back
+    this.props.goBack();
+    this.props.removeAlbums();
+    this.props.removeAll();
+  }
   onAlbumsSubmit(event){
     event.preventDefault();
   }

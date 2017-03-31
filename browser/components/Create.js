@@ -12,6 +12,14 @@ export default class Create extends Component {
     this.onAlbumsSubmit = this.onAlbumsSubmit.bind(this);
     this.submitPlaylist = this.submitPlaylist.bind(this);
   }
+
+  componentWillUnmount(){
+    //Remove all songs and albums off state when you go back
+    this.props.goBack();
+    this.props.removeAlbums();
+    this.props.removeAll();
+  }
+
   onAlbumsSubmit(event){
     event.preventDefault();
   }

@@ -1,6 +1,6 @@
 import HomePage from '../components/HomePage';
 import { connect } from 'react-redux';
-import {fetchAlbums} from '../actions/album';
+import {fetchAlbums, removeAlbums} from '../actions/album';
 import {getSongs, removeSongs, removeAll} from '../actions/songs';
 
 const mapStateToProps = (state) => {
@@ -25,6 +25,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     removeAll: function(){
       dispatch(removeAll());
+    },
+    removeAlbums: function(){
+      dispatch(removeAlbums());
     }
   };
 };
