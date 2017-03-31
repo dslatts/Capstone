@@ -80,10 +80,12 @@ router.get('/profile', (req, res, next) => {
         const p1 = Promise.all(songlist);
         return Promise.all([p1, SongFeatures])
         .then(arrayofitems => {
-          var newAvg = JSON.parse(arrayofitems[1]).audio_features.reduce((acc, audio) => {
-            return Object.keys(audio).slice(0, 11).map((feature, index) => {
-              return acc[index] + audio[feature];
-            });
+          var newAvg = JSON.parse(arrayofitems[1]).audio_features.filter(function( element ) {return !!element;}).reduce((acc, audio) => {
+            if (audio){
+              return Object.keys(audio).slice(0, 11).map((feature, index) => {
+                return acc[index] + audio[feature];
+              });
+            }
           }, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]).map(feature => feature / JSON.parse(arrayofitems[1]).audio_features.length);
           const newAvgObj = {
             danceability: newAvg[0],
