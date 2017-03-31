@@ -10,7 +10,6 @@ componentWillReceiveProps(){
 }
 
 render(){
-  console.log(this.props);
   return (
     <div id="loadingScreen">
       <div className="icon is-large">
@@ -20,5 +19,3 @@ render(){
     </div>);
   }
 }
-
-

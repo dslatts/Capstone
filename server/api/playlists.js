@@ -32,7 +32,6 @@ router.get('/', (req, res, next) => {
       .then(userPlaylists => {
         var playlistlist = userPlaylists.items.map(playlistObj => {
           if (playlistObj.owner.id === req.session.passport.user){
-            console.log(playlistObj.name);
             return Playlist.findOrCreate({
               where: {
                 title: playlistObj.name,
