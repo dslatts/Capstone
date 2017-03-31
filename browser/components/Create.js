@@ -55,6 +55,7 @@ export default class Create extends Component {
                 <button className="submitSelection" onClick={this.onAlbumsSubmit}>Visualize</button>
               </div>
               <AlbumsForm
+                createOrCompare={this.props.createOrCompare}
                 currentAlbumList={this.props.currentAlbumList}
                 getSongs={this.props.getSongs}
                 removeSongs={this.props.removeSongs}

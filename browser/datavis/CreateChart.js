@@ -2,10 +2,10 @@ import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
 import React, {Component} from 'react';
 
 let data = [
-      {song: 'Click a playlist!', happiness: .5},
+      {song: 'Click some songs!', happiness: .5},
      ];
 
-export default class PlaylistChart extends Component {
+export default class CreateChart extends Component {
   constructor(props){
     super(props);
     }
@@ -32,14 +32,17 @@ export default class PlaylistChart extends Component {
 }
 
 function mutateData(playlist) {
-  if (playlist.length) {
+  if (playlist.length > 0) {
     data = playlist.map(val => {
       if (val){
-        return {song: val.track.name, happiness: val.valence};
+        return {song: val.name, happiness: val.audioFeatures.valence};
       }
     }).filter(( element ) => {
       return element !== undefined;
     });
+  }
+  else {
+    data = [{song: 'Click some songs!', happiness: .5}];
   }
 }
 //

@@ -32,6 +32,7 @@ export default class Compare extends Component {
                 <button className="submitSelection">Visualize</button>
               </div>
               <AlbumsForm
+                createOrCompare={this.props.createOrCompare}
                 currentAlbumList={this.props.currentAlbumList}
                 getSongs={this.props.getSongs}
                 removeSongs={this.props.removeSongs}
