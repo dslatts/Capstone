@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import HomePage from './HomePage';
 
 export default function Header(props) {
   var profilePicture = function(img){
@@ -34,7 +35,9 @@ export default function Header(props) {
   return (
     <div className="header">
       <nav id="header">
-        <Link to={'/'}><img id="logo" src="/images/Logomakr_9ZnFKX.png" /></Link>
+        {props.goBack ?
+        <Link to={'/'}><img id="logo" onClick={() => props.goBack()} src="/images/Logomakr_9ZnFKX.png" /></Link>
+        : <Link to={'/'}><img id="logo" src="/images/Logomakr_9ZnFKX.png" /></Link>}
         <div>
           {signedInImg()}
         </div>
