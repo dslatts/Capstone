@@ -39,13 +39,30 @@ export const logout = () => {
 
 export const fetchPlaylist = () => {
   return (dispatch) => {
-        axios.get('/api/playlists')
-        .then((res) => res.data)
-        .then((playlists) => {
-          dispatch(updatePlaylists(playlists));
-        })
-        .catch(function (err) {
+    axios.get('/api/users/profile')
+      .then((res) => res.data)
+      .then((user) => {
+        dispatch(setUser(user));
+        return axios.get('/api/playlists');
+      })
+      .then((res) => {
+        return res.data;
+      })
+      .then(playlists => {
+        dispatch(updatePlaylists(playlists));
+        dispatch(setFalse());
+      })
+      .catch(function (err) {
         console.error(err);
       });
+    // axios.get('/api/users/profile')
+    //     axios.get('/api/playlists')
+    //     .then((res) => res.data)
+    //     .then((playlists) => {
+    //       dispatch(updatePlaylists(playlists));
+    //     })
+    //     .catch(function (err) {
+    //     console.error(err);
+    //   });
   };
 };
