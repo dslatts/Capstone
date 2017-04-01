@@ -37,7 +37,6 @@ export default class Profile extends Component {
         selectedPlaylist: nextProps.playlists[keyArr[keyArr.length - 1]]
       });
     }
-
   }
   signedInImg(){
     if (this.props.currentUser.spotifyProfile){
@@ -64,17 +63,25 @@ export default class Profile extends Component {
     }
     else {
       //IF NOT ON STATE, LOAD IT ON STATE, THEN CREATE GRAPH FROM IT
+      // this.props.fetchUser();
       this.props.fetchPlaylist(playlistId);
     }
     let foundPlaylist = document.getElementById(playlistId + 'playlist');
     foundPlaylist.className = 'playListActive';
   }
 
-  // renderName(foundPlaylist){
-  //   return (<div className="profilePlaylistName"><p>foundPlaylist.innerHTML</p></div>)
+  // renderRadar(){
+  //   if (this.state.currentUser){
+  //
+  //   }
+  // }
+  //
+  // renderArea(){
+  //
   // }
 
   render () {
+    console.log("===========", this.state.currentUser);
     return (
       <div className="Profile">
       <div className = "ProfileHeader">
@@ -83,21 +90,21 @@ export default class Profile extends Component {
         {this.signedInImg()}
         {this.signedInName()}
         <div className='PlaylistChart'>
-        <PlaylistChart playlist={this.state.selectedPlaylist} />
+          <PlaylistChart playlist={this.state.selectedPlaylist} />
         </div>
         <div className="smallProfileCharts">
-          <RdrChart currentUser={this.props.currentUser} />
+          {(!this.props.currentUser.localProfile) ? (<h1>LOADING</h1>) : (<RdrChart currentUser={this.props.currentUser} />)}
           <div className="playlistsContainer">
             {this.props.currentUser.playlists && this.props.currentUser.playlists.map((playlist) => {
               return (<UserPlaylist key={playlist[0].spotifyId} playlist={playlist[0]} loadPlaylist={this.loadPlaylist} />);
             })}
           {/*should place profile elements here*/}
           </div>
-          </div>
-          <div>
-          <AreaChart currentUser={this.props.currentUser} />
-          </div>
         </div>
+        <div>
+          {(!this.props.currentUser.localProfile) ? (<h1>LOADING</h1>) : (<AreaChart currentUser={this.props.currentUser} />)}
+        </div>
+      </div>
     );
   }
 }
