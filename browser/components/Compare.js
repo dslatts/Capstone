@@ -33,7 +33,7 @@ export default class Compare extends Component {
             <div className="songSelectionForm" onSubmit={this.onAlbumsSubmit}>
               <div className="searchContainer">
                 <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-                <button className="backButton" onClick={this.props.goBack}>BACK</button>
+                {/*<button className="backButton" onClick={this.props.goBack}>BACK</button>*/}
               </div>
               <AlbumsForm
                 createOrCompare={this.props.createOrCompare}

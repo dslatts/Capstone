@@ -73,7 +73,7 @@ export default class Profile extends Component {
   }
 
   render () {
-    console.log("===========", this.state.currentUser);
+    // console.log("===========", this.state.currentUser);
     return (
       <div className="Profile">
       <div className = "ProfileHeader">
