@@ -20,9 +20,14 @@ export default class Compare extends Component {
     return (
       <div>
         <HeaderContainer goBack={this.props.goBack} />
+        <div className="songSelectionContainer">
+          <div className= {this.props.currentAlbumList.albums ? 'searchContainer moved' : 'searchContainer' }>
+            <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
+          </div>
+          {this.props.currentAlbumList.albums ?
+          <div>
+            <div className="shadowfix" />
 
-        {this.props.currentAlbumList.albums ?
-          <div className="songSelectionContainer">
             <Sidebar
               className="songSelectionSidebar"
               getSongs={this.props.getSongs}
@@ -31,10 +36,7 @@ export default class Compare extends Component {
               currentSongList={this.props.currentSongList}
               />
             <div className="songSelectionForm" onSubmit={this.onAlbumsSubmit}>
-              <div className="searchContainer">
-                <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-                {/*<button className="backButton" onClick={this.props.goBack}>BACK</button>*/}
-              </div>
+
               <AlbumsForm
                 createOrCompare={this.props.createOrCompare}
                 currentAlbumList={this.props.currentAlbumList}
@@ -45,14 +47,14 @@ export default class Compare extends Component {
                 />
             </div>
           </div>
-        :
-        <div className="songSelectionContainer">
-          <h1 className='titleText'>Pick songs to compare. Search Artist below!</h1>
-          <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-          <button className="backButton" onClick={this.props.goBack}>BACK</button>
+      :
+        <div>
+          <h1 className="titleText">Search for an artist to compare songs</h1>
+          <button className="backButton" onClick={this.props.goBack}>Go Back</button>
         </div>
-      }
-      </div>
+    }
+        </div>
+    </div>
     );
   }
 }

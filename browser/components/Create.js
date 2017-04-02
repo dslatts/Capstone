@@ -44,10 +44,15 @@ export default class Create extends Component {
   render () {
     return (
       <div>
-        <HeaderContainer goBack={this.props.goBack} />
 
-        {this.props.currentAlbumList.albums ?
+        <HeaderContainer goBack={this.props.goBack}  />
           <div className="songSelectionContainer">
+            <div className= {this.props.currentAlbumList.albums ? "searchContainer moved" : "searchContainer" }>
+                <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
+            </div>
+          {this.props.currentAlbumList.albums ?
+          <div>
+            <div className="shadowfix" />
             <Sidebar
               className="songSelectionSidebar"
               getSongs={this.props.getSongs}
@@ -57,10 +62,6 @@ export default class Create extends Component {
               inCreate={true}
               />
             <div className="songSelectionForm">
-              <div className="searchContainer">
-                <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-                {/*<button className="backButton" onClick={this.props.goBack}>BACK</button>*/}
-              </div>
               <AlbumsForm
                 createOrCompare={this.props.createOrCompare}
                 currentAlbumList={this.props.currentAlbumList}
@@ -76,12 +77,12 @@ export default class Create extends Component {
             </div>
           </div>
         :
-        <div className="songSelectionContainer">
-          <h1 className='titleText'>Pick songs to add to your playlist. Search Artist below!</h1>
-          <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
-          <button className="backButton" onClick={this.props.goBack}>BACK</button>
+        <div>
+          <h1 className='titleText'>Search artists to start your playlist</h1>
+          <button className="backButton" onClick={this.props.goBack}>Go Back</button>
         </div>
       }
+      </div>
     </div>
   );}
 }
