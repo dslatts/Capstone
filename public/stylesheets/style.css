@@ -188,10 +188,6 @@ ul.subMenu li:nth-child(2) .menuLinks {
 }
 
 /*-->SONG SELECTION*/
-<<<<<<< HEAD
-
-=======
->>>>>>> a55c5bcaccc356897ae548efb875f68c3ac5a3dc
 .songSelectionForm{
   display:flex;
   flex-wrap:wrap;
@@ -203,6 +199,10 @@ ul.subMenu li:nth-child(2) .menuLinks {
   position:fixed;
   overflow-y:scroll;
   overflow-x:hidden;
+}
+
+.songSelectionForm > *{
+  width: 100%;
 }
 
 .searchContainer{
@@ -227,11 +227,7 @@ ul.subMenu li:nth-child(2) .menuLinks {
 
 .albums{
   padding-left: 0%;
-<<<<<<< HEAD
-  margin-top: 0%;
-=======
-  margin-top: 5%;
->>>>>>> a55c5bcaccc356897ae548efb875f68c3ac5a3dc
+  margin-top: 1%;
   width:100%;
 }
 
@@ -259,8 +255,8 @@ ul.subMenu li:nth-child(2) .menuLinks {
 }
 
 .albumCover {
-  width: 25%;
-  height:25%;
+  width: 20%;
+  height:20%;
 }
 
 .albumCover:hover {
