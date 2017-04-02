@@ -19,7 +19,7 @@ export default class CreateChart extends Component {
     let windowHeight = window.innerHeight;
     let windowWidth = window.innerWidth;
     return (
-      <AreaChart width={windowWidth * .7} height={windowHeight * .5} data={data}
+      <AreaChart width={windowWidth * .7} height={windowHeight * .3} data={data}
             margin={{top: 10, right: 30, left: 0, bottom: 0}}>
         <XAxis dataKey="song"/>
         <YAxis domain={[0, 1]}/>
