@@ -5,15 +5,23 @@ let data = [
       {song: 'Click a playlist!', happiness: .5},
      ];
 
+
 export default class PlaylistChart extends Component {
   constructor(props){
     super(props);
   }
 
   componentWillReceiveProps(nextProps){
+<<<<<<< HEAD
     mutateData(nextProps.playlist);
   }
 
+=======
+    console.log(nextProps);
+      mutateData(nextProps.playlist);
+    }
+    
+>>>>>>> a55c5bcaccc356897ae548efb875f68c3ac5a3dc
   render () {
     let windowHeight = window.innerHeight;
     let windowWidth = window.innerWidth;
@@ -29,6 +37,7 @@ export default class PlaylistChart extends Component {
     );
   }
 }
+
 
 function mutateData(playlist) {
   if (playlist.length) {
