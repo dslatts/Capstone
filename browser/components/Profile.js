@@ -53,7 +53,9 @@ export default class Profile extends Component {
   loadPlaylist(playlistId){
     if (this.state.selectedPlaylist[0]){
       let list = document.getElementsByClassName('playListActive');
-      list[0].className = 'playListInactive';
+      if (list.length){
+        list[0].className = 'playListInactive';
+      }
     }
     if (this.props.playlists[playlistId]){
       //IF PLAYLIST ALREADY LOADED ON STATE, CREATE GRAPH FROM IT

@@ -33,7 +33,7 @@ export default class HomePage extends Component {
     if (this.state.createOrCompare === ''){
       return (
         <div>
-          <HeaderContainer />
+          <HeaderContainer goBack={this.goBack} />
           <div id="selectors" className="columns">
             <div className="column" onClick={this.onCreateClick}>
               <span className="icon is-large">
