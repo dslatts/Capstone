@@ -36,7 +36,6 @@ export default class Compare extends Component {
               currentSongList={this.props.currentSongList}
               />
             <div className="songSelectionForm" onSubmit={this.onAlbumsSubmit}>
-
               <AlbumsForm
                 createOrCompare={this.props.createOrCompare}
                 currentAlbumList={this.props.currentAlbumList}
