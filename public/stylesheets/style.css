@@ -194,19 +194,27 @@ ul.subMenu li:nth-child(2) .menuLinks {
 }
 
 /*-->SONG SELECTION*/
+.data{
+  position:fixed;
+  top:11vh;
+}
+
 .songSelectionForm{
   display:flex;
   flex-wrap:wrap;
   height: 89vh;
   top: 11vh;
   width: 75%;
-  bottom: 0vw;
+  /*bottom: 0vw;*/
   left: 25vw;
   position:fixed;
   overflow-y:scroll;
   overflow-x:hidden;
 }
 
+.songSelectionForm > *{
+  width:100%;
+}
 .searchContainer{
   padding: 30px;
 }
@@ -229,8 +237,13 @@ ul.subMenu li:nth-child(2) .menuLinks {
 
 .albums{
   padding-left: 0%;
-  margin-top: 5%;
-  width:100%;
+  margin-top: 0%;
+  width:75vw;
+  height: 69vh;
+  bottom: 0vh;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .album{
@@ -257,8 +270,8 @@ ul.subMenu li:nth-child(2) .menuLinks {
 }
 
 .albumCover {
-  width: 25%;
-  height:25%;
+  width: 20%;
+  height:20%;
 }
 
 /*check boxes for album*/
