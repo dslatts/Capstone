@@ -8,12 +8,11 @@ let data = [
 export default class PlaylistChart extends Component {
   constructor(props){
     super(props);
-    }
+  }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps);
-      mutateData(nextProps.playlist);
-    }
+    mutateData(nextProps.playlist);
+  }
 
   render () {
     let windowHeight = window.innerHeight;

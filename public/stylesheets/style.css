@@ -27,12 +27,6 @@ body {
   position:fixed;
 }
 
-/*#header::before, #header::after {
-  content: '';
-  width: 100%;
-  order: 1;
-}*/
-
 .UserImgDropdown {
   display: flex;
   list-style-type: none;
@@ -96,11 +90,9 @@ ul.subMenu li:nth-child(2) .menuLinks {
 /*TEXT - deprecated*/
 .titleText{
   color: #EDEBE8;
-  left:40%;
-  position:absolute;
-  display:flex;
-  flex-wrap:nowrap;
-  width:35vw;
+  margin-left: auto;
+  margin-right: auto;
+  width:269px
 }
 
 /*HomePage*/
@@ -158,6 +150,7 @@ ul.subMenu li:nth-child(2) .menuLinks {
   overflow-x:hidden;
   padding-top: 40px;
   padding-bottom: 30px;
+  z-index: -2;
 }
 
 .selectedSongContainer{
@@ -195,10 +188,6 @@ ul.subMenu li:nth-child(2) .menuLinks {
 }
 
 /*-->SONG SELECTION*/
-.data{
-  position:fixed;
-  top:11vh;
-}
 
 .songSelectionForm{
   display:flex;
@@ -213,8 +202,19 @@ ul.subMenu li:nth-child(2) .menuLinks {
   overflow-x:hidden;
 }
 
-.songSelectionForm > *{
-  width:100%;
+.searchContainer{
+  padding: 30px;
+}
+
+.searchContainer.moved{
+    padding: 0px;
+    width: 33%;
+    height: 50px;
+    /* position: fixed; */
+    top: 11%;
+    transform: scale(0.7,0.7) translate(62px);
+    transition: all 1s ease;
+    z-index: 2;
 }
 
 .songSelection{
@@ -225,12 +225,7 @@ ul.subMenu li:nth-child(2) .menuLinks {
 .albums{
   padding-left: 0%;
   margin-top: 0%;
-  width:75vw;
-  height: 69vh;
-  bottom: 0vh;
-  position: fixed;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  width:100%;
 }
 
 .album{
@@ -260,120 +255,6 @@ ul.subMenu li:nth-child(2) .menuLinks {
   width: 20%;
   height:20%;
 }
-
-/*check boxes for album*/
-/*.squaredOne[data=true]{
-  display:block;
-  height: 50px;
-  width: 50px;
-  border-radius: 100%;
-  border: 1px solid #FF9100;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  background: #FF9100;
-  transition: background 0.25s ease;
-  background: #fff;
-  border: 1px solid #E5E5E5;
-  z-index: -1;
-}
-
-.squaredOne[data=false]{
-  display:block;
-  height: 50px;
-  width: 50px;
-  border-radius: 100%;
-  border: 1px solid #FF9100;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  background: #FF9100;
-  transition: background 0.25s ease;
-  z-index: -1;
-}
-
-.squaredOne[data=true] .checkbox__inner::before{
-  background: #99BF4C;
-  transition: all 0.2s ease;
-  transform: rotate(47deg);
-  width: 10px;
-  top: 26px;
-  left: 13px;
-  z-index: 0;
-}
-.squaredOne[data=true] .checkbox__inner::after {
-  background: #99BF4C;
-  transition: all 0.2s ease;
-  transform: rotate(45deg);
-  left: 27px;
-}
-
-.squaredOne[data=true] .checkbox__inner::before {
-  background: #FF0000;
-  transform: rotate(45deg);
-  width: 19px;
-  top: 23px;
-  left: 14px;
-}
-.squaredOne[data=true] .checkbox__inner::after {
-  background: #FF0000;
-  height: 19px;
-  top: 14px;
-  left: 23px;
-}
-.squaredOne[data=false]:hover {
-  background: #FF9E2C;
-}
-
-.squaredOne[data=false] .checkbox__inner {
-  position: relative;
-}
-.squaredOne[data=false] .checkbox__inner::before, .squaredOne[data=false] .checkbox__inner::after {
-  position: absolute;
-  content: '+';
-  background: #fff;
-  transition: all 0.3s ease;
-}
-.squaredOne[data=false] .checkbox__inner::before {
-  height: 1px;
-  width: 19px;
-  top: 23px;
-  left: 14px;
-}
-.squaredOne[data=false] .checkbox__inner::after {
-  width: 1px;
-  height: 19px;
-  top: 14px;
-  left: 23px;
-}
-.squaredOne[data=false] .checkbox__input {
-  -webkit-appearance: none;
-  z-index: 100;
-}
-
-.squaredOne[data=true] .checkbox__inner {
-  position: relative;
-}
-.squaredOne[data=true] .checkbox__inner::before, .squaredOne[data=true] .checkbox__inner::after {
-  position: absolute;
-  content: '';
-  background: #fff;
-  transition: all 0.3s ease;
-}
-.squaredOne[data=true] .checkbox__inner::before {
-  height: 1px;
-  width: 19px;
-  top: 23px;
-  left: 14px;
-}
-.squaredOne[data=true] .checkbox__inner::after {
-  width: 1px;
-  height: 19px;
-  top: 14px;
-  left: 23px;
-}
-.squaredOne[data=true] .checkbox__input {
-  -webkit-appearance: none;
-  z-index: 100;
-}*/
 
 .albumCover:hover {
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
@@ -408,43 +289,23 @@ ul.subMenu li:nth-child(2) .menuLinks {
   width:60px;
   align-items: center;
   align-content: center;
-	-moz-box-shadow: 0px 10px 14px -7px #333444;
-	-webkit-box-shadow: 0px 10px 14px -7px #333444;
-	box-shadow: 0px 10px 14px -7px #333444;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #222333), color-stop(1, #334450));
-	background:-moz-linear-gradient(top, #222333 5%, #334450 100%);
-	background:-webkit-linear-gradient(top, #222333 5%, #334450 100%);
-	background:-o-linear-gradient(top, #222333 5%, #334450 100%);
-	background:-ms-linear-gradient(top, #222333 5%, #334450 100%);
-	background:linear-gradient(to bottom, #222333 5%, #334450 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#222333', endColorstr='#334450',GradientType=0);
-	background-color:#222333;
-	-moz-border-radius:8px;
-	-webkit-border-radius:8px;
 	border-radius:8px;
-	display:inline-block;
+  background-color: transparent;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
 	font-size:12px;
-	font-weight:bold;
 	padding:13px 15px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #4393ad;
+  margin-right: auto;
+  margin-left: auto;
   display:block;
   border: 0px;
   padding: 2px;
 }
 .backButton:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #334450), color-stop(1, #222333));
-	background:-moz-linear-gradient(top, #334450 5%, #222333 100%);
-	background:-webkit-linear-gradient(top, #334450 5%, #222333 100%);
-	background:-o-linear-gradient(top, #334450 5%, #222333 100%);
-	background:-ms-linear-gradient(top, #334450 5%, #222333 100%);
-	background:linear-gradient(to bottom, #334450 5%, #222333 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#334450', endColorstr='#222333',GradientType=0);
-	background-color:#334450;
+	background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color ease 0.4s
 }
+
 .backButton:active {
 	position:relative;
 	top:1px;
@@ -530,21 +391,21 @@ ul.subMenu li:nth-child(2) .menuLinks {
   color: #c9c9c9;
 }
 #selectors > div:nth-child(1):hover {
-  box-shadow: 5px 10px 10px -1px rgba(17, 17, 48, 0.75);
+  box-shadow: 5px 10px 10px -1px rgba(17, 17, 48, 0.5);
   color: #15c1db;
 }
 #selectors > div:nth-child(2):hover {
-  box-shadow: 5px 10px 10px -1px rgba(48, 17, 17, 0.75);
+  box-shadow: 5px 10px 10px -1px rgba(48, 17, 17, 0.5);
   color: #ff6868;
 }
 
 #selectors > div:nth-child(1):active {
-  box-shadow: 1px 2px 10px -1px rgba(17, 17, 48, 0.5);
+  box-shadow: 1px 2px 10px -1px rgba(17, 17, 48, 0.3);
   color: #82eeff;
 }
 
 #selectors > div:nth-child(2):active {
-  box-shadow: 1px 2px 10px -1px rgba(48, 17, 17, 0.5);
+  box-shadow: 1px 2px 10px -1px rgba(48, 17, 17, 0.3);
   color: #ff9696;
 }
 
@@ -554,9 +415,20 @@ hr {
   background-color: black;
 }
 
+.shadowfix {
+  height: 50px;
+  width: 25%;
+  background-color: black;
+  opacity: 0.8;
+  top: 0;
+  position: absolute;
+  z-index:-1;
+  transform:translate(0,0);
+}
+
 /*SIDEBAR SEARCH*/
 .playlistSubmission{
-  top: 11vh;
+  bottom: 0;
   width: 25%;
   display: flex;
   z-index: 100;
@@ -750,18 +622,9 @@ button:focus {
 }
 
 /*artist search form*/
-.SearchBar{
-  display:flex;
-  padding: 30px;
-  position:absolute;
-  width:100%;
-  right:0;
-  z-index: -1;
-}
 
 .artistSearchSubmission{
-  align-self: center;
-  height:10vw;
+  height:50px;
   width:70%;
   position:relative;
 }
@@ -798,13 +661,14 @@ button:focus {
   cursor: text;
 }
 
+.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+
 #search_submit {
-  height: 50px;
-  width: 50px;
-  background: url('../images/magGlass_icon.png') center center no-repeat;
   /*text-indent: 10000px;*/
   border: none;
   position: absolute;
+  background-color: transparent;
   top: 0;
   right: 0;
   z-index: 2;

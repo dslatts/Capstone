@@ -8,12 +8,11 @@ let data = [
 export default class CreateChart extends Component {
   constructor(props){
     super(props);
-    }
+  }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps);
-      mutateData(nextProps.playlist);
-    }
+    mutateData(nextProps.playlist);
+  }
 
   render () {
     let windowHeight = window.innerHeight;
@@ -21,10 +20,10 @@ export default class CreateChart extends Component {
     return (
       <AreaChart width={windowWidth * .75} height={windowHeight * .2} data={data}
             margin={{top: 0, right: 0, left: 0, bottom: 0}}>
-        <XAxis dataKey="song"/>
+        <XAxis dataKey="song" />
         {/*<YAxis domain={[0, 1]}/>*/}
-        <CartesianGrid strokeDasharray="3 3"/>
-        <Tooltip/>
+        <CartesianGrid strokeDasharray="3 3" />
+        <Tooltip />
         <Area type='monotone' dataKey='happiness' stroke='#f26d26' fill='#f26d26' />
       </AreaChart>
     );
