@@ -13,7 +13,7 @@ import React, {Component} from 'react';
     const currentUser = this.props.currentUser;
     const currentLogin = currentUser.localProfile.histories[currentUser.localProfile.histories.length - 1];
     // TODO currently using FIRST available, not LAST login, simply for testing purposes.
-    const lastLogin = currentUser.localProfile.histories[1];
+    const lastLogin = currentUser.localProfile.histories[0];
     let mapIt = function (x, in_min, in_max, out_min, out_max) {
       return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     };
