@@ -19,14 +19,15 @@ export default class Compare extends Component {
   render () {
     return (
       <div>
-        <HeaderContainer />
+        <HeaderContainer goBack={this.props.goBack} />
         <div className="songSelectionContainer">
-          <div className= {this.props.currentAlbumList.albums ? "searchContainer moved" : "searchContainer" }>
+          <div className= {this.props.currentAlbumList.albums ? 'searchContainer moved' : 'searchContainer' }>
             <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
           </div>
           {this.props.currentAlbumList.albums ?
           <div>
             <div className="shadowfix" />
+
             <Sidebar
               className="songSelectionSidebar"
               getSongs={this.props.getSongs}
@@ -47,7 +48,7 @@ export default class Compare extends Component {
           </div>
       :
         <div>
-          <h1 className='titleText'>Search for an artist to compare songs</h1>
+          <h1 className="titleText">Search for an artist to compare songs</h1>
           <button className="backButton" onClick={this.props.goBack}>Go Back</button>
         </div>
     }

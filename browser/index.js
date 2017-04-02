@@ -13,9 +13,13 @@ import ProfileContainer from './containers/ProfileContainer';
 import PlaylistContainer from './containers/PlaylistContainer';
 import LoadingContainer from './containers/LoadingContainer';
 const refreshUser = function(){
-  store.dispatch(fetchUser())
+  store.dispatch(fetchUser());
 };
 const loadPlaylists = function(){
+  store.dispatch(fetchPlaylist());
+};
+
+const loadProfile = function(){
   store.dispatch(fetchPlaylist());
 };
 
@@ -25,7 +29,7 @@ render(
       <Route path="/" onEnter={refreshUser} component={HomeContainer} />
       <Route path="/tests" component={Sunburst} />
       <Route path="/load" onEnter={refreshUser} component={LoadingContainer} />
-      <Route path="/:username/profile" onEnter={loadPlaylists} component={ProfileContainer} />
+      <Route path="/:username/profile" onEnter={loadProfile} component={ProfileContainer} />
       <Route path="/:playlist/confirm" onEnter={loadPlaylists} component={PlaylistContainer} />
     </Router>
   </Provider>,

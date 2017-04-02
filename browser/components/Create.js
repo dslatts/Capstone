@@ -44,12 +44,13 @@ export default class Create extends Component {
   render () {
     return (
       <div>
-        <HeaderContainer />
+
+        <HeaderContainer goBack={this.props.goBack}  />
           <div className="songSelectionContainer">
             <div className= {this.props.currentAlbumList.albums ? "searchContainer moved" : "searchContainer" }>
                 <ArtistsForm fetchAlbums={this.props.fetchAlbums} />
             </div>
-        {this.props.currentAlbumList.albums ?
+          {this.props.currentAlbumList.albums ?
           <div>
             <div className="shadowfix" />
             <Sidebar
