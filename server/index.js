@@ -10,7 +10,6 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const Promise = require('bluebird');
 const db = require('../db');
 var info = require('../secret.config');
-// console.log(db);
 const User = db.models.user;
 
 const app = express();
@@ -31,7 +30,6 @@ app.use(session({
 }));
 
 app.use('/numVisits', function(req, res, next){
-  // console.log(req);
   var sess = req.session;
   if (sess.number === undefined) {
     sess.number = 0;
@@ -42,7 +40,6 @@ app.use('/numVisits', function(req, res, next){
 });
 
 app.use('/', (req, res, next) => {
-  // console.log('this is to show us what session it is', req.session);
   next();
 });
 
@@ -64,13 +61,6 @@ passport.use(new SpotifyStrategy(
     callbackURL: 'http://localhost:1337/api/auth/callback'
   },
   (accessToken, refreshToken, profile, done) => {
-    // console.log('accessToken: ');
-    // console.log(accessToken);
-    // console.log('refreshToken: ')
-    // console.log(refreshToken);
-    // console.log(profile);
-    // console.log("ID: ", profile.id)
-    // console.log('--- inside ze spotifystrategy ---')
     User.findOne({
       where: {
         name: profile.username,
@@ -85,16 +75,12 @@ passport.use(new SpotifyStrategy(
             authToken: accessToken
         });
       } else {
-        // console.log(accessToken);
-        // console.log('im in the update');
         return user.update({
             authToken: accessToken
         })
       }
     })
     .then(selectedUser => console.log('selectedUser'))
-    // console.log('checking for password addition: ', profile);
-    // console.log('profile completed')
     return done(null, profile._json);
   }
 ));

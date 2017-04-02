@@ -99,7 +99,6 @@ router.get('/:playlistId', (req, res, next) => {
 				}
 			})
 			.then(playlistObj => {
-				console.log(playlistObj);
 				if (!playlistObj) {
 					const err = new Error('no recent tracks played');
 					err.status = 404;

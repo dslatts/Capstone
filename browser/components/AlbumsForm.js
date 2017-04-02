@@ -103,7 +103,6 @@ render () {
     return album.album_type === 'album';
     });
   }
-  console.log(this.props);
   return (
     <div>
       {this.props.createOrCompare === 'compare' ?
