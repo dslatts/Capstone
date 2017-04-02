@@ -72,8 +72,18 @@ export default class Profile extends Component {
     foundPlaylist.className = 'playListActive';
   }
 
+  // renderRadar(){
+  //   if (this.state.currentUser){
+  //
+  //   }
+  // }
+  //
+  // renderArea(){
+  //
+  // }
+
   render () {
-    // console.log("===========", this.state.currentUser);
+    console.log("===========", this.state.currentUser);
     return (
       <div className="Profile">
       <div className = "ProfileHeader">
