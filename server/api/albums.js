@@ -1,30 +1,42 @@
-const router = require('express').Router()
+const router = require('express').Router();
 var db = require('../../db');
-var User = db.user;
-var Playlist = db.playlist;
-var Song = db.song;
+var User = db.models.user;
 const pRequest = require('request-promise');
 
-// NOTE: the idea is that we need to search for artist, so it can be an english string.
-// however, album can be obtained only by querying artist first and obtaining a list of albums.
-// therefore, each album in the list will have its unique id, so the "album" param coming in here
-// should already be in Spotify ID form, so we have no need to query for it.
 router.get('/:album', (req, res, next) => {
-  pRequest({
-    url: 'https://api.spotify.com/v1/albums/' + req.params.album,
-    method: 'GET',
-    json: true
-  })
-  .then(foundTracks => {
-    if (!foundTracks){
-      const err = new Error('does not exist');
-      err.status = 404;
-      next(err);
-    } else {
-      res.send(foundTracks);
-    }
-  })
-  .catch(next);
+  if (!req.session.passport) {
+    const err = new Error('need to be logged in to use this function');
+    err.status = 403;
+    next(err);
+  }
+  else {
+    return User.findOne({
+      where: {
+        name: req.session.passport.user
+      }
+    })
+    .then(foundUser => {
+      return pRequest({
+        url: 'https://api.spotify.com/v1/albums/' + req.params.album + '/tracks',
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${foundUser.authToken}`
+          },
+        json: true
+      });
+    })
+    .then(foundTracks => {
+      if (!foundTracks){
+        const err = new Error('does not exist');
+        err.status = 404;
+        next(err);
+      } else {
+        res.send(foundTracks);
+      }
+    })
+    .catch(next);
+  }
 });
 
 module.exports = router;
