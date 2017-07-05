@@ -13,8 +13,7 @@ export default class SongsForm extends Component {
     this.songListOpen = this.songListOpen.bind(this);
   }
   componentDidMount(){
-    //this is probs an anti-pattern but yolo
-    axios.get(`https://api.spotify.com/v1/albums/${this.props.album.id}/tracks`)
+    axios.get(`/api/albums/${this.props.album.id}`)
     .then((res) => res.data)
     .then(songs => {
         let songIds = songs.items.map(song => song.id).join(',');
@@ -33,7 +32,7 @@ export default class SongsForm extends Component {
                   image: this.props.album.images[0].url
                 }
             });
-            this.setState({songList: songsWithFeatures})
+            this.setState({songList: songsWithFeatures});
         });
     })
     .catch(err => console.error(err));
