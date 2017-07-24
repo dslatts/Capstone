@@ -2,7 +2,7 @@ import axios from 'axios';
 import {setFalse} from './loading';
 
 export const SET_USER = 'SET_USER';
-export const REMOVE_USER = 'REMOVER_USER';
+export const REMOVE_USER = 'REMOVE_USER';
 export const UPDATE_PLAYLISTS = 'UPDATE_PLAYLISTS';
 
 export const setUser = (user) => ({ type: SET_USER, currentUser: user});
