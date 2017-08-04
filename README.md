@@ -33,7 +33,7 @@ In our presentation, we give a walkthrough of the website, as well as go over so
 
 ## Contributing
 
-https://github.com/justinzhou93
-https://github.com/angelinojoe
-https://github.com/TheBenjimoto
-https://github.com/dslatts
+* https://github.com/justinzhou93
+* https://github.com/angelinojoe
+* https://github.com/TheBenjimoto
+* https://github.com/dslatts
